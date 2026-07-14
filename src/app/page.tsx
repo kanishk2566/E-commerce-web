@@ -1,9 +1,18 @@
+import Navbar from "@/components/Navbar";
+import ProductGrid from "@/components/ProductGrid";
+import { getAllProducts } from "@/services/api";
 
-export default function Home() {
-  return (
-   
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-
-      </main>
+export default async function Home() {
+  const products = await getAllProducts();
+  return (   
+      <>
+        <Navbar />
+        <main className="mx-auto max-w-7xl p-8">
+          <p className="text-2xl mb-5 border-l-3 pl-4 font-bold">
+            Products 
+          </p>
+            <ProductGrid products={products} />
+        </main>
+      </>
   );
 }
