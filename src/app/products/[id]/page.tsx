@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { getProduct } from '@/services/api';
+import Link from 'next/link';
 import React from 'react'
+import { IoIosArrowRoundBack } from "react-icons/io";
 
 interface ProductProps {
   params: Promise<{
@@ -11,7 +13,10 @@ async function ProductPage({params}: ProductProps) {
   const { id } = await params;
   const product = await getProduct(Number(id));
   return (
-    <main className='mx-auto max-w-5xl p-10 flex justify-center items-center rounded shadow-[0_0_15px_rgba(0,0,0,0.5)]'>
+    <main className='mx-auto relative max-w-5xl p-10 flex justify-center items-center rounded shadow-[0_0_15px_rgba(0,0,0,0.5)]'>
+      <Link 
+      className='absolute top-5 left-5 text-4xl'
+      href={"/"}><IoIosArrowRoundBack /></Link>
       <div className='grid grid-cols-1 gap-10 md:grid-cols-2'>
         <div>
           <img
