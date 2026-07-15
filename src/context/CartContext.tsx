@@ -35,7 +35,6 @@ function cartReducer(state: CartItem[], action: CartAction): CartItem[] {
                 quantity: item.quantity + 1
             };
           }
-
           return item;
         });
       }

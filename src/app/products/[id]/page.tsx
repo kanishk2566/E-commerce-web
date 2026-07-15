@@ -4,13 +4,17 @@ import { getProduct } from '@/services/api';
 import Link from 'next/link';
 import React from 'react'
 import { IoIosArrowRoundBack } from "react-icons/io";
+import { FaShoppingCart } from "react-icons/fa";
+
 
 interface ProductProps {
   params: Promise<{
     id: string;
   }>;
+  
 }
 async function ProductPage({params}: ProductProps) {
+  const cartIcon = <FaShoppingCart />;
   const { id } = await params;
   const product = await getProduct(Number(id));
   return (
@@ -38,8 +42,8 @@ async function ProductPage({params}: ProductProps) {
           <div className='mt-5 text-2xl text-green-600 font-bold'>
             ${product.price}
           </div>
-          <button className='mt-8 py-3 px-6 text-white bg-blue-600 rounded hover:bg-blue-700 cursor-pointer'>
-            Add to cart
+          <button className='mt-8 py-2 px-2 flex justify-center items-center gap-2 text-white bg-blue-600 rounded hover:bg-blue-700 cursor-pointer'>
+            Add to cart {cartIcon}
           </button>
         </div>
       </div>
