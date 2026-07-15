@@ -6,6 +6,8 @@ import { CartItem } from "@/types/cart";
 
 const initialState: CartItem[] = [];
 
+export const CartContext = createContext<CartContextType | null>(null);
+
 interface CartAction {
   type: string;
   payload?: any;
@@ -27,7 +29,7 @@ function cartReducer(state: CartItem[], action: CartAction): CartItem[] {
         }
 
         return state.map((item) => {
-          if (existingItem.product.id === action.payload.id) {
+          if (item.product.id === action.payload.id) {
             return {
               ...item,
                 quantity: item.quantity + 1
@@ -37,9 +39,9 @@ function cartReducer(state: CartItem[], action: CartAction): CartItem[] {
           return item;
         });
       }
-      
+
     case "REMOVE_FROM_CART":
-      {return state.filter((item) => action.payload === item.product.id)}
+      {return state.filter((item) => action.payload !== item.product.id)}
     case "CLEAR_CART":
       return [];
     default:
@@ -67,6 +69,8 @@ export function useCart() {
   if(!context) {
     throw new Error("useCart must be used inside CartProvider");
   }
+
+  return context;
 }
 
 interface CartContextType {
@@ -74,4 +78,3 @@ interface CartContextType {
   dispatch: React.Dispatch<CartAction>
 }
 
-export const CartContext = createContext<CartContextType | null>(null);
