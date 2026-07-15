@@ -2,7 +2,7 @@ import React from 'react'
 
 const Navbar = () => {
   return (
-    <nav className='flex items-center justify-between py-4 px-8 shadow-md'>
+    <nav className='flex items-center fixed top-0 w-full z-999 justify-between py-4 bg-blue-600 text-white px-8 shadow-md'>
 
         <div className='text-2xl font-bold'>
           ShopEasy

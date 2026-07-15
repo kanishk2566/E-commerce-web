@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import Navbar from '@/components/Navbar';
 import { getProduct } from '@/services/api';
 import Link from 'next/link';
 import React from 'react'
@@ -13,16 +14,18 @@ async function ProductPage({params}: ProductProps) {
   const { id } = await params;
   const product = await getProduct(Number(id));
   return (
-    <main className='mx-auto relative max-w-5xl p-10 flex justify-center items-center rounded shadow-[0_0_15px_rgba(0,0,0,0.5)]'>
+    <>
+    <Navbar />
+    <main className='mx-auto mt-20 relative p-10 flex justify-center h-screen w-screen items-start rounded'>
       <Link 
-      className='absolute top-5 left-5 text-4xl'
+      className='absolute top-2 left-2 text-4xl'
       href={"/"}><IoIosArrowRoundBack /></Link>
       <div className='grid grid-cols-1 gap-10 md:grid-cols-2'>
         <div>
           <img
           src={product.image}
           alt={product.title} 
-          className='h-96 w-full object-contain'
+          className='w-full h-80 object-contain'
           />
         </div>
         <div>
@@ -40,8 +43,8 @@ async function ProductPage({params}: ProductProps) {
           </button>
         </div>
       </div>
-
     </main>
+    </>
   )
 }
 

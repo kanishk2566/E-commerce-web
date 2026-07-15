@@ -7,8 +7,8 @@ export default async function Home() {
   return (   
       <>
         <Navbar />
-        <main className="mx-auto max-w-7xl p-8">
-          <p className="text-2xl mb-5 border-l-3 pl-4 font-bold">
+        <main className="mx-auto max-w-7xl p-8 mt-20">
+          <p className="text-2xl mb-5 border-l-3 border-blue-500 pl-4 font-bold">
             Products 
           </p>
             <ProductGrid products={products} />
