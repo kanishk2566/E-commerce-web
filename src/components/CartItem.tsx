@@ -16,8 +16,6 @@ const CartItem = ({item}: CartCardProps) => {
       type: "REMOVE_FROM_CART",
       payload: item.product,
     });
-
-    console.log(item);
   }
 
   function handleIncreaseQuantity() {
@@ -36,17 +34,16 @@ const CartItem = ({item}: CartCardProps) => {
 
   return (
     <>
-      <div className='flex flex-col flex-1 gap-4 h-fit pb-5 bg-gray-200 rounded mx-2'>
-          <div 
-          className='flex justify-start flex-1 items-center gap-5 mx-2 p-3 border-b border-gray-400 relative'
-          key={item.product.id}>
-            <div className='w-30 border border-gray-300 p-2 rounded bg-white'>
+      <div className='flex flex-1 h-fit pb-4 rounded ml-5'>
+        <div className='w-30 border border-gray-300 p-2 rounded-l bg-gray-200'>
               <img
               src={item.product.image} 
               alt={item.product.title}
               className='h-28 w-28 object-contain'
               />
             </div>
+          <div 
+          className='flex justify-start flex-1 items-center gap-5 mr-2 ml-1 p-3 bg-gray-200 border border-gray-300 rounded-r relative'>
 
             <div className='flex flex-col gap-2'>
               <div className='text-xl font-semibold'>
@@ -58,7 +55,7 @@ const CartItem = ({item}: CartCardProps) => {
                 className='border-r rounded-l border-gray-400 w-7 text-xl text-center bg-white cursor-pointer'>
                   -
                 </button>
-                <div className='border-gray-400 px-2 bg-white'>
+                <div className='border-gray-400 px-2 bg-white w-7 text-center'>
                   {item.quantity}
                 </div>
                 <button
