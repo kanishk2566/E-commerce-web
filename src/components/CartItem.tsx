@@ -2,12 +2,38 @@
 import React from 'react'
 import { CartItemType } from '@/types/cart';
 import { MdDelete } from 'react-icons/md';
+import { useCart } from '@/context/CartContext';
 
 type CartCardProps = {
   item: CartItemType;
 }
 
 const CartItem = ({item}: CartCardProps) => {
+  const { dispatch } = useCart();
+
+  function handleRemoveItem() {
+    dispatch({
+      type: "REMOVE_FROM_CART",
+      payload: item.product,
+    });
+
+    console.log(item);
+  }
+
+  function handleIncreaseQuantity() {
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: item.product,
+    })
+  }
+
+  function handleDecreaseQuantity() {
+    dispatch({
+      type: "DECREASE_QUANTITY",
+      payload: item.product,
+    })
+  }
+
   return (
     <>
       <div className='flex flex-col flex-1 gap-4 h-fit pb-5 bg-gray-200 rounded mx-2'>
@@ -22,24 +48,32 @@ const CartItem = ({item}: CartCardProps) => {
               />
             </div>
 
-            <div>
-              <div>
+            <div className='flex flex-col gap-2'>
+              <div className='text-xl font-semibold'>
                 {item.product.title}
               </div>
-              <div>
-                <button>
+              <div className='w-fit flex justify-center items-center border border-gray-400 rounded'>
+                <button
+                onClick={handleDecreaseQuantity}
+                className='border-r rounded-l border-gray-400 w-7 text-xl text-center bg-white cursor-pointer'>
                   -
                 </button>
-                {item.quantity}
-                <button>
+                <div className='border-gray-400 px-2 bg-white'>
+                  {item.quantity}
+                </div>
+                <button
+                onClick={handleIncreaseQuantity}
+                className='border-l rounded-r border-gray-400 w-7 text-xl text-center bg-white cursor-pointer'>
                   +
                 </button>
               </div>
-              <div>
-                {item.product.price}
+              <div className='font-bold text-green-600'>
+                ${item.product.price}
               </div>
             </div>
-            <div className='flex justify-center items-center gap-1 absolute right-2 bottom-2 md:right-2 text-red-500 hover:bg-red-200 cursor-pointer bg-gray-300 py-1 px-2 rounded transition-all'>
+            <div 
+            onClick={handleRemoveItem}
+            className='flex justify-center items-center gap-1 absolute right-2 bottom-2 md:right-2 text-red-500 hover:bg-red-200 cursor-pointer bg-gray-300 py-1 px-2 rounded transition-all'>
               <MdDelete /> Remove
             </div>
           </div>

@@ -39,8 +39,28 @@ function cartReducer(state: CartItemType[], action: CartAction): CartItemType[] 
         });
       }
 
+    case "DECREASE_QUANTITY":
+      {
+        const existingItem = state.find((item) => item.product.id === action.payload.id);
+
+        if(existingItem) {
+          if(existingItem?.quantity <= 1){
+          return state.filter((item) => action.payload.id !== item.product.id);
+          }
+        }
+
+        return state.map((item) =>{
+          if(item.product.id === action.payload.id) {
+            return {
+              ...item,
+              quantity: item.quantity - 1
+            };
+          }
+          return item;
+        });
+      }
     case "REMOVE_FROM_CART":
-      {return state.filter((item) => action.payload !== item.product.id)}
+      {return state.filter((item) => action.payload.id !== item.product.id)}
     case "CLEAR_CART":
       return [];
     default:

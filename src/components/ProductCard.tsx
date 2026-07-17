@@ -17,7 +17,6 @@ const ProductCard = ({product}: ProductCardProps) => {
       type: "ADD_TO_CART",
       payload: product,
     });
-
   }
   
   return (
