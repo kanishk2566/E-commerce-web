@@ -10,7 +10,6 @@ interface ProductCardProps {
   product: Product;
 }
 const ProductCard = ({product}: ProductCardProps) => {
-  const cartIcon = <FaShoppingCart />;
   const { dispatch } = useCart();
 
   function handleAddToCart() {
@@ -18,7 +17,7 @@ const ProductCard = ({product}: ProductCardProps) => {
       type: "ADD_TO_CART",
       payload: product,
     });
-    
+
   }
   
   return (
@@ -42,7 +41,7 @@ const ProductCard = ({product}: ProductCardProps) => {
           <button
           onClick={handleAddToCart}
           className='flex justify-center items-center gap-2 rounded py-2 px-2 cursor-pointer bg-blue-600 hover:bg-blue-700'>
-            Add to cart {cartIcon}
+            Add to cart <FaShoppingCart />
           </button>
         </div>
       </div>

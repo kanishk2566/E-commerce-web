@@ -6,8 +6,6 @@ import { FaShoppingCart } from "react-icons/fa";
 import { IoMdHome } from "react-icons/io";
 
 const Navbar = () => {
-  const cartIcon = <FaShoppingCart />;
-  const homeIcon = <IoMdHome />;
   const { cart } = useCart();
 
   console.log(cart);
@@ -23,10 +21,10 @@ const Navbar = () => {
 
         <div className='flex justify-center items-center gap-6'>
           <Link href={"/"} className='hover:underline cursor-pointer text-2xl flex justify-center items-center gap-1'>
-            {homeIcon}
+            <IoMdHome />
           </Link>
           <Link href={"/cart"} className='hover:underline cursor-pointer flex justify-center items-center relative text-2xl'>
-            {cartIcon}
+            <FaShoppingCart />
             {totalItem > 0 && (
               <span className='absolute rounded-full bg-red-500 text-[12px] md:text-[11px] px-1.5 md:px-1.5 transition-transform -top-2 -right-2.5 md:-top-1.5 md:-right-2.5'>
               {totalItem}

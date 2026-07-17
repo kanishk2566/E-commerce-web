@@ -2,9 +2,9 @@
 "use client";
 
 import { createContext, useReducer, ReactNode, useContext } from "react";
-import { CartItem } from "@/types/cart";
+import { CartItemType } from "@/types/cart";
 
-const initialState: CartItem[] = [];
+const initialState: CartItemType[] = [];
 
 export const CartContext = createContext<CartContextType | null>(null);
 
@@ -13,7 +13,7 @@ interface CartAction {
   payload?: any;
 }
 
-function cartReducer(state: CartItem[], action: CartAction): CartItem[] {
+function cartReducer(state: CartItemType[], action: CartAction): CartItemType[] {
 
   switch (action.type) {
     case "ADD_TO_CART":
@@ -73,7 +73,7 @@ export function useCart() {
 }
 
 interface CartContextType {
-  cart: CartItem[];
+  cart: CartItemType[];
   dispatch: React.Dispatch<CartAction>
 }
 
