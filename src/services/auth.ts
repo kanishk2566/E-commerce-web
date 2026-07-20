@@ -20,6 +20,33 @@ export async function loginUser(data: LoginData): Promise<AuthUser> {
   
 }
 
-export function registerUser(data: RegisterData) {
+export async function registerUser(data: RegisterData) {
 
+  const response = await fetch(`${API_URL}/users`);
+
+  const users: User[] = await response.json();
+
+  const existingEmail = users.find((user) => user.email === data.email);
+  
+  if(existingEmail) {
+    throw new Error("Email already exists");
+  }
+  
+  const newUser = {
+    ...data, role: "USER", createdAt: new Date().toISOString()
+  }
+
+  const response2 = await fetch(`${API_URL}/users`, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newUser),
+  });
+
+  const data2: User = await response2.json();
+
+  const {password: _password, ...authUser} = data2;
+
+  return authUser;
 }
