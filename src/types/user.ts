@@ -7,4 +7,8 @@ export type User = {
   createdAt: string;
 }
 
-export type AuthUser = Omit<User, "password">;
+export type AuthUser = Omit<User, "password"> | null;
+
+export type RegisterData = Pick<User, "name" | "password" | "email">;
+
+export type LoginData = Pick<User, "email" | "password">;

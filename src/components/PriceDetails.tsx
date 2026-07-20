@@ -6,11 +6,10 @@ const PriceDetails = () => {
 
   const totalPrice = cart.reduce((total, item) => total + (item.product.price * item.quantity), 0);
   const roundedPrice = totalPrice.toFixed(2);
-
   
   // Accordion 
   return (
-    <div className='md:w-3/10 mx-5 flex flex-col gap-2 h-full md:min-h-screen'>
+    <div className='lg:w-3/10 mx-5 flex flex-col gap-2 h-full lg:min-h-screen'>
     
     <div className='flex gap-10 flex-col'>
       <div className=' bg-gray-200 p-5 rounded-2xl w-full overflow-clip'>
@@ -20,7 +19,7 @@ const PriceDetails = () => {
         <div className='flex flex-col gap-3'>      
           {cart.map((item) => (
             <div
-            className='flex justify-between gap-7 border-b border-gray-300'
+            className='flex justify-between lg:gap-7 border-b border-gray-300'
             key={item.product.id}>
               <p className='w-[80%]'>
                 {item.product.title}
@@ -28,11 +27,11 @@ const PriceDetails = () => {
                   ({item.quantity})
                 </span>
               </p>
-                
-                <div>
-                  ${(item.product.price) * (item.quantity)}
-                </div>
+
+              <div className='font-semibold'>
+                ${((item.product.price) * (item.quantity)).toFixed(2)}
               </div>
+            </div>
           ))}
         </div>
         <div className='flex justify-between pt-2 mt-2 font-bold border-t border-gray-400'>
