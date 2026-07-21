@@ -49,4 +49,4 @@ export async function registerUser(data: RegisterData) {
   const {password: _password, ...authUser} = data2;
 
   return authUser;
-}
+} 

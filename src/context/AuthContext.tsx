@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 "use client"
 
-import { loginUser } from "@/services/auth";
+import { loginUser, registerUser } from "@/services/auth";
 import { AuthUser, LoginData, RegisterData } from "@/types/user"
 import React, { createContext, useContext, useEffect, useState } from "react";
 
@@ -22,15 +22,19 @@ export function AuthProvider({children}: {children: React.ReactNode;}) {
   const [isLoading, setIsLoading] = useState(false);
   const AUTH_STORAGE_KEY = "authUser";
 
+  function persistAuthenticatedUser(authUser: AuthUser) {
+    setUser(authUser);
+    localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(authUser));
+  }
+
   useEffect(() => {
     try {
       const storedUser = localStorage.getItem(AUTH_STORAGE_KEY);
     
     if(!storedUser) return;
 
-    const user: AuthUser | null = JSON.parse(storedUser);
-
-    setUser(user);
+    const parsedUser: AuthUser = JSON.parse(storedUser);
+    setUser(parsedUser);
 
     } catch {
       localStorage.removeItem(AUTH_STORAGE_KEY);
@@ -40,19 +44,25 @@ export function AuthProvider({children}: {children: React.ReactNode;}) {
   async function login(data: LoginData) {
     try {
       setIsLoading(true);
-      const user = await loginUser(data);
+      const authUser = await loginUser(data);
 
-      setUser(user);
-      
-      localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(user));
-    } 
+      persistAuthenticatedUser(authUser);
+    }
     finally {
       setIsLoading(false);
     }
   }
 
-  async function register() {
+  async function register(data: RegisterData) {
+    try {
+      setIsLoading(true);
+      const authUser = await registerUser(data);
 
+      persistAuthenticatedUser(authUser);
+    }
+    finally {
+      setIsLoading(false);
+    }
   }
 
   function logout() {
