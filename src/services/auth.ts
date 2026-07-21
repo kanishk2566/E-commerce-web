@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { AuthUser, LoginData, RegisterData, User } from "@/types/user";
 
-const API_URL = "http://localhost:3001"
+const API_URL = "http://localhost:3008"
 
 export async function loginUser(data: LoginData): Promise<AuthUser> {
 
