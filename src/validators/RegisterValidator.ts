@@ -13,13 +13,13 @@ export const INITIAL_REGISTER_FORM_ERRORS: RegisterFormErrors = {
   password: "",
 }
 
-const EMAIL_REGEX = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+export async function validateRegisterForm(formData: RegisterData): Promise<RegisterValidatorResult> {
 
-export function validateRegisterForm(formData: RegisterData): RegisterValidatorResult {
+  const EMAIL_REGEX = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
   const trimmedName = formData.name.trim();
   const trimmedEmail = formData.email.trim();
-  const trimmedPassword = formData.password.trim();
+  const trimmedPassword = formData.password.trim(); 
 
   const errors = {...INITIAL_REGISTER_FORM_ERRORS};
   

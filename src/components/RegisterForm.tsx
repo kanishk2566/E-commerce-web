@@ -9,7 +9,7 @@ import { IoArrowBackOutline } from "react-icons/io5";
 import Navbar from './Navbar';
 
 const RegisterCard = () => {
-  const { register } = useAuth();
+  const { register, isLoading } = useAuth();
   const [errors, setErrors] = useState({
     name: "",
     password: "",
@@ -29,18 +29,17 @@ const RegisterCard = () => {
       [e.target.name]: e.target.value,
     }));
     setApiError("");
+    setErrors({...errors, [e.target.name]: ""})
   }
 
   async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
 
     try {
-      const result = validateRegisterForm(formData);
+      const result = await validateRegisterForm(formData);
       setErrors(result.errors);
 
       if(!result.isValid) return;
-
-
 
       await register(formData);
       router.push("/");
@@ -52,24 +51,27 @@ const RegisterCard = () => {
       }
     }
   }
-// loading screen or skelaton
+
   return (
     <div className='w-full h-full min-h-screen flex justify-center items-center'>
+
       <Navbar inCart={false} inHome={false} inRegister={true} />
+      
       <form
-      className='relative flex flex-col justify-center items-center gap-5 py-5 px-5 border border-gray-300 shadow-lg shadow-gray-500 rounded w-full mx-2 md:w-1/2 lg:w-1/4'
+      className='relative flex flex-col justify-center items-center gap-2 py-5 px-5 border border-gray-300 shadow-lg shadow-gray-500 rounded w-full mx-2 md:w-1/2 lg:w-1/4'
       onSubmit={handleSubmit}>
 
-        <p className='text-2xl font-semibold'>Register</p>
+        <div className='text-xl font-semibold flex justify-center items-baseline gap-2'>Register to <p className='text-blue-600 font-bold'> ShopEasy</p></div>
 
-        <div className='w-full h-full flex flex-col gap-3'>
+        <div className='w-full h-full flex flex-col justify-center gap-3'>
 
           <div className='flex flex-col justify-center items-start text-lg'>
 
-            <label className='font-semibold'>Name:</label>
+            <label className='text-sm'>Name:</label>
             <input
-            className='rounded outline-0 py-1 px-2 w-full bg-gray-300 focus:ring-1 ring-blue-500'
+            className={`rounded outline-0 py-2 px-2 w-full bg-gray-300 focus:ring-1 placeholder:text-sm text-sm ${errors.name ? "ring-red-500" : "ring-blue-500"}`}
             name='name'
+            placeholder='Enter name...'
             value={formData.name}
             onChange={handleChange} />
             <div className='text-red-600 text-sm'>
@@ -80,10 +82,11 @@ const RegisterCard = () => {
 
           <div className='flex flex-col justify-center items-start text-lg'>
 
-            <label className='font-semibold'>Email:</label>
+            <label className='text-sm'>Email:</label>
             <input
-            className='rounded outline-0 py-1 px-2 w-full bg-gray-300 focus:ring-1 ring-blue-500'
+            className={`rounded outline-0 py-2 px-2 w-full bg-gray-300 focus:ring-1 placeholder:text-sm text-sm ${errors.email ? "ring-red-500" : "ring-blue-500"}`}
             name='email'
+            placeholder='Enter email...'
             value={formData.email}
             onChange={handleChange} />
             <div className='text-red-600 text-sm'>
@@ -94,10 +97,11 @@ const RegisterCard = () => {
 
           <div className='flex flex-col justify-center items-start text-lg'>
 
-            <label className='font-semibold'>Password:</label>
+            <label className='text-sm'>Password:</label>
             <input
-            className='rounded outline-0 py-1 px-2 w-full bg-gray-300 focus:ring-1 ring-blue-500'
+            className={`rounded outline-0 py-2 px-2 w-full bg-gray-300 focus:ring-1 placeholder:text-sm text-sm ${errors.password ? "ring-red-500" : "ring-blue-500"}`}
             name='password'
+            placeholder='Enter password...'
             type='password'
             value={formData.password}
             onChange={handleChange} />
@@ -109,9 +113,11 @@ const RegisterCard = () => {
           <div className='text-red-600 text-sm'>{apiError}</div>
 
         </div>
-        <button className='w-full py-2 bg-blue-500 rounded font-bold text-white mt-2'>Submit</button>
+        <button 
+        disabled={isLoading}
+        className={`py-1 px-3 rounded font-semibold text-white mt-2 cursor-pointer ${isLoading ? "bg-blue-200" : "bg-blue-500"}`}>{isLoading ? "Creating Account" : "Submit"}</button>
 
-        <Link className='hover:underline hover:text-blue-600 transition-all absolute top-5 left-5' href={"/"}><IoArrowBackOutline /></Link>
+        <Link className='hover:underline hover:text-blue-600 transition-all absolute top-2 left-2 md:top-3 md:left-3 lg:top-2 lg:left-2' href={"/"}><IoArrowBackOutline /></Link>
       </form>
     </div>
   )

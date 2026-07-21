@@ -7,22 +7,6 @@
       "password": "123456",
       "role": "ADMIN",
       "createdAt": "2026-07-21T06:07:41.018Z"
-    },
-    {
-      "name": "admin2",
-      "email": "admin2@gmail.com",
-      "password": "12345678",
-      "role": "USER",
-      "createdAt": "2026-07-21T09:33:41.057Z",
-      "id": "hi_KcPrjhoc"
-    },
-    {
-      "name": "user",
-      "email": "user@gmail.com",
-      "password": "12345678",
-      "role": "USER",
-      "createdAt": "2026-07-21T09:41:40.800Z",
-      "id": "JWzdyQ5PBQg"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
