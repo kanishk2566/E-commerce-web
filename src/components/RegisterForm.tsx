@@ -55,7 +55,7 @@ const RegisterCard = () => {
   return (
     <div className='w-full h-full min-h-screen flex justify-center items-center'>
 
-      <Navbar inCart={false} inHome={false} inRegister={true} />
+      <Navbar inCart={false} inHome={false} inRegister={true} inLogin={false} />
       
       <form
       className='relative flex flex-col justify-center items-center gap-2 py-5 px-5 border border-gray-300 shadow-lg shadow-gray-500 rounded w-full mx-2 md:w-1/2 lg:w-1/4'
@@ -69,7 +69,7 @@ const RegisterCard = () => {
 
             <label className='text-sm'>Name:</label>
             <input
-            className={`rounded outline-0 py-2 px-2 w-full bg-gray-300 focus:ring-1 placeholder:text-sm text-sm ${errors.name ? "ring-red-500" : "ring-blue-500"}`}
+            className={`rounded outline-0 py-2 px-2 w-full bg-gray-300 focus:ring-2 placeholder:text-sm text-sm ${errors.name ? "ring-red-500" : "ring-blue-500"}`}
             name='name'
             placeholder='Enter name...'
             value={formData.name}
@@ -84,7 +84,7 @@ const RegisterCard = () => {
 
             <label className='text-sm'>Email:</label>
             <input
-            className={`rounded outline-0 py-2 px-2 w-full bg-gray-300 focus:ring-1 placeholder:text-sm text-sm ${errors.email ? "ring-red-500" : "ring-blue-500"}`}
+            className={`rounded outline-0 py-2 px-2 w-full bg-gray-300 focus:ring-2 placeholder:text-sm text-sm ${errors.email ? "ring-red-500" : "ring-blue-500"}`}
             name='email'
             placeholder='Enter email...'
             value={formData.email}
@@ -99,7 +99,7 @@ const RegisterCard = () => {
 
             <label className='text-sm'>Password:</label>
             <input
-            className={`rounded outline-0 py-2 px-2 w-full bg-gray-300 focus:ring-1 placeholder:text-sm text-sm ${errors.password ? "ring-red-500" : "ring-blue-500"}`}
+            className={`rounded outline-0 py-2 px-2 w-full bg-gray-300 focus:ring-2 placeholder:text-sm text-sm ${errors.password ? "ring-red-500" : "ring-blue-500"}`}
             name='password'
             placeholder='Enter password...'
             type='password'
@@ -115,7 +115,7 @@ const RegisterCard = () => {
         </div>
         <button 
         disabled={isLoading}
-        className={`py-1 px-3 rounded font-semibold text-white mt-2 cursor-pointer ${isLoading ? "bg-blue-200" : "bg-blue-500"}`}>{isLoading ? "Creating Account" : "Submit"}</button>
+        className={`py-1 px-3 rounded font-semibold text-white mt-2 cursor-pointer ${isLoading ? "bg-blue-200" : "bg-blue-500"}`}>{isLoading ? "Creating Account" : "Register"}</button>
 
         <Link className='hover:underline hover:text-blue-600 transition-all absolute top-2 left-2 md:top-3 md:left-3 lg:top-2 lg:left-2' href={"/"}><IoArrowBackOutline /></Link>
       </form>

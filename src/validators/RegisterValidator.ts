@@ -11,7 +11,7 @@ export const INITIAL_REGISTER_FORM_ERRORS: RegisterFormErrors = {
   name: "",
   email: "",
   password: "",
-}
+}   
 
 export async function validateRegisterForm(formData: RegisterData): Promise<RegisterValidatorResult> {
 

@@ -6,7 +6,7 @@ export default async function Home() {
   const products = await getAllProducts();
   return (   
       <>
-        <Navbar inCart={false} inHome={true} inRegister={false}/>
+        <Navbar inCart={false} inHome={true} inRegister={false} inLogin={false}/>
         <main className="mx-auto max-w-7xl p-8 mt-10">
           <p className="text-2xl mb-5 border-l-5 border-blue-500 pl-4 font-bold">
             All Products 

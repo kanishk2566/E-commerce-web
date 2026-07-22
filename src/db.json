@@ -7,6 +7,30 @@
       "password": "123456",
       "role": "ADMIN",
       "createdAt": "2026-07-21T06:07:41.018Z"
+    },
+    {
+      "name": "admin2",
+      "email": "admin2@gmail.com",
+      "password": "12345678",
+      "role": "USER",
+      "createdAt": "2026-07-22T05:57:46.216Z",
+      "id": "XctW6JXhYUM"
+    },
+    {
+      "name": "admin3",
+      "email": "admin3@gmail.com",
+      "password": "12345678",
+      "role": "USER",
+      "createdAt": "2026-07-22T06:00:20.465Z",
+      "id": "_SBQpwRWU2A"
+    },
+    {
+      "name": "admin4",
+      "email": "admin4@gmail.com",
+      "password": "qwertyuiop",
+      "role": "USER",
+      "createdAt": "2026-07-22T06:00:20.465Z",
+      "id": "_SBQpwRWU2A"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

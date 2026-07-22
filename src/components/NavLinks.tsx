@@ -1,14 +1,15 @@
-import React from 'react'
 import { useCart } from '@/context/CartContext'
 import Link from 'next/link';
+import NavAuthLinks from './NavAuthLinks';
 
 type IsCartProps = {
   IsCart: boolean,
   IsHome: boolean,
-  IsRegister: boolean
+  IsRegister: boolean,
+  IsLogin: boolean,
 }
 
-const NavLinks = ({IsCart, IsHome, IsRegister}: IsCartProps) => {
+const NavLinks = ({IsCart, IsHome, IsRegister, IsLogin}: IsCartProps) => {
   const { cart } = useCart();
 
   const totalItem = cart.reduce((total, item) => total + item.quantity, 0);
@@ -24,7 +25,7 @@ const NavLinks = ({IsCart, IsHome, IsRegister}: IsCartProps) => {
 
             <div className='py-1 relative'>
               Cart
-
+              
               {totalItem > 0 && (
                 <span className='absolute rounded-full bg-red-500 text-[12px] md:text-[11px] px-1.5 text-white md:px-1.5 transition-transform -top-2 -right-2.5 md:-top-1 md:-right-2.5'>
                   {totalItem}
@@ -34,18 +35,8 @@ const NavLinks = ({IsCart, IsHome, IsRegister}: IsCartProps) => {
             
           </Link>
         </div>
-        <div className='flex justify-center items-center'>
-          <Link
-          className={`hover:border-b-2 border-blue-500 hover:pb-1.5 py-2 px-3 h-full ${IsRegister ? "border-b-2 pb-1.5" : ""}`}
-          href={"/register"}>
-            <div className='py-1'>Register</div>
-          </Link>
-          <Link
-          className={`hover:border-b-2 border-blue-500 hover:pb-1.5 py-2 px-3 h-full`}
-          href={"/register"}>
-            <div className='py-1'>Login</div>
-          </Link>
-        </div>
+        <NavAuthLinks IsLogin={IsLogin} IsRegister={IsRegister} />
+        
       </div>
     </div>
 

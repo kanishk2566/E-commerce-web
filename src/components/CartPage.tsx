@@ -7,7 +7,7 @@ const CartPage = () => {
 
   return (
     <div>
-      <Navbar inCart={true} inHome={false} inRegister={false}/>
+      <Navbar inCart={true} inHome={false} inRegister={false} inLogin={false}/>
       <div className='mt-20 flex'>
 
         <CartCard />
