@@ -13,7 +13,7 @@ const NavLinks = ({IsCart, IsHome, IsRegister, IsLogin}: IsCartProps) => {
   const { cart } = useCart();
 
   const totalItem = cart.reduce((total, item) => total + item.quantity, 0);
-
+  
   return (
     <div className='flex justify-center items-center'>
       <div className='flex justify-center items-center h-full'>
@@ -25,7 +25,7 @@ const NavLinks = ({IsCart, IsHome, IsRegister, IsLogin}: IsCartProps) => {
 
             <div className='py-1 relative'>
               Cart
-              
+
               {totalItem > 0 && (
                 <span className='absolute rounded-full bg-red-500 text-[12px] md:text-[11px] px-1.5 text-white md:px-1.5 transition-transform -top-2 -right-2.5 md:-top-1 md:-right-2.5'>
                   {totalItem}

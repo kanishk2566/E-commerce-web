@@ -36,7 +36,7 @@ const CartCard = () => {
       </div>
         <div className='flex flex-col md:flex-row gap-3 mb-5'>
         
-      <div className='flex-1'>
+      <div className='flex-1 flex flex-col gap-5'>
         {cart.map((item) => (
         <CartItem key={item.product.id} item={item} />
       ))}

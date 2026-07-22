@@ -14,15 +14,15 @@ export const INITIAL_LOGIN_FORM_ERRORS: LoginFormErrors = {
 
 export async function validateLoginForm(formData: LoginData): Promise<LoginValidatorResult> {
 
-  // const trimmedEmail = formData.email.trim();
-  // const trimmedPassword = formData.password.trim();
+  const trimmedEmail = formData.email.trim();
+  const trimmedPassword = formData.password.trim();
   const errors = {...INITIAL_LOGIN_FORM_ERRORS};
 
-  if(!formData.email) {
+  if(!trimmedEmail) {
     errors.email = "Email is required";
   }
 
-  if(!formData.password) {
+  if(!trimmedPassword) {
     errors.password = "Password is required";
   }
 

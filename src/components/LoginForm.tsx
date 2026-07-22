@@ -24,10 +24,10 @@ const LoginForm = () => {
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setFormData((prev) => ({
       ...prev, 
-      [e.target.name] : [e.target.value],
+      [e.target.name] : e.target.value,
     }));
     setApiError("");
-    setErrors({...errors, [e.target.name]: ""});
+    setErrors((prev) => ({...prev, [e.target.name]: ""}));
   }
 
   async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
@@ -47,7 +47,7 @@ const LoginForm = () => {
         console.log(apiError.message);
       }
     }
-  } 
+  }
 
   return (
     <div className='flex justify-center items-center w-full h-full min-h-screen'>
@@ -94,7 +94,9 @@ const LoginForm = () => {
 
         </div>
 
-        <button className={`py-1 px-3 rounded font-semibold text-white mt-2 cursor-pointer ${isLoading ? "bg-blue-200" : "bg-blue-500"}`}>{isLoading ? "Logging in" : "Log in"}</button>
+        <button
+        type='submit'
+        className={`py-1 px-3 rounded font-semibold text-white mt-2 cursor-pointer ${isLoading ? "bg-blue-200" : "bg-blue-500"}`}>{isLoading ? "Logging in" : "Log in"}</button>
 
         <Link className='hover:underline hover:text-blue-600 transition-all absolute top-2 left-2 md:top-3 md:left-3 lg:top-2 lg:left-2' href={"/"}><IoArrowBackOutline /></Link>
       </form>

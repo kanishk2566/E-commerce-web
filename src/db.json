@@ -19,7 +19,7 @@
     {
       "name": "admin3",
       "email": "admin3@gmail.com",
-      "password": "12345678",
+      "password": "12admin",
       "role": "USER",
       "createdAt": "2026-07-22T06:00:20.465Z",
       "id": "_SBQpwRWU2A"
