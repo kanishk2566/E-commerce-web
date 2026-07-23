@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import Navbar from '@/components/Navbar';
+import Navbar from '@/components/navbar/Navbar';
 import { getProduct } from '@/services/api';
 import Link from 'next/link';
 import React from 'react'
@@ -19,8 +19,8 @@ async function ProductPage({params}: ProductProps) {
   const product = await getProduct(Number(id));
   return (
     <>
-    <Navbar />
-    <main className='mx-auto mt-20 relative p-10 flex justify-center h-screen w-screen items-start rounded'>
+    <Navbar inCart={false} inHome={true} inLogin={false} inRegister={false} />
+    <main className='mx-auto relative p-10 flex justify-center h-screen w-screen items-start rounded'>
       <Link 
       className='absolute top-2 left-2 text-4xl'
       href={"/"}><IoIosArrowRoundBack /></Link>

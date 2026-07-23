@@ -7,8 +7,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { RxCrossCircled } from 'react-icons/rx';
 
-
-
 const CartCard = () => {
   const { cart, dispatch } = useCart();
 
@@ -23,10 +21,10 @@ const CartCard = () => {
   const imageURL = "https://img.magnific.com/premium-vector/beautiful-flat-style-shopping-cart-icon-vector-illustration_1253044-73382.jpg?semt=ais_hybrid&w=740&q=80"
 
   return (
-    <div className='w-screen flex flex-col'>
+    <div className='w-screen flex flex-col h-full'>
       
     {cartItems.length > 0 ? (
-      <div className='flex flex-col gap-4'>
+      <div className='flex flex-col gap-4 h-fit'>
         <div className=' ml-5'>
         <div 
         className='hover:text-red-500 border border-red-600 hover:border-red-500 flex justify-center items-center w-fit gap-2 py-1 px-2 text-red-600 transition-all cursor-pointer font-semibold rounded'
@@ -43,7 +41,7 @@ const CartCard = () => {
       </div>
 
       <PriceDetails />
-    </div> 
+    </div>
       </div>
     ) : (
       <div className='flex flex-col justify-center items-center w-screen mb-20 font-semibold text-2xl'>

@@ -32,7 +32,7 @@ const PriceDetails = () => {
             </div>
 
             <div>
-              {totalPrice}
+              ${totalPrice}
             </div>
 
           </div>

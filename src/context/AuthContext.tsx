@@ -44,9 +44,10 @@ export function AuthProvider({children}: {children: React.ReactNode;}) {
   async function login(data: LoginData) {
     try {
       setIsLoading(true);
-      const authUser = await loginUser(data);
-
-      persistAuthenticatedUser(authUser);
+      setTimeout(async () => {
+        const authUser = await loginUser(data);
+        persistAuthenticatedUser(authUser);
+      }, 2000);
     }
     finally {
       setIsLoading(false);
@@ -56,9 +57,10 @@ export function AuthProvider({children}: {children: React.ReactNode;}) {
   async function register(data: RegisterData) {
     try {
       setIsLoading(true);
-      const authUser = await registerUser(data);
-
-      persistAuthenticatedUser(authUser);
+      setTimeout(async () => {
+        const authUser = await registerUser(data);
+        persistAuthenticatedUser(authUser);
+      }, 2000);
     }
     finally {
       setIsLoading(false);
@@ -66,8 +68,16 @@ export function AuthProvider({children}: {children: React.ReactNode;}) {
   }
 
   function logout() {
-    localStorage.removeItem(AUTH_STORAGE_KEY);
-    setUser(null);
+    try {
+      setIsLoading(true);
+      setTimeout(() => {
+      localStorage.removeItem(AUTH_STORAGE_KEY);
+      setUser(null);
+    }, 2000);
+    }
+    finally {
+      setIsLoading(false);
+    }
   }
 
   return (

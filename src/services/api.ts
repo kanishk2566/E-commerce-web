@@ -1,6 +1,6 @@
 import { Product } from "@/types/product";
 
-const API = "https://fakestoreapi.com/products";
+const API = "http://localhost:3004/products";
 
 export async function getAllProducts(): Promise<Product[]> {
   const response = await fetch(API);

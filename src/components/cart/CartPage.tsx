@@ -1,14 +1,14 @@
 "use client"
 import React from 'react'
 import CartCard from './CartCard'
-import Navbar from './Navbar';
+import Navbar from '../navbar/Navbar';
 
 const CartPage = () => {
 
   return (
-    <div>
+    <div className='w-full h-full min-h-screen flex flex-col justify-start items-center'>
       <Navbar inCart={true} inHome={false} inRegister={false} inLogin={false}/>
-      <div className='mt-20 flex'>
+      <div className='flex'>
 
         <CartCard />
       

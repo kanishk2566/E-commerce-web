@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "server": "json-server --watch src/db.json --port 3008"
+    "server": "json-server --watch src/db.json --port 3008",
+    "server2": "json-server --watch src/docs-data.json --port 3004"
   },
   "dependencies": {
     "json-server": "^0.17.4",

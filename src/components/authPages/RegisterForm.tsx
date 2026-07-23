@@ -6,7 +6,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react'
 import { IoArrowBackOutline } from "react-icons/io5";
-import Navbar from './Navbar';
+import Navbar from '../navbar/Navbar';
+import { BsEye } from 'react-icons/bs';
+import { BsEyeSlash } from 'react-icons/bs';
 
 const RegisterCard = () => {
   const { register, isLoading } = useAuth();
@@ -16,6 +18,8 @@ const RegisterCard = () => {
     email: "",
   });
   const [apiError, setApiError] = useState("");
+  const [password, setPassword] = useState("password");
+  const [passFocus, setPassFocus] = useState(false);
   const router = useRouter();
   const [formData, setFormData] = useState<RegisterData>({
     name: "",
@@ -52,12 +56,17 @@ const RegisterCard = () => {
     }
   }
 
+  function passwordVisible() {
+    setPassword((prev) => prev === "password" ? "text" : "password");
+  }
+
   return (
-    <div className='w-full h-full min-h-screen flex justify-center items-center'>
+    <div className='w-full h-full min-h-screen flex flex-col justify-start items-center'>
 
       <Navbar inCart={false} inHome={false} inRegister={true} inLogin={false} />
       
-      <form
+      <div className='h-full w-full flex justify-center items-center mt-20 mb-10'>
+        <form
       className='relative flex flex-col justify-center items-center gap-2 py-5 px-5 border border-gray-300 shadow-lg shadow-gray-500 rounded w-full mx-2 md:w-1/2 lg:w-1/4'
       onSubmit={handleSubmit}>
 
@@ -94,21 +103,31 @@ const RegisterCard = () => {
             </div>
 
           </div>
-
-          <div className='flex flex-col justify-center items-start text-lg'>
-
+          
+          <div className={`flex flex-col justify-center w-full items-start text-lg`}>
+          
             <label className='text-sm'>Password:</label>
-            <input
-            className={`rounded outline-0 py-2 px-2 w-full bg-gray-300 focus:ring-2 placeholder:text-sm text-sm ${errors.password ? "ring-red-500" : "ring-blue-500"}`}
-            name='password'
-            placeholder='Enter password...'
-            type='password'
-            value={formData.password}
-            onChange={handleChange} />
+
+            <div className={`flex w-full rounded ${errors.password ? "ring-red-500" : "ring-blue-500"} ${passFocus ? "ring-2" : "ring-0"}`}>
+
+              <input
+              className={`rounded-l outline-0 py-2 px-2 w-full bg-gray-300 placeholder:text-sm text-sm `}
+              name='password'
+              placeholder='Enter password...'
+              onFocus={() => setPassFocus(true)}
+              onBlur={() => setPassFocus(false)}
+              type={password}
+              value={formData.password}
+              onChange={handleChange} />
+
+              <div onClick={passwordVisible} className='cursor-pointer bg-gray-300 px-2 flex justify-center items-center rounded-r'>
+                {password === "password" ? <BsEye /> : <BsEyeSlash />}
+              </div>
+              
+            </div>
             <div className='text-red-600 text-sm'>
               {errors.password}
             </div>
-
           </div>
           <div className='text-red-600 text-sm'>{apiError}</div>
 
@@ -117,8 +136,13 @@ const RegisterCard = () => {
         disabled={isLoading}
         className={`py-1 px-3 rounded font-semibold text-white mt-2 cursor-pointer ${isLoading ? "bg-blue-200" : "bg-blue-500"}`}>{isLoading ? "Creating Account" : "Register"}</button>
 
+        <div className='text-sm'>
+          <p className='text-gray-800'>Already have an account? <Link href={"/login"} className='text-blue-600 hover:underline'>Login</Link></p>
+        </div>
+
         <Link className='hover:underline hover:text-blue-600 transition-all absolute top-2 left-2 md:top-3 md:left-3 lg:top-2 lg:left-2' href={"/"}><IoArrowBackOutline /></Link>
       </form>
+      </div>
     </div>
   )
 }
