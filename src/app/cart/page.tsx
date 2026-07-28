@@ -9,10 +9,10 @@ const Page = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if(!isAuthenticated) {
-      router.push("/login");
+    if(!isAuthenticated && !isLoading) {
+      router.replace("/login");
     }
-  })
+  }, [isAuthenticated, isLoading, router]);
 
   if(isLoading) {
     return (
@@ -21,13 +21,12 @@ const Page = () => {
       </div>
     )
   }
-  return (
-    <div>
-      {isAuthenticated && (
-        <CartPage />
-      )}
-    </div>
-  )
+
+  if(isAuthenticated) {
+    return (
+      <CartPage />
+    )
+  }
 }
 
 export default Page

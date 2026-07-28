@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import CartItem from "@/components/cart/CartItem";
 import { AuthUser, LoginData, RegisterData, User } from "@/types/user";
 
 const API_URL = "http://localhost:3008/users"
@@ -36,7 +37,7 @@ export async function registerUser(data: RegisterData) {
   }
   
   const newUser = {
-    ...data, role: "USER", createdAt: new Date().toISOString()
+    ...data, role: "USER", createdAt: new Date().toISOString(), cart: [],
   }
 
   const response2 = await fetch(`${API_URL}`, {

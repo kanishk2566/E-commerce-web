@@ -1,7 +1,11 @@
 import { Product } from "./product";
 
-export interface CartItemType {
+export interface DisplayCartItem {
   product: Product;
   quantity: number;
-  id: string;
+}
+
+export type PersistedCartItem = {
+  productId: number;
+  quantity: number;
 }

@@ -2,9 +2,9 @@
 "use client";
 
 import { createContext, useReducer, ReactNode, useContext } from "react";
-import { CartItemType } from "@/types/cart";
+import { DisplayCartItem } from "@/types/cart";
 
-const initialState: CartItemType[] = [];
+const initialState: DisplayCartItem[] = [];
 
 export const CartContext = createContext<CartContextType | null>(null);
 
@@ -13,7 +13,7 @@ interface CartAction {
   payload?: any;
 }
 
-function cartReducer(state: CartItemType[], action: CartAction): CartItemType[] {
+function cartReducer(state: DisplayCartItem[], action: CartAction): DisplayCartItem[] {
 
   switch (action.type) {
     case "ADD_TO_CART":
@@ -24,7 +24,6 @@ function cartReducer(state: CartItemType[], action: CartAction): CartItemType[] 
             {
               product: action.payload,
               quantity: 1,
-              id: JSON.stringify(new Date())
             },
           ];
         }
@@ -54,7 +53,7 @@ function cartReducer(state: CartItemType[], action: CartAction): CartItemType[] 
 
         localStorage.setItem("Cart", JSON.stringify(state.filter((item) => item.product.id)));
 
-        return state.map((item) =>{
+        return state.map((item) => {
           if(item.product.id === action.payload.id) {
             return {
               ...item,
@@ -67,7 +66,7 @@ function cartReducer(state: CartItemType[], action: CartAction): CartItemType[] 
 
     case "REMOVE_FROM_CART":
       {return state.filter((item) => action.payload.id !== item.product.id)}
-      
+
     case "CLEAR_CART":
       return [];
     default:
@@ -100,7 +99,7 @@ export function useCart() {
 }
 
 interface CartContextType {
-  cart: CartItemType[];
+  cart: DisplayCartItem[];
   dispatch: React.Dispatch<CartAction>
 }
 

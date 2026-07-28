@@ -6,7 +6,8 @@
       "email": "admin",
       "password": "123456",
       "role": "ADMIN",
-      "createdAt": "2026-07-21T06:07:41.018Z"
+      "createdAt": "2026-07-21T06:07:41.018Z",
+      "cart": []
     },
     {
       "name": "admin2",
@@ -14,7 +15,8 @@
       "password": "12345678",
       "role": "USER",
       "createdAt": "2026-07-22T05:57:46.216Z",
-      "id": "XctW6JXhYUM"
+      "id": "XctW6JXhYUM",
+      "cart": []
     },
     {
       "name": "admin3",
@@ -22,7 +24,8 @@
       "password": "12admin",
       "role": "USER",
       "createdAt": "2026-07-22T06:00:20.465Z",
-      "id": "_SBQpwRWU2A"
+      "id": "_SBQpwRWU2A",
+      "cart": []
     },
     {
       "name": "admin4",
@@ -30,7 +33,26 @@
       "password": "qwertyuiop",
       "role": "USER",
       "createdAt": "2026-07-22T06:00:20.465Z",
-      "id": "_SBQpwRWU2A"
+      "id": "_SBQpwRWU2A",
+      "cart": []
+    },
+    {
+      "name": "admin",
+      "email": "admin5@gmail.com",
+      "password": "12345678",
+      "role": "USER",
+      "createdAt": "2026-07-28T10:45:18.250Z",
+      "id": "LWyvcCr",
+      "cart": []
+    },
+    {
+      "name": "admin6",
+      "email": "admin6@gmail.com",
+      "password": "12345678",
+      "role": "USER",
+      "createdAt": "2026-07-28T10:46:02.194Z",
+      "cart": [],
+      "id": "ejXJieH"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

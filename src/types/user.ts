@@ -1,4 +1,4 @@
-import { CartItemType } from "./cart";
+import { PersistedCartItem } from "./cart";
 
 export type User = {
   id: number | string;
@@ -7,7 +7,7 @@ export type User = {
   password: string;
   role: "USER" | "ADMIN";
   createdAt: string;
-  cart: CartItemType[];
+  cart: PersistedCartItem[];
 }
 
 export type AuthUser = Omit<User, "password"> | null;

@@ -1,40 +1,56 @@
-import CartItem from "@/components/cart/CartItem";
-import { CartItemType } from "@/types/cart";
-import { User } from "@/types/user";
+import { PersistedCartItem } from "@/types/cart";
 
 const API_URL = "http://localhost:3008/users";
 
-export async function addToCart(userId: string, cartItem: CartItemType) {
-  try {
-    const response = await fetch(`${API_URL}/${userId}`);
-    const user: User = await response.json();
+export async function getCart(userId: string): Promise<PersistedCartItem[]> {
+  const response = await fetch(`${API_URL}/${userId}`);
+  const user = await response.json();
 
-    const existingItem = user.cart.find((item) => item.product.id === cartItem.product.id);
+  const cart = user.cart;
 
-    if(existingItem) {
-      existingItem.quantity++;
-    }
-
-    const newItem = {...cartItem, id: JSON.stringify(new Date())};
-    console.log("New item", newItem);
-
-    const response2 = await fetch(`${API_URL}/${CartItem}`, {
-      method: "POST",
-      headers: {
-        "Content-Type" : "application/json",
-      },
-      body: JSON.stringify(newItem),
-    });
-
-    const data = await response2.json();
-    console.log("data", data);
-
-    return data;
-  }
-  catch(error) {
-    if(error instanceof Error) {
-      return error.message;
-    }
-  }
+  return cart;
 }
 
+export async function addToCart(userId: string, productId: number): Promise<PersistedCartItem[]> {
+  const cart = await getCart(userId);
+
+  const existingCartItem = cart.find((item) => item.productId === productId);
+
+  let updatedCart: PersistedCartItem[];
+
+  if(existingCartItem) {
+    updatedCart = cart.map((item) => {
+      if(item.productId === productId) {
+        return {
+          ...item,
+          quantity: item.quantity + 1,
+        };
+      }
+      return item;
+    });
+  } else {
+    updatedCart = [
+      ...cart,
+      {
+        productId,
+        quantity: 1,
+      },
+    ];
+  }
+
+  const response = await fetch(`${API_URL}/${userId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type" : "application/json",
+    },
+    body: JSON.stringify({
+      cart: updatedCart,
+    }),
+  });
+
+  if(!response.ok) {
+    throw new Error("Falied to update cart");
+  }
+
+  return updatedCart;
+}

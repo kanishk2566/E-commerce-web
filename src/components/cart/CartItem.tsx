@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
-import { CartItemType } from '@/types/cart';
+import { DisplayCartItem } from '@/types/cart';
 import { MdDelete } from 'react-icons/md';
 import { useCart } from '@/context/CartContext';
 
 type CartCardProps = {
-  item: CartItemType;
+  item: DisplayCartItem;
 }
 
 const CartItem = ({item}: CartCardProps) => {
