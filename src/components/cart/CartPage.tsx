@@ -7,7 +7,7 @@ const CartPage = () => {
 
   return (
     <div className='w-full h-full min-h-screen flex flex-col justify-start items-center'>
-      <Navbar inCart={true} inHome={false} inRegister={false} inLogin={false}/>
+      <Navbar inCart={true} inHome={false} inRegister={false} inLogin={false} inProfile={false}/>
       <div className='flex'>
 
         <CartCard />

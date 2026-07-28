@@ -17,9 +17,10 @@ async function ProductPage({params}: ProductProps) {
   const cartIcon = <FaShoppingCart />;
   const { id } = await params;
   const product = await getProduct(Number(id));
+
   return (
     <>
-    <Navbar inCart={false} inHome={true} inLogin={false} inRegister={false} />
+    <Navbar inCart={false} inHome={true} inLogin={false} inRegister={false} inProfile={false} />
     <main className='mx-auto relative p-10 flex justify-center h-screen w-screen items-start rounded'>
       <Link 
       className='absolute top-2 left-2 text-4xl'

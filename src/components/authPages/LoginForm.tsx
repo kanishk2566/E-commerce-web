@@ -42,9 +42,12 @@ const LoginForm = () => {
       setErrors(result.errors);
 
       if(!result.isValid) return;
-
       await login(formData);
-      router.push("/");
+
+      setTimeout(() => {
+        router.push("/");
+      }, 2000);
+
     } catch(apiError: unknown) {
       if(apiError instanceof Error) {
         setApiError(apiError.message);
@@ -59,7 +62,7 @@ const LoginForm = () => {
 
   return (
     <div className='flex flex-col justify-start items-center w-full h-full min-h-screen'>
-      <Navbar inCart={false} inHome={false} inRegister={false} inLogin={true} />
+      <Navbar inCart={false} inHome={false} inRegister={false} inLogin={true} inProfile={false} />
 
       <form
       className='flex justify-center items-center flex-col gap-2 mt-20 mb-10 relative py-5 px-5 shadow-lg shadow-gray-500 border border-gray-300 w-full md:w-1/2 lg:w-1/4'

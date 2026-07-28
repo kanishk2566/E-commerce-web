@@ -1,3 +1,5 @@
+import { CartItemType } from "./cart";
+
 export type User = {
   id: number | string;
   name: string;
@@ -5,6 +7,7 @@ export type User = {
   password: string;
   role: "USER" | "ADMIN";
   createdAt: string;
+  cart: CartItemType[];
 }
 
 export type AuthUser = Omit<User, "password"> | null;

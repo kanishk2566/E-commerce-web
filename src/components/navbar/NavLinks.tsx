@@ -7,9 +7,10 @@ type IsCartProps = {
   IsHome: boolean,
   IsRegister: boolean,
   IsLogin: boolean,
+  IsProfile: boolean,
 }
 
-const NavLinks = ({IsCart, IsHome, IsRegister, IsLogin}: IsCartProps) => {
+const NavLinks = ({IsCart, IsHome, IsRegister, IsLogin, IsProfile}: IsCartProps) => {
   const { cart } = useCart();
 
   const totalItem = cart.reduce((total, item) => total + item.quantity, 0);
@@ -35,7 +36,7 @@ const NavLinks = ({IsCart, IsHome, IsRegister, IsLogin}: IsCartProps) => {
             
           </Link>
         </div>
-        <NavAuthLinks IsLogin={IsLogin} IsRegister={IsRegister} />
+        <NavAuthLinks IsLogin={IsLogin} IsRegister={IsRegister} IsProfile={IsProfile} />
         
       </div>
     </div>

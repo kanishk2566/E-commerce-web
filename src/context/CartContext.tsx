@@ -23,10 +23,13 @@ function cartReducer(state: CartItemType[], action: CartAction): CartItemType[] 
             ...state,
             {
               product: action.payload,
-              quantity: 1
+              quantity: 1,
+              id: JSON.stringify(new Date())
             },
           ];
         }
+
+        localStorage.setItem("Cart", JSON.stringify(state));
 
         return state.map((item) => {
           if (item.product.id === action.payload.id) {
@@ -49,6 +52,8 @@ function cartReducer(state: CartItemType[], action: CartAction): CartItemType[] 
           }
         }
 
+        localStorage.setItem("Cart", JSON.stringify(state.filter((item) => item.product.id)));
+
         return state.map((item) =>{
           if(item.product.id === action.payload.id) {
             return {
@@ -59,8 +64,10 @@ function cartReducer(state: CartItemType[], action: CartAction): CartItemType[] 
           return item;
         });
       }
+
     case "REMOVE_FROM_CART":
       {return state.filter((item) => action.payload.id !== item.product.id)}
+      
     case "CLEAR_CART":
       return [];
     default:

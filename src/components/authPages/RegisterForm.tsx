@@ -46,7 +46,9 @@ const RegisterCard = () => {
       if(!result.isValid) return;
 
       await register(formData);
-      router.push("/");
+      setTimeout(() => {
+        router.push("/");
+      }, 2000);
     }
     catch(apiError: unknown) {
       if(apiError instanceof Error) {
@@ -63,7 +65,7 @@ const RegisterCard = () => {
   return (
     <div className='w-full h-full min-h-screen flex flex-col justify-start items-center'>
 
-      <Navbar inCart={false} inHome={false} inRegister={true} inLogin={false} />
+      <Navbar inCart={false} inHome={false} inRegister={true} inLogin={false} inProfile={false}/>
       
       <div className='h-full w-full flex justify-center items-center mt-20 mb-10'>
         <form

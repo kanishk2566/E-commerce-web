@@ -7,9 +7,10 @@ type InCartProps = {
   inCart: boolean,
   inHome: boolean,
   inRegister: boolean,
-  inLogin: boolean
+  inLogin: boolean,
+  inProfile: boolean,
 }
-const Navbar = ({inCart, inHome, inRegister, inLogin}: InCartProps) => {
+const Navbar = ({inCart, inHome, inRegister, inLogin, inProfile}: InCartProps) => {
   const { isAuthenticated, user } = useAuth();
 
   return (
@@ -23,7 +24,7 @@ const Navbar = ({inCart, inHome, inRegister, inLogin}: InCartProps) => {
             Hello, {user?.name}
           </div>
         )}
-        <NavLinks IsCart={inCart} IsHome={inHome} IsRegister={inRegister} IsLogin={inLogin}/>
+        <NavLinks IsCart={inCart} IsHome={inHome} IsRegister={inRegister} IsLogin={inLogin} IsProfile={inProfile}/>
     </nav>
   )
 }

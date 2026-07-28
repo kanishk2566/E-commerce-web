@@ -23,7 +23,7 @@ const ProductCard = ({product}: ProductCardProps) => {
     
       <div className='rounded border relative border-gray-600 min-h-100 shadow-md transition hover:shadow-xl p-4'>
         <img
-        src={product.image}
+        src={product.image} 
         alt={product.title} 
         className='h-48 object-contain mx-auto'
         />
