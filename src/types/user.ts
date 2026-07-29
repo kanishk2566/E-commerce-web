@@ -1,7 +1,7 @@
 import { PersistedCartItem } from "./cart";
 
 export type User = {
-  id: number | string;
+  id: string;
   name: string;
   email: string;
   password: string;

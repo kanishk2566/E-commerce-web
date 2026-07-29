@@ -1,88 +1,163 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { createContext, useReducer, ReactNode, useContext } from "react";
-import { DisplayCartItem } from "@/types/cart";
+import { createContext, useReducer, ReactNode, useContext, useState, useEffect } from "react";
+import { PersistedCartItem } from "@/types/cart";
+import { useAuth } from "./AuthContext";
+import { addToCart as addToCartService, removeFromCart as removeFromCartService, decreaseQuantity as decreaseQuantityService, clearCart as clearCartService, getCart } from "@/services/cart";
+import { toast } from "react-toastify";
 
-const initialState: DisplayCartItem[] = [];
+const initialState: PersistedCartItem[] = [];
 
-export const CartContext = createContext<CartContextType | null>(null);
-
-interface CartAction {
-  type: string;
-  payload?: any;
-}
-
-function cartReducer(state: DisplayCartItem[], action: CartAction): DisplayCartItem[] {
-
-  switch (action.type) {
-    case "ADD_TO_CART":
-      {const existingItem = state.find((item) => item.product.id === action.payload.id);
-        if(!existingItem) {
-          return [
-            ...state,
-            {
-              product: action.payload,
-              quantity: 1,
-            },
-          ];
-        }
-
-        localStorage.setItem("Cart", JSON.stringify(state));
-
-        return state.map((item) => {
-          if (item.product.id === action.payload.id) {
-            return {
-              ...item,
-                quantity: item.quantity + 1
-            };
-          }
-          return item;
-        });
-      }
-
-    case "DECREASE_QUANTITY":
-      {
-        const existingItem = state.find((item) => item.product.id === action.payload.id);
-
-        if(existingItem) {
-          if(existingItem?.quantity <= 1){
-          return state.filter((item) => action.payload.id !== item.product.id);
-          }
-        }
-
-        localStorage.setItem("Cart", JSON.stringify(state.filter((item) => item.product.id)));
-
-        return state.map((item) => {
-          if(item.product.id === action.payload.id) {
-            return {
-              ...item,
-              quantity: item.quantity - 1
-            };
-          }
-          return item;
-        });
-      }
-
-    case "REMOVE_FROM_CART":
-      {return state.filter((item) => action.payload.id !== item.product.id)}
-
-    case "CLEAR_CART":
-      return [];
-    default:
-      return state;
-  }
+interface CartContextType {
+  addToCart: (productId: number) => Promise<void>;
+  removeFromCart: (productId: number) => Promise<void>;
+  decreaseQuantity: (productId: number) => Promise<void>;
+  clearCart: () => Promise<void>;
+  cart: PersistedCartItem[];
+  isLoading: boolean;
 }
 
 interface CartProviderProps {
   children: ReactNode;
 }
 
+export const CartContext = createContext<CartContextType | null>(null);
+
+interface CartAction {
+  type: "SET_CART";
+  payload: PersistedCartItem[];
+}
+
+const SET_CART = "SET_CART" as const;
+
+function cartReducer(state: PersistedCartItem[], action: CartAction): PersistedCartItem[] {
+  if(action.type === SET_CART) {
+    return action.payload;
+  }
+    return state;
+}
+
 export function CartProvider({children}: CartProviderProps) {
+
   const [cart, dispatch] = useReducer(cartReducer, initialState);
+  const [isLoading, setIsLoading] = useState(false);
+  const { user } = useAuth();
+
+  useEffect(() => {
+    async function loadCart() {
+      try {
+        if(!user) {
+        dispatch({
+          type: SET_CART,
+          payload: initialState,
+        });
+        return;
+      }
+      setIsLoading(true);
+      const updatedCart = await getCart(user.id);
+      dispatch({
+        type: SET_CART,
+        payload: updatedCart,
+      });
+      }
+      catch(error) {
+       toast.error(error instanceof Error ? error.message : "Something went wrong");
+      }
+      finally {
+        setIsLoading(false);
+      }
+    }
+
+    loadCart();
+  }, [user]);
+  
+  async function addToCart(productId: number) {
+    try {
+      if(!user) {
+        toast.warning("You must be logged in to add item to cart..!!");
+        return;
+      }
+      setIsLoading(true);
+      const updatedCart = await addToCartService(user.id, productId);
+      dispatch({
+        type: SET_CART,
+        payload: updatedCart,
+      })
+    } 
+    catch(error){
+      toast.error(error instanceof Error ? error.message : "Something went wrong");
+    }
+    finally {
+      setIsLoading(false);
+    }
+    
+  }
+
+  async function removeFromCart(productId: number) {
+    try {
+      if(!user) {
+        return;
+      }
+      setIsLoading(true);
+      const updatedCart = await removeFromCartService(user.id, productId);
+      dispatch({
+        type: SET_CART,
+        payload: updatedCart,
+      })
+    }
+    catch(error) {
+      toast.error(error instanceof Error ? error.message : "Something went wrong");
+    }
+    finally {
+      setIsLoading(false);
+    }
+
+  }
+
+  async function decreaseQuantity(productId: number) {
+    try {
+      if(!user) {
+        return;
+      }
+      setIsLoading(true);
+      const updatedCart = await decreaseQuantityService(user.id, productId);
+      dispatch({
+        type: SET_CART,
+        payload: updatedCart,
+      });
+    }
+    catch(error) {
+      toast.error(error instanceof Error ? error.message : "Something went wrong");
+    }
+    finally {
+      setIsLoading(false);
+    }
+
+  }
+
+  async function clearCart() {
+    try {
+      if(!user) {
+        return;
+      }
+      setIsLoading(true);
+      const updatedCart = await clearCartService(user.id);
+      dispatch({
+        type: SET_CART,
+        payload: updatedCart,
+      });
+    }
+    catch(error) {
+     toast.error(error instanceof Error ? error.message : "Something went wrong");
+    }
+    finally{
+      setIsLoading(false);
+    }
+
+  }
 
   return (
-    <CartContext.Provider value={{cart, dispatch}}>
+    <CartContext.Provider value={{cart, addToCart, removeFromCart, decreaseQuantity, clearCart, isLoading}}>
       {children}
     </CartContext.Provider>
   )
@@ -98,8 +173,4 @@ export function useCart() {
   return context;
 }
 
-interface CartContextType {
-  cart: DisplayCartItem[];
-  dispatch: React.Dispatch<CartAction>
-}
 

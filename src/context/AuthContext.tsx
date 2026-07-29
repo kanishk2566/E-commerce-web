@@ -6,7 +6,7 @@ import { AuthUser, LoginData, RegisterData } from "@/types/user"
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 export interface AuthContextType {
-  user: AuthUser | null;
+  user: AuthUser;
   isAuthenticated: boolean;
   login: (data: LoginData) => Promise<void>;
   register: (data: RegisterData) => Promise<void>;

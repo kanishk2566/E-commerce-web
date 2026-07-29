@@ -8,14 +8,12 @@ import Link from 'next/link';
 import { RxCrossCircled } from 'react-icons/rx';
 
 const CartCard = () => {
-  const { cart, dispatch } = useCart();
+  const { cart, clearCart } = useCart();
 
-  const cartItems = cart.map((item) => {return item.product.id});
+  const cartItems = cart.map((item) => {return item.productId});
 
   function handleClearCart() {
-    dispatch({
-      type: "CLEAR_CART",
-    })
+    clearCart(cart)
   }
 
   const imageURL = "https://img.magnific.com/premium-vector/beautiful-flat-style-shopping-cart-icon-vector-illustration_1253044-73382.jpg?semt=ais_hybrid&w=740&q=80"
@@ -36,7 +34,7 @@ const CartCard = () => {
         
       <div className='flex-1 flex flex-col gap-5'>
         {cart.map((item) => (
-        <CartItem key={item.product.id} item={item} />
+        <CartItem key={item.productId} item={item.productId} />
       ))}
       </div>
 

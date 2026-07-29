@@ -10,20 +10,17 @@ interface ProductCardProps {
   product: Product;
 }
 const ProductCard = ({product}: ProductCardProps) => {
-  const { dispatch } = useCart();
+  const { addToCart } = useCart();
 
   function handleAddToCart() {
-    dispatch({
-      type: "ADD_TO_CART",
-      payload: product,
-    });
+      addToCart(product.id);
   }
   
   return (
     
     <div className='rounded border relative border-gray-600 min-h-100 shadow-md transition hover:shadow-xl p-4'>
       <img
-      src={product.image} 
+      src={product.image}
       alt={product.title} 
       className='h-48 object-contain mx-auto'
       />
