@@ -7,24 +7,7 @@
       "password": "123456",
       "role": "ADMIN",
       "createdAt": "2026-07-21T06:07:41.018Z",
-      "cart": [
-        {
-          "productId": "1",
-          "quantity": 1
-        },
-        {
-          "productId": 3,
-          "quantity": 5
-        },
-        {
-          "productId": 2,
-          "quantity": 2
-        },
-        {
-          "productId": 4,
-          "quantity": 1
-        }
-      ]
+      "cart": []
     },
     {
       "name": "admin2",

@@ -11,9 +11,7 @@ type IsCartProps = {
 }
 
 const NavLinks = ({IsCart, IsHome, IsRegister, IsLogin, IsProfile}: IsCartProps) => {
-  const { cart } = useCart();
-
-  const totalItem = cart.reduce((total, item) => total + item.quantity, 0);
+  const { totalItem } = useCart();
   
   return (
     <div className='flex justify-center items-center'>

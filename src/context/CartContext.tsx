@@ -15,6 +15,7 @@ interface CartContextType {
   clearCart: () => Promise<void>;
   cart: PersistedCartItem[];
   isLoading: boolean;
+  totalItem: number;
 }
 
 interface CartProviderProps {
@@ -42,6 +43,8 @@ export function CartProvider({children}: CartProviderProps) {
   const [cart, dispatch] = useReducer(cartReducer, initialState);
   const [isLoading, setIsLoading] = useState(false);
   const { user } = useAuth();
+  
+  const totalItem = cart.reduce((total, item) => total + item.quantity, 0);
 
   useEffect(() => {
     async function loadCart() {
@@ -157,7 +160,7 @@ export function CartProvider({children}: CartProviderProps) {
   }
 
   return (
-    <CartContext.Provider value={{cart, addToCart, removeFromCart, decreaseQuantity, clearCart, isLoading}}>
+    <CartContext.Provider value={{cart, addToCart, removeFromCart, decreaseQuantity, clearCart, isLoading, totalItem}}>
       {children}
     </CartContext.Provider>
   )

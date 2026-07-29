@@ -4,32 +4,23 @@ import { DisplayCartItem } from '@/types/cart';
 import { MdDelete } from 'react-icons/md';
 import { useCart } from '@/context/CartContext';
 
-type CartCardProps = {
+type CartItemProps = {
   item: DisplayCartItem;
 }
 
-const CartItem = ({item}: CartCardProps) => {
-  const { dispatch } = useCart();
+const CartItem = ({item}: CartItemProps) => {
+  const { addToCart, removeFromCart, decreaseQuantity } = useCart();
 
   function handleRemoveItem() {
-    dispatch({
-      type: "REMOVE_FROM_CART",
-      payload: item.product,
-    });
+    removeFromCart(item.product.id);
   }
 
   function handleIncreaseQuantity() {
-    dispatch({
-      type: "ADD_TO_CART",
-      payload: item.product,
-    })
+    addToCart(item.product.id);
   }
 
   function handleDecreaseQuantity() {
-    dispatch({
-      type: "DECREASE_QUANTITY",
-      payload: item.product,
-    })
+    decreaseQuantity(item.product.id);
   }
 
   return (
@@ -65,7 +56,7 @@ const CartItem = ({item}: CartCardProps) => {
               </button>
             </div>
             <div className='font-bold text-green-600'>
-              ${item.product.price}
+              ${item.product.price * item.quantity}
             </div>
           </div>
           <div 

@@ -6,14 +6,17 @@ import PriceDetails from './PriceDetails';
 import Image from 'next/image';
 import Link from 'next/link';
 import { RxCrossCircled } from 'react-icons/rx';
+import { DisplayCartItem } from '@/types/cart';
 
-const CartCard = () => {
+interface CartCardProps {
+  items: DisplayCartItem[],
+  isLoading: boolean,
+}
+const CartCard = ({items, isLoading}: CartCardProps) => {
   const { cart, clearCart } = useCart();
 
-  const cartItems = cart.map((item) => {return item.productId});
-
   function handleClearCart() {
-    clearCart(cart)
+    clearCart();
   }
 
   const imageURL = "https://img.magnific.com/premium-vector/beautiful-flat-style-shopping-cart-icon-vector-illustration_1253044-73382.jpg?semt=ais_hybrid&w=740&q=80"
@@ -21,7 +24,13 @@ const CartCard = () => {
   return (
     <div className='w-screen flex flex-col h-full'>
       
-    {cartItems.length > 0 ? (
+    {isLoading ? (
+      <div>
+        Loading...
+      </div>
+    ) : (
+      <div>
+        {cart.length > 0 ? (
       <div className='flex flex-col gap-4 h-fit'>
         <div className=' ml-5'>
         <div 
@@ -33,12 +42,12 @@ const CartCard = () => {
         <div className='flex flex-col md:flex-row gap-3 mb-5'>
         
       <div className='flex-1 flex flex-col gap-5'>
-        {cart.map((item) => (
-        <CartItem key={item.productId} item={item.productId} />
+        {items.map((item) => (
+        <CartItem key={item.product.id} item={item} />
       ))}
       </div>
 
-      <PriceDetails />
+      <PriceDetails items={items} />
     </div>
       </div>
     ) : (
@@ -49,6 +58,8 @@ const CartCard = () => {
           Looks like you have not added anything to your cart.<br /> click on <b>Shop Now </b> to add items to your cart.
         </div>
         <Link className='bg-blue-600 text-white font-bold py-2 px-4 rounded text-sm' href={"/"}>Shop Now</Link>
+      </div>
+    )}
       </div>
     )}
     </div>   

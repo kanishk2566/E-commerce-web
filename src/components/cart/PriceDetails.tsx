@@ -1,15 +1,17 @@
 import { useCart } from '@/context/CartContext';
+import { DisplayCartItem } from '@/types/cart';
 import React, { useState } from 'react'
 import { IoIosArrowDown } from "react-icons/io";
 
-const PriceDetails = () => {
-  const { cart } = useCart();
+interface PriceDetailsProps {
+  items: DisplayCartItem[];
+}
+const PriceDetails = ({items}: PriceDetailsProps) => {
+  const { totalItem } = useCart();
   const [accordion, setAccordion] = useState(false);
 
-  const totalPrice = cart.reduce((total, item) => total + (item.product.price * item.quantity), 0);
+  const totalPrice = items.reduce((total, item) => total + (item.product.price * item.quantity), 0);
   const roundedPrice = totalPrice.toFixed(2);
-
-  const totalItem = cart.reduce((total, item) => total + item.quantity, 0);
   
   return (
     <div className='lg:w-3/10 mx-5 flex flex-col gap-2 h-full lg:min-h-screen'>
@@ -41,7 +43,7 @@ const PriceDetails = () => {
 
             {accordion && (
             <div>
-              {cart.map((item) => (
+              {items.map((item) => (
                 <div
                 className='flex justify-between lg:gap-7 border-b border-gray-300'
                 key={item.product.id}>
