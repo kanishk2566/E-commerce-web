@@ -1,17 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 import Navbar from '@/components/navbar/Navbar';
-import { getProduct } from '@/services/api';
+import { getProduct } from '@/services/products';
 import Link from 'next/link';
 import React from 'react'
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { FaShoppingCart } from "react-icons/fa";
 
-
 interface ProductProps {
   params: Promise<{
     id: string;
   }>;
-  
 }
 async function ProductPage({params}: ProductProps) {
   const cartIcon = <FaShoppingCart />;

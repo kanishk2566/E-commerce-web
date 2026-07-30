@@ -1,34 +1,27 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import CartItem from "@/components/cart/CartItem";
 import { AuthUser, LoginData, RegisterData, User } from "@/types/user";
+import { apiFetch } from "./api";
 
-const API_URL = "http://localhost:3008/users"
+const API_BASE_URL = process.env.NEXT_PUBLIC_USERS_API_BASE_URL;
 
 export async function loginUser(data: LoginData): Promise<AuthUser> {
 
-  const response = await fetch(`${API_URL}?email=${data.email}&password=${data.password}`);
-
-  const users: User[] = await response.json();
-  console.log(users);
+  const users = await apiFetch<User[]>(`${API_BASE_URL}`, `/users?email=${data.email}&password=${data.password}`);
 
   if(users.length === 0) {
     throw new Error("Invalid email or password");
   }
 
   const user = users[0];
-  console.log(user);
   const {password: _password, ...authUser} = user;
 
   return authUser;
   
 }
 
-export async function registerUser(data: RegisterData) {
+export async function registerUser(data: RegisterData): Promise<AuthUser> {
 
-  const response = await fetch(`${API_URL}`);
-
-  const users: User[] = await response.json();
-  console.log(users);
+  const users = await apiFetch<User[]>(`${API_BASE_URL}`, "");
 
   const existingEmail = users.find((user) => user.email === data.email);
   
@@ -40,7 +33,7 @@ export async function registerUser(data: RegisterData) {
     ...data, role: "USER", createdAt: new Date().toISOString(), cart: [],
   }
 
-  const response2 = await fetch(`${API_URL}`, {
+  const createUserResponse = await fetch(`${API_BASE_URL}`, {
     method: "POST",
     headers: {
         "Content-Type": "application/json",
@@ -48,9 +41,9 @@ export async function registerUser(data: RegisterData) {
       body: JSON.stringify(newUser),
   });
 
-  const data2: User = await response2.json();
+  const createUserData: User = await createUserResponse.json();
 
-  const {password: _password, ...authUser} = data2;
+  const {password: _password, ...authUser} = createUserData;
 
   return authUser;
 

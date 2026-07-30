@@ -20,7 +20,7 @@ const Navbar = ({inCart, inHome, inRegister, inLogin, inProfile}: InCartProps) =
           ShopEasy
         </div>
         {isAuthenticated && (
-          <div className='text-blue-500 font-bold'>
+          <div className='text-blue-500 font-bold text-sm lg:text-lg'>
             Hello, {user?.name}
           </div>
         )}

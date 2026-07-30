@@ -5,6 +5,7 @@ import { PersistedCartItem } from "@/types/cart";
 import { useAuth } from "./AuthContext";
 import { addToCart as addToCartService, removeFromCart as removeFromCartService, decreaseQuantity as decreaseQuantityService, clearCart as clearCartService, getCart } from "@/services/cart";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const initialState: PersistedCartItem[] = [];
 
@@ -43,6 +44,7 @@ export function CartProvider({children}: CartProviderProps) {
   const [cart, dispatch] = useReducer(cartReducer, initialState);
   const [isLoading, setIsLoading] = useState(false);
   const { user } = useAuth();
+  const router = useRouter();
   
   const totalItem = cart.reduce((total, item) => total + item.quantity, 0);
 
@@ -73,90 +75,58 @@ export function CartProvider({children}: CartProviderProps) {
 
     loadCart();
   }, [user]);
-  
-  async function addToCart(productId: number) {
+
+  async function syncCart(operation: () => Promise<PersistedCartItem[]>) {
     try {
-      if(!user) {
-        toast.warning("You must be logged in to add item to cart..!!");
-        return;
-      }
       setIsLoading(true);
-      const updatedCart = await addToCartService(user.id, productId);
+      const updatedCart = await operation();
       dispatch({
         type: SET_CART,
         payload: updatedCart,
-      })
-    } 
-    catch(error){
-      toast.error(error instanceof Error ? error.message : "Something went wrong");
+      });
+    }
+    catch(error) {
+      toast.error(error instanceof Error ? error.message : "Something went wrong...!");
     }
     finally {
       setIsLoading(false);
     }
-    
+  }
+  
+  async function addToCart(productId: number) {
+    if(!user) {
+        toast(() => {
+          return(
+          <div className="flex flex-col justify-center items-center">
+            You must be logged in to add item to cart..!!
+            <button onClick={() => router.push("/login")} className="bg-blue-500 w-full py-1 text-white cursor-pointer rounded hover:bg-blue-600 transition-all">Login</button>
+          </div>
+          )
+        });
+        return;
+      }
+    await syncCart(() => addToCartService(user.id, productId))
   }
 
   async function removeFromCart(productId: number) {
-    try {
-      if(!user) {
-        return;
-      }
-      setIsLoading(true);
-      const updatedCart = await removeFromCartService(user.id, productId);
-      dispatch({
-        type: SET_CART,
-        payload: updatedCart,
-      })
+    if(!user) {
+      return;
     }
-    catch(error) {
-      toast.error(error instanceof Error ? error.message : "Something went wrong");
-    }
-    finally {
-      setIsLoading(false);
-    }
-
+    await syncCart(() => removeFromCartService(user.id, productId));
   }
 
   async function decreaseQuantity(productId: number) {
-    try {
-      if(!user) {
-        return;
-      }
-      setIsLoading(true);
-      const updatedCart = await decreaseQuantityService(user.id, productId);
-      dispatch({
-        type: SET_CART,
-        payload: updatedCart,
-      });
+   if(!user) {
+      return;
     }
-    catch(error) {
-      toast.error(error instanceof Error ? error.message : "Something went wrong");
-    }
-    finally {
-      setIsLoading(false);
-    }
-
+    await syncCart(() => decreaseQuantityService(user.id, productId));
   }
 
   async function clearCart() {
-    try {
-      if(!user) {
-        return;
-      }
-      setIsLoading(true);
-      const updatedCart = await clearCartService(user.id);
-      dispatch({
-        type: SET_CART,
-        payload: updatedCart,
-      });
+    if(!user) {
+      return;
     }
-    catch(error) {
-     toast.error(error instanceof Error ? error.message : "Something went wrong");
-    }
-    finally{
-      setIsLoading(false);
-    }
-
+    await syncCart(() => clearCartService(user.id));
   }
 
   return (

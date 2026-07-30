@@ -1,36 +1,163 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 E-Commerce Website
+
+A modern E-Commerce web application built with **Next.js**, **React**, **TypeScript**, and **Tailwind CSS**.
+
+The application allows users to browse products, authenticate, manage their shopping cart, and view price details while following clean architecture principles such as separation of concerns, service layer architecture, and Context API state management.
+
+---
+
+## Features
+
+### Authentication
+- Register
+- Login
+- Logout
+- Persistent authentication using Local Storage
+
+### Products
+- Product Listing
+- Product Details Page
+
+### Shopping Cart
+- Add to Cart
+- Remove from Cart
+- Increase Quantity
+- Decrease Quantity
+- Clear Cart
+- Cart Badge
+- Price Details
+
+### User Experience
+- Loading States
+- Error Handling
+- Toast Notifications
+- Responsive Design
+
+---
+
+## Tech Stack
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Context API
+- useReducer
+- JSON Server
+- FakeStore API
+- React Toastify
+
+---
+
+## Folder Structure
+
+```text
+src/
+├── app/
+├── components/
+├── context/
+├── services/
+├── types/
+├── validators/
+```
+
+---
+
+## Architecture
+
+The application follows a layered architecture.
+
+```
+Components
+      ↓
+Context
+      ↓
+Services
+      ↓
+API / JSON Server
+      ↓
+Context
+      ↓
+UI
+```
+
+### Design Decisions
+
+- Server is the source of truth for cart data.
+- Reducers remain pure.
+- API logic is separated into service files.
+- Components never communicate directly with APIs.
+- Derived state is calculated instead of stored.
+- Context coordinates business operations.
+
+---
 
 ## Getting Started
 
-First, run the development server:
+Clone the repository
+
+```bash
+git clone https://github.com/kanishk2566/E-commerce-web.git
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Start the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Start JSON Server
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run server
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open:
 
-## Learn More
+```
+http://localhost:3000
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## What I Learned
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Through this project I gained practical experience with:
 
-## Deploy on Vercel
+- React Context API
+- useReducer
+- TypeScript
+- Service Layer Architecture
+- Separation of Concerns
+- Single Responsibility Principle
+- Derived State
+- State Management
+- API Integration
+- Form Validation
+- Component Composition
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Future Improvements
+
+- Product Search
+- Filters
+- Sorting
+- Wishlist
+- Checkout
+- Order History
+- Payment Gateway Integration
+
+---
+
+## Author
+
+**Kanishk Patel**
+
+GitHub: https://github.com/kanishk2566

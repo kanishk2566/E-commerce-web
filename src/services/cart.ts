@@ -1,10 +1,12 @@
 import { PersistedCartItem } from "@/types/cart";
+import { apiFetch } from "./api";
+import { User } from "@/types/user";
 
-const API_URL = "http://localhost:3008/users";
+const API_BASE_URL = process.env.NEXT_PUBLIC_USERS_API_BASE_URL;
 
 export async function getCart(userId: string): Promise<PersistedCartItem[]> {
-  const response = await fetch(`${API_URL}/${userId}`);
-  const user = await response.json();
+
+  const user= await apiFetch<User>(`${API_BASE_URL}`, `/users/${userId}`);
 
   const cart = user.cart;
 
@@ -12,7 +14,8 @@ export async function getCart(userId: string): Promise<PersistedCartItem[]> {
 }
 
 async function saveCart( userId: string, updatedCart: PersistedCartItem[]) {
-  const response = await fetch(`${API_URL}/${userId}`, {
+
+  const Request = {
     method: "PATCH",
     headers: {
       "Content-Type" : "application/json",
@@ -20,11 +23,9 @@ async function saveCart( userId: string, updatedCart: PersistedCartItem[]) {
     body: JSON.stringify({
       cart: updatedCart,
     }),
-  });
+  }
 
-  if(!response.ok) {
-    throw new Error("Failed to update cart...try again.!");
-  };
+  await apiFetch(`${API_BASE_URL}`, `/users/${userId}`, Request )
 }
 
 export async function addToCart(userId: string, productId: number): Promise<PersistedCartItem[]> {
@@ -55,7 +56,6 @@ export async function addToCart(userId: string, productId: number): Promise<Pers
   }
 
   await saveCart(userId, updatedCart);
-  console.log("Added", productId);
   return updatedCart;
 }
 

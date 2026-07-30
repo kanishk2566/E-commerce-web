@@ -13,7 +13,7 @@ export const INITIAL_REGISTER_FORM_ERRORS: RegisterFormErrors = {
   password: "",
 }   
 
-export async function validateRegisterForm(formData: RegisterData): Promise<RegisterValidatorResult> {
+export function validateRegisterForm(formData: RegisterData): RegisterValidatorResult {
 
   const EMAIL_REGEX = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 

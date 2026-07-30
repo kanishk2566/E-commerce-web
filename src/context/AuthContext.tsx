@@ -16,11 +16,12 @@ export interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+const AUTH_STORAGE_KEY = "authUser";
+
 export function AuthProvider({children}: {children: React.ReactNode;}) {
   const [user, setUser] = useState<AuthUser | null>(null);
   const isAuthenticated = user !== null;
   const [isLoading, setIsLoading] = useState(false);
-  const AUTH_STORAGE_KEY = "authUser";
 
   function persistAuthenticatedUser(authUser: AuthUser) {
     setUser(authUser);
@@ -44,10 +45,8 @@ export function AuthProvider({children}: {children: React.ReactNode;}) {
   async function login(data: LoginData) {
     try {
       setIsLoading(true);
-      setTimeout(async () => {
         const authUser = await loginUser(data);
         persistAuthenticatedUser(authUser);
-      }, 2000);
     }
     finally {
       setIsLoading(false);
@@ -57,10 +56,8 @@ export function AuthProvider({children}: {children: React.ReactNode;}) {
   async function register(data: RegisterData) {
     try {
       setIsLoading(true);
-      setTimeout(async () => {
         const authUser = await registerUser(data);
         persistAuthenticatedUser(authUser);
-      }, 2000);
     }
     finally {
       setIsLoading(false);
@@ -70,10 +67,8 @@ export function AuthProvider({children}: {children: React.ReactNode;}) {
   function logout() {
     try {
       setIsLoading(true);
-      setTimeout(() => {
       localStorage.removeItem(AUTH_STORAGE_KEY);
       setUser(null);
-    }, 2000);
     }
     finally {
       setIsLoading(false);

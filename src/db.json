@@ -7,7 +7,12 @@
       "password": "123456",
       "role": "ADMIN",
       "createdAt": "2026-07-21T06:07:41.018Z",
-      "cart": []
+      "cart": [
+        {
+          "productId": 3,
+          "quantity": 2
+        }
+      ]
     },
     {
       "name": "admin2",

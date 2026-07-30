@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import CartCard from './CartCard'
 import Navbar from '../navbar/Navbar';
 import { Product } from '@/types/product';
-import { getAllProducts } from '@/services/api';
+import { getAllProducts } from '@/services/products';
 import { toast } from 'react-toastify';
 import { useCart } from '@/context/CartContext';
 import { DisplayCartItem } from '@/types/cart';
@@ -42,9 +42,9 @@ const CartPage = () => {
   }, [cart, products]);
 
   return (
-    <div className='w-full h-full min-h-screen flex flex-col justify-start items-center'>
+    <div className='w-full h-full min-h-screen flex flex-col justify-start items-center overflow-x-hidden'>
       <Navbar inCart={true} inHome={false} inRegister={false} inLogin={false} inProfile={false}/>
-      <div className='flex'>
+      <div className='flex pt-5'>
 
         <CartCard items={displayCartItem} isLoading={isLoading} />
       

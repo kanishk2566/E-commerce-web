@@ -13,7 +13,7 @@ const ProductCard = ({product}: ProductCardProps) => {
   const { addToCart } = useCart();
 
   function handleAddToCart() {
-      addToCart(product.id);
+    addToCart(product.id);
   }
   
   return (

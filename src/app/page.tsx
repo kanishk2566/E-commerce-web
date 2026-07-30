@@ -1,6 +1,6 @@
 import Navbar from "@/components/navbar/Navbar";
 import ProductGrid from "@/components/products/ProductGrid";
-import { getAllProducts } from "@/services/api";
+import { getAllProducts } from "@/services/products";
 
 export default async function Home() {
   const products = await getAllProducts();
