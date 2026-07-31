@@ -51,12 +51,11 @@ const CartCard = ({items, isLoading}: CartCardProps) => {
       </div>
     ) : (
       <div className='flex flex-col justify-center items-center w-screen h-full pt-20 font-semibold text-2xl'>
-        <Image
-        width={200}
-        height={200}
-        src={"/cart.png"} 
-        alt={"Empty Cart"}
-        className='object-contain'
+        <Image 
+        src={"/carts.png"}
+        alt='Empty Cart'
+        width={150}
+        height={150}
         />
         Your Cart is Currently Empty!
         <div className='text-sm text-gray-500 font-normal text-center mt-3 mb-3'>

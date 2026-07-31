@@ -15,8 +15,54 @@
       "password": "1",
       "role": "USER",
       "createdAt": "Fri Jul 31 2026",
-      "cart": [],
+      "cart": [
+        {
+          "productId": 1,
+          "quantity": 1
+        },
+        {
+          "productId": 2,
+          "quantity": 1
+        },
+        {
+          "productId": 10,
+          "quantity": 1
+        },
+        {
+          "productId": 9,
+          "quantity": 2
+        },
+        {
+          "productId": 7,
+          "quantity": 1
+        },
+        {
+          "productId": 14,
+          "quantity": 1
+        },
+        {
+          "productId": 13,
+          "quantity": 1
+        },
+        {
+          "productId": 17,
+          "quantity": 1
+        },
+        {
+          "productId": 16,
+          "quantity": 1
+        }
+      ],
       "id": "1"
+    },
+    {
+      "name": "kanishk patel",
+      "email": "ka@a.a",
+      "password": "12345678",
+      "role": "USER",
+      "createdAt": "Fri Jul 31 2026",
+      "cart": [],
+      "id": "hPDJdaD"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

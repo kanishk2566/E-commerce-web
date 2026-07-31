@@ -57,7 +57,7 @@ const CartItem = ({item}: CartItemProps) => {
                 +
               </button>
             </div>
-            <div className='font-bold text-green-600'>
+            <div className='font-bold text-[#1c0c0c]'>
               ${(item.product.price * item.quantity).toFixed(2)}
             </div>
           </div>

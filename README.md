@@ -92,6 +92,15 @@ UI
 
 ---
 
+### Colour pallete
+
+1. #401B1B
+2. #72383D
+3. #AB644B
+4. #9CABB4
+5. #D2DCE6
+6. #F2F2EB
+
 ## Getting Started
 
 Clone the repository

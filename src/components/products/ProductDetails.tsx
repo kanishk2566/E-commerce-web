@@ -39,10 +39,10 @@ function ProductDetails({product}: ProductProps) {
           <p className='text-3xl font-bold'>
             {product.title}
           </p>
-          <p className='mt-5 text-gray-600'>
+          <p className='mt-5 text-[#ab644b]'>
             {product.description}
           </p>
-          <div className='mt-5 text-2xl text-green-600 font-bold'>
+          <div className='mt-5 text-2xl text-[#1c0c0c] font-bold'>
             ${(product.price).toFixed(2)}
           </div>
           <button
