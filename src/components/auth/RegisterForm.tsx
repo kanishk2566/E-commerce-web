@@ -1,7 +1,7 @@
 "use client"
 import { useAuth } from '@/context/AuthContext'
 import { RegisterData } from '@/types/user';
-import { validateRegisterForm } from '@/validators/RegisterValidator';
+import { RegisterFormErrors, validateRegisterForm } from '@/validators/RegisterValidator';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react'
@@ -12,13 +12,13 @@ import { BsEyeSlash } from 'react-icons/bs';
 
 const RegisterCard = () => {
   const { register, isLoading } = useAuth();
-  const [errors, setErrors] = useState({
+  const [errors, setErrors] = useState<RegisterFormErrors>({
     name: "",
     password: "",
     email: "",
   });
   const [apiError, setApiError] = useState("");
-  const [password, setPassword] = useState("password");
+  const [passwordType, setPasswordType] = useState("password");
   const [passFocus, setPassFocus] = useState(false);
   const router = useRouter();
   const [formData, setFormData] = useState<RegisterData>({
@@ -33,24 +33,25 @@ const RegisterCard = () => {
       [e.target.name]: e.target.value,
     }));
     setApiError("");
-    setErrors({...errors, [e.target.name]: ""})
+    setErrors((prev) => ({
+      ...prev,
+      [e.target.name]: ""
+    }))
   }
 
   async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
 
     try {
-      const result = await validateRegisterForm(formData);
+      const result = validateRegisterForm(formData);
       setErrors(result.errors);
 
       if(!result.isValid) return;
 
       await register(formData);
-      setTimeout(() => {
-        router.push("/");
-      }, 2000);
+      router.push("/");
     }
-    catch(apiError: unknown) {
+    catch(apiError) {
       if(apiError instanceof Error) {
         setApiError(apiError.message);
         console.log(apiError.message);
@@ -58,14 +59,14 @@ const RegisterCard = () => {
     }
   }
 
-  function passwordVisible() {
-    setPassword((prev) => prev === "password" ? "text" : "password");
+  function togglePasswordVisible() {
+    setPasswordType((prev) => prev === "password" ? "text" : "password");
   }
 
   return (
     <div className='w-full h-full min-h-screen flex flex-col justify-start items-center'>
 
-      <Navbar inCart={false} inHome={false} inRegister={true} inLogin={false} inProfile={false}/>
+      <Navbar />
       
       <div className='h-full w-full flex justify-center items-center mt-20 mb-10'>
         <form
@@ -84,6 +85,7 @@ const RegisterCard = () => {
             name='name'
             placeholder='Enter name...'
             value={formData.name}
+            disabled={isLoading}
             onChange={handleChange} />
             <div className='text-red-600 text-sm'>
               {errors.name}
@@ -99,6 +101,7 @@ const RegisterCard = () => {
             name='email'
             placeholder='Enter email...'
             value={formData.email}
+            disabled={isLoading}
             onChange={handleChange} />
             <div className='text-red-600 text-sm'>
               {errors.email}
@@ -118,13 +121,14 @@ const RegisterCard = () => {
               placeholder='Enter password...'
               onFocus={() => setPassFocus(true)}
               onBlur={() => setPassFocus(false)}
-              type={password}
+              type={passwordType}
               value={formData.password}
+              disabled={isLoading}
               onChange={handleChange} />
 
-              <div onClick={passwordVisible} className='cursor-pointer bg-gray-300 px-2 flex justify-center items-center rounded-r'>
-                {password === "password" ? <BsEye /> : <BsEyeSlash />}
-              </div>
+              <button type='button' onClick={togglePasswordVisible} className='cursor-pointer bg-gray-300 px-2 flex justify-center items-center rounded-r'>
+                {passwordType === "password" ? <BsEye /> : <BsEyeSlash />}
+              </button>
               
             </div>
             <div className='text-red-600 text-sm'>
@@ -134,9 +138,10 @@ const RegisterCard = () => {
           <div className='text-red-600 text-sm'>{apiError}</div>
 
         </div>
-        <button 
+        <button
+        type='submit'
         disabled={isLoading}
-        className={`py-1 px-3 rounded font-semibold text-white mt-2 cursor-pointer ${isLoading ? "bg-blue-200" : "bg-blue-500"}`}>{isLoading ? "Creating Account" : "Register"}</button>
+        className={`py-1 px-3 rounded font-semibold text-white mt-2 cursor-pointer bg-blue-500`}>{isLoading ? "Creating Account" : "Register"}</button>
 
         <div className='text-sm'>
           <p className='text-gray-800'>Already have an account? <Link href={"/login"} className='text-blue-600 hover:underline'>Login</Link></p>

@@ -1,8 +1,8 @@
-/* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import { DisplayCartItem } from '@/types/cart';
 import { MdDelete } from 'react-icons/md';
 import { useCart } from '@/context/CartContext';
+import Image from 'next/image';
 
 type CartItemProps = {
   item: DisplayCartItem;
@@ -27,7 +27,9 @@ const CartItem = ({item}: CartItemProps) => {
     <>
       <div className='flex rounded ml-5'>
         <div className='w-30 border border-gray-300 p-2 rounded-l bg-gray-200'>
-          <img
+          <Image
+          width={300}
+          height={300}
           src={item.product.image} 
           alt={item.product.title}
           className='h-28 w-28 object-contain'
@@ -56,14 +58,15 @@ const CartItem = ({item}: CartItemProps) => {
               </button>
             </div>
             <div className='font-bold text-green-600'>
-              ${item.product.price * item.quantity}
+              ${(item.product.price * item.quantity).toFixed(2)}
             </div>
           </div>
-          <div 
+          <button
+          type='button'
           onClick={handleRemoveItem}
-          className='flex justify-center items-center gap-1 absolute right-2 bottom-2 md:right-2 text-red-500 hover:bg-red-200 cursor-pointer bg-gray-300 py-1 px-2 rounded transition-all'>
+          className='flex justify-center items-center gap-1 absolute right-2 bottom-2 md:right-2 text-red-500 hover:opacity-90 cursor-pointer bg-gray-300 py-1 px-2 rounded transition-all'>
             <MdDelete /> Remove
-          </div>
+          </button>
         </div>
       </div>
        

@@ -8,7 +8,7 @@ interface PriceDetailsProps {
 }
 const PriceDetails = ({items}: PriceDetailsProps) => {
   const { totalItem } = useCart();
-  const [accordion, setAccordion] = useState<boolean>();
+  const [accordion, setAccordion] = useState(false);
 
   const totalPrice = items.reduce((total, item) => total + (item.product.price * item.quantity), 0);
   const roundedPrice = totalPrice.toFixed(2);
@@ -73,9 +73,9 @@ const PriceDetails = ({items}: PriceDetailsProps) => {
         </div>
 
         <div className={`text-end flex items-end justify-end absolute right-3 transition-all cursor-pointer ${accordion ? "rotate-180 hover:-translate-y-0.5 bottom-1" : "rotate-0 hover:translate-y-0.5 bottom-2"}`}>
-          <div onClick={() => setAccordion(!accordion)}>
+          <button type='button' onClick={() => setAccordion(prev => !prev)}>
             <IoIosArrowDown />
-          </div>
+          </button>
         </div>
 
         </div>

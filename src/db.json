@@ -9,8 +9,20 @@
       "createdAt": "2026-07-21T06:07:41.018Z",
       "cart": [
         {
-          "productId": 3,
+          "productId": 14,
           "quantity": 2
+        },
+        {
+          "productId": 13,
+          "quantity": 2
+        },
+        {
+          "productId": 11,
+          "quantity": 1
+        },
+        {
+          "productId": 10,
+          "quantity": 1
         }
       ]
     },
@@ -58,6 +70,15 @@
       "createdAt": "2026-07-28T10:46:02.194Z",
       "cart": [],
       "id": "ejXJieH"
+    },
+    {
+      "name": "admin",
+      "email": "admin@a.a",
+      "password": "12345678",
+      "role": "USER",
+      "createdAt": "2026-07-31T05:01:48.000Z",
+      "cart": [],
+      "id": "JJWghLo"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -14,30 +14,31 @@ const ProfilePage = () => {
       router.push("/");
     }, 2000);
   }
-  return (
+
+  if(user) {
+    const name = user.name;
+
+    const initials = name.trim().split(" ").map(part => part[0].toUpperCase()).join("");
+
+    return (
     <div>
-      <Navbar inCart={false} inHome={false} inLogin={false} inRegister={false} inProfile={true} />
+      <Navbar />
       <div className='w-full h-full min-h-screen flex justify-center items-center'>
 
         <div className='flex flex-col justify-center gap-4'>
 
-          <div className='flex flex-col justify-center items-start'>
+          <div className='flex flex-col justify-center items-center'>
 
-            <div className='flex justify-start items-start gap-3'>
-
-              <div className='font-bold'>Name:</div>
-
-              <div className='font-semibold'>{user?.name}</div>
-              
+            <div className='text-7xl bg-blue-500 text-blue-100 w-30 h-30 flex justify-center items-center font-semibold rounded-full mb-2'>
+              {initials}
             </div>
 
-            <div className='flex justify-start items-start gap-3'>
-
-              <div className='font-bold'>Email:</div>
-              
-              <div className='font-semibold'>{user?.email}</div>
-
-            </div>
+              <div className='font-semibold'>
+                {user?.name}
+              </div>
+              <div className='font-semibold'>
+                {user?.email}
+              </div>
 
           </div>
           
@@ -47,6 +48,14 @@ const ProfilePage = () => {
       </div>
     </div>
   )
+  }
+
+  return (
+    <div>
+      You must login to view profile...!
+    </div>
+  )
+  
 }
 
 export default ProfilePage

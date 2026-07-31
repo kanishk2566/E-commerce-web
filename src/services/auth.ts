@@ -6,7 +6,8 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_USERS_API_BASE_URL;
 
 export async function loginUser(data: LoginData): Promise<AuthUser> {
 
-  const users = await apiFetch<User[]>(`${API_BASE_URL}`, `/users?email=${data.email}&password=${data.password}`);
+
+  const users: User[] = await apiFetch(`${API_BASE_URL}`, `/users?email=${data.email}&password=${data.password}`);
 
   if(users.length === 0) {
     throw new Error("Invalid email or password");
@@ -19,9 +20,12 @@ export async function loginUser(data: LoginData): Promise<AuthUser> {
   
 }
 
-export async function registerUser(data: RegisterData): Promise<AuthUser> {
+export async function registerUser(data: RegisterData) {
 
-  const users = await apiFetch<User[]>(`${API_BASE_URL}`, "");
+  const response = await fetch(`${API_BASE_URL}/users`);
+
+  const users: User[] = await response.json();
+  console.log(users);
 
   const existingEmail = users.find((user) => user.email === data.email);
   
@@ -33,18 +37,16 @@ export async function registerUser(data: RegisterData): Promise<AuthUser> {
     ...data, role: "USER", createdAt: new Date().toISOString(), cart: [],
   }
 
-  const createUserResponse = await fetch(`${API_BASE_URL}`, {
+  const data2 = await apiFetch<User>(`${API_BASE_URL}`, "/users", {
     method: "POST",
     headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newUser),
-  });
+      "Content-Type" : "application/json",
+    },
+    body: JSON.stringify(newUser)
+  })
 
-  const createUserData: User = await createUserResponse.json();
-
-  const {password: _password, ...authUser} = createUserData;
+  const {password: _password, ...authUser} = data2;
 
   return authUser;
 
-} 
+}

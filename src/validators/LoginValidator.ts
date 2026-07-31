@@ -1,6 +1,6 @@
 import { LoginData } from "@/types/user";
 
-type LoginFormErrors = Record<keyof LoginData, string>;
+export type LoginFormErrors = Record<keyof LoginData, string>;
 
 type LoginValidatorResult = {
   isValid: boolean,

@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'img.magnific.com',
+        hostname: 'fakestoreapi.com',
         pathname: '/**',
       },
     ],

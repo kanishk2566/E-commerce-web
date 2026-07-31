@@ -3,30 +3,24 @@ import Link from 'next/link';
 import NavAuthLinks from './NavAuthLinks';
 import { TiShoppingCart } from "react-icons/ti";
 import { IoMdHome } from "react-icons/io";
+import { usePathname } from 'next/navigation';
 
-type IsCartProps = {
-  IsCart: boolean,
-  IsHome: boolean,
-  IsRegister: boolean,
-  IsLogin: boolean,
-  IsProfile: boolean,
-}
-
-const NavLinks = ({IsCart, IsHome, IsRegister, IsLogin, IsProfile}: IsCartProps) => {
+const NavLinks = () => {
   const { totalItem } = useCart();
+  const pathname = usePathname();
   
   return (
     <div className='flex justify-center items-center'>
       <div className='flex justify-center items-center h-full'>
         <div className='flex justify-center items-center'>
-          <Link href={"/"} className={`relative flex justify-center items-center px-2 cursor-pointer py-1.75 hover:border-b-2 border-blue-500 hover:pb-1.5 hover:bg-gray-200 hover:rounded-md transition-all  ${IsHome ? "border-b-2 pb-1.5" : ""}`}>
+          <Link href={"/"} className={`relative flex justify-center items-center px-2 cursor-pointer py-1.75 hover:border-b-2 border-blue-500 hover:pb-1.5 hover:bg-gray-200 hover:rounded-md transition-all  ${pathname === "/" ? "border-b-2 pb-1.5" : ""}`}>
 
             <div className='py-1 flex justify-center items-center gap-0.5'>
               Home <IoMdHome />
             </div>
 
           </Link>
-          <Link href={"/cart"} className={`relative flex justify-center items-center px-2 cursor-pointer py-1.75 hover:border-b-2 border-blue-500 hover:pb-1.5 hover:bg-gray-200 hover:rounded-md transition-all ${IsCart ? "border-b-2 pb-1.5" : ""}`}>
+          <Link href={"/cart"} className={`relative flex justify-center items-center px-2 cursor-pointer py-1.75 hover:border-b-2 border-blue-500 hover:pb-1.5 hover:bg-gray-200 hover:rounded-md transition-all ${pathname === "/cart" ? "border-b-2 pb-1.5" : ""}`}>
 
             <div className='py-1 relative flex justify-center items-center'>
               Cart <TiShoppingCart />
@@ -40,7 +34,7 @@ const NavLinks = ({IsCart, IsHome, IsRegister, IsLogin, IsProfile}: IsCartProps)
             
           </Link>
         </div>
-        <NavAuthLinks IsLogin={IsLogin} IsRegister={IsRegister} IsProfile={IsProfile} />
+        <NavAuthLinks />
         
       </div>
     </div>

@@ -13,31 +13,30 @@ interface CartCardProps {
   isLoading: boolean,
 }
 const CartCard = ({items, isLoading}: CartCardProps) => {
-  const { cart, clearCart } = useCart();
+  const { clearCart } = useCart();
 
   function handleClearCart() {
     clearCart();
   }
 
-  const imageURL = "https://img.magnific.com/premium-vector/beautiful-flat-style-shopping-cart-icon-vector-illustration_1253044-73382.jpg?semt=ais_hybrid&w=740&q=80"
-
   return (
-    <div className='w-screen flex flex-col h-full'>
+    <div className='flex flex-col h-full w-full'>
       
     {isLoading ? (
-      <div className='w-screen h-screen flex justify-center items-center font-bold'>
+      <div className='w-full h-screen fixed top-0 left-0 flex justify-center items-center font-bold bg-white opacity-50'>
         Loading...
       </div>
     ) : (
       <div>
-        {cart.length > 0 ? (
+        {items.length > 0 ? (
       <div className='flex flex-col gap-4 h-fit'>
         <div className=' ml-5'>
-        <div 
+        <button
+        type='button'
         className='hover:text-red-500 border border-red-600 hover:border-red-500 flex justify-center items-center w-fit gap-2 py-1 px-2 text-red-600 transition-all cursor-pointer font-semibold rounded'
         onClick={handleClearCart}>
-          <RxCrossCircled />Clear your cart 
-        </div>
+          <RxCrossCircled />Clear your cart
+        </button>
       </div>
         <div className='flex flex-col md:flex-row gap-3 mb-5'>
         
@@ -51,9 +50,9 @@ const CartCard = ({items, isLoading}: CartCardProps) => {
     </div>
       </div>
     ) : (
-      <div className='flex flex-col justify-center items-center w-screen mb-20 font-semibold text-2xl'>
-        <Image src={imageURL} alt='Cart is Empty' width={300} height={300} />
-        Your Cart is Currently Empty...
+      <div className='flex flex-col justify-center items-center w-screen h-full pt-20 font-semibold text-2xl'>
+        <Image src="/cart.png" alt='Cart is Empty' width={200} height={200} />
+        Your Cart is Currently Empty!
         <div className='text-sm text-gray-500 font-normal text-center mt-3 mb-3'>
           Looks like you have not added anything to your cart.<br /> click on <b>Shop Now </b> to add items.
         </div>

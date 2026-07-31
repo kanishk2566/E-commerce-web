@@ -1,6 +1,6 @@
 import { RegisterData } from "@/types/user";
 
-type RegisterFormErrors = Record<keyof RegisterData , string>;
+export type RegisterFormErrors = Record<keyof RegisterData , string>;
 
 type RegisterValidatorResult = {
   isValid: boolean,
