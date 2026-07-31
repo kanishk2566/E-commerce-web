@@ -13,20 +13,20 @@ const NavLinks = () => {
     <div className='flex justify-center items-center'>
       <div className='flex justify-center items-center h-full'>
         <div className='flex justify-center items-center'>
-          <Link href={"/"} className={`relative flex justify-center items-center px-2 cursor-pointer py-1.75 hover:border-b-2 border-blue-500 hover:pb-1.5 hover:bg-gray-200 hover:rounded-md transition-all  ${pathname === "/" ? "border-b-2 pb-1.5" : ""}`}>
+          <Link href={"/"} className={`relative flex justify-center items-center px-2 cursor-pointer py-1.75 hover:border-b-2 border-[#f2f2eb] hover:pb-1.5 hover:bg-[#72383d] hover:rounded-md transition-all  ${pathname === "/" ? "border-b-2 pb-1.5" : ""}`}>
 
-            <div className='py-1 flex justify-center items-center gap-0.5'>
+            <div className='py-1 flex justify-center items-center gap-0.5 text-[#f2f2eb]'>
               Home <IoMdHome />
             </div>
 
           </Link>
-          <Link href={"/cart"} className={`relative flex justify-center items-center px-2 cursor-pointer py-1.75 hover:border-b-2 border-blue-500 hover:pb-1.5 hover:bg-gray-200 hover:rounded-md transition-all ${pathname === "/cart" ? "border-b-2 pb-1.5" : ""}`}>
+          <Link href={"/cart"} className={`relative flex justify-center items-center px-2 cursor-pointer py-1.75 hover:border-b-2 border-[#f2f2eb] hover:pb-1.5 hover:bg-[#72383d] hover:rounded-md transition-all ${pathname === "/cart" ? "border-b-2 pb-1.5" : ""}`}>
 
-            <div className='py-1 relative flex justify-center items-center'>
+            <div className='py-1 relative flex justify-center items-center text-[#f2f2eb]'>
               Cart <TiShoppingCart />
 
               {totalItem > 0 && (
-                <span className='absolute rounded-full bg-red-500 text-[12px] md:text-[11px] px-1.5 text-white md:px-1.5 transition-all ease-in-out -top-2 -right-2.5 md:-top-1 md:-right-2.5'>
+                <span className='absolute rounded-full bg-[#ab644b] text-[12px] md:text-[11px] px-1.5 text-[#f2f2eb] md:px-1.5 transition-all ease-in-out -top-2 -right-2.5 md:-top-1 md:-right-2.5'>
                   {totalItem}
                 </span>
               )}

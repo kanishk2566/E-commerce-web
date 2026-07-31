@@ -51,12 +51,18 @@ const CartCard = ({items, isLoading}: CartCardProps) => {
       </div>
     ) : (
       <div className='flex flex-col justify-center items-center w-screen h-full pt-20 font-semibold text-2xl'>
-        <Image src="/cart.png" alt='Cart is Empty' width={200} height={200} />
+        <Image
+        width={200}
+        height={200}
+        src={"/cart.png"} 
+        alt={"Empty Cart"}
+        className='object-contain'
+        />
         Your Cart is Currently Empty!
         <div className='text-sm text-gray-500 font-normal text-center mt-3 mb-3'>
           Looks like you have not added anything to your cart.<br /> click on <b>Shop Now </b> to add items.
         </div>
-        <Link className='bg-blue-600 text-white font-bold py-2 px-4 rounded text-sm' href={"/"}>Shop Now</Link>
+        <Link className='bg-[#72383d] text-white font-bold py-2 px-4 rounded text-sm' href={"/"}>Shop Now</Link>
       </div>
     )}
       </div>

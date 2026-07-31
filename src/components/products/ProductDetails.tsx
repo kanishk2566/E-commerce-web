@@ -47,7 +47,7 @@ function ProductDetails({product}: ProductProps) {
           </div>
           <button
           onClick={() => addToCart(product.id)}
-          className='mt-8 py-2 px-2 flex justify-center items-center gap-2 text-white bg-blue-600 rounded hover:bg-blue-700 cursor-pointer'>
+          className='mt-8 py-2 px-2 flex justify-center items-center gap-2 text-white bg-[#72383d] rounded hover:bg-blue-700 cursor-pointer'>
             Add to cart <FaShoppingCart />
           </button>
         </div>

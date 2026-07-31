@@ -73,7 +73,7 @@ const RegisterCard = () => {
       className='relative flex flex-col justify-center items-center gap-2 py-5 px-5 border border-gray-300 shadow-lg shadow-gray-500 rounded w-full mx-2 md:w-1/2 lg:w-1/4'
       onSubmit={handleSubmit}>
 
-        <div className='text-xl font-semibold flex justify-center items-baseline gap-2'>Register to <p className='text-blue-600 font-bold'> ShopEasy</p></div>
+        <div className='text-xl font-semibold flex justify-center items-baseline gap-2 text-[#72383d]'>Register to <p className='text-[#401b1b] font-bold'> ShopEasy</p></div>
 
         <div className='w-full h-full flex flex-col justify-center gap-3'>
 
@@ -81,7 +81,7 @@ const RegisterCard = () => {
 
             <label className='text-sm'>Name:</label>
             <input
-            className={`rounded outline-0 py-2 px-2 w-full bg-gray-300 focus:ring-2 placeholder:text-sm text-sm ${errors.name ? "ring-red-500" : "ring-blue-500"}`}
+            className={`rounded outline-0 py-2 px-2 w-full bg-gray-300 focus:ring-2 placeholder:text-sm text-sm ${errors.name ? "ring-red-500" : "ring-[#401b1b]"}`}
             name='name'
             placeholder='Enter name...'
             value={formData.name}
@@ -97,7 +97,7 @@ const RegisterCard = () => {
 
             <label className='text-sm'>Email:</label>
             <input
-            className={`rounded outline-0 py-2 px-2 w-full bg-gray-300 focus:ring-2 placeholder:text-sm text-sm ${errors.email ? "ring-red-500" : "ring-blue-500"}`}
+            className={`rounded outline-0 py-2 px-2 w-full bg-gray-300 focus:ring-2 placeholder:text-sm text-sm ${errors.email ? "ring-red-500" : "ring-[#401b1b]"}`}
             name='email'
             placeholder='Enter email...'
             value={formData.email}
@@ -113,7 +113,7 @@ const RegisterCard = () => {
           
             <label className='text-sm'>Password:</label>
 
-            <div className={`flex w-full rounded ${errors.password ? "ring-red-500" : "ring-blue-500"} ${passFocus ? "ring-2" : "ring-0"}`}>
+            <div className={`flex w-full rounded ${errors.password ? "ring-red-500" : "ring-[#401b1b]"} ${passFocus ? "ring-2" : "ring-0"}`}>
 
               <input
               className={`rounded-l outline-0 py-2 px-2 w-full bg-gray-300 placeholder:text-sm text-sm `}
@@ -141,13 +141,13 @@ const RegisterCard = () => {
         <button
         type='submit'
         disabled={isLoading}
-        className={`py-1 px-3 rounded font-semibold text-white mt-2 cursor-pointer bg-blue-500`}>{isLoading ? "Creating Account" : "Register"}</button>
+        className={`py-1 px-3 rounded font-semibold text-white mt-2 cursor-pointer bg-[#401b1b]`}>{isLoading ? "Creating Account" : "Register"}</button>
 
         <div className='text-sm'>
-          <p className='text-gray-800'>Already have an account? <Link href={"/login"} className='text-blue-600 hover:underline'>Login</Link></p>
+          <p className='text-[#72383d]'>Already have an account? <Link href={"/login"} className='text-[#401b1b] hover:underline'>Login</Link></p>
         </div>
 
-        <Link className='hover:underline hover:text-blue-600 transition-all absolute top-2 left-2 md:top-3 md:left-3 lg:top-2 lg:left-2' href={"/"}><IoArrowBackOutline /></Link>
+        <Link className='hover:underline hover:text-[#72383d] transition-all absolute top-2 left-2 md:top-3 md:left-3 lg:top-2 lg:left-2' href={"/"}><IoArrowBackOutline /></Link>
       </form>
       </div>
     </div>

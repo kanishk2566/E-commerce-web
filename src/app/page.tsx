@@ -8,7 +8,7 @@ export default async function Home() {
     <div className="flex flex-col justify-between">
       <Navbar />
       <main className="mx-auto max-w-7xl p-8">
-        <p className="text-2xl mb-5 border-l-5 border-blue-500 pl-4 font-bold">
+        <p className="text-2xl mb-5 border-l-5 border-[#401b1b] pl-4 font-bold">
           All Products 
         </p>
           <ProductGrid products={products} />

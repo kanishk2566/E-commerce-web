@@ -34,7 +34,7 @@ export async function registerUser(data: RegisterData) {
   }
   
   const newUser = {
-    ...data, role: "USER", createdAt: new Date().toISOString(), cart: [],
+    ...data, role: "USER", createdAt: new Date().toDateString(), cart: [],
   }
 
   const data2 = await apiFetch<User>(`${API_BASE_URL}`, "/users", {

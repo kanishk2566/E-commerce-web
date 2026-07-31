@@ -99,7 +99,7 @@ export function CartProvider({children}: CartProviderProps) {
           return(
           <div className="flex flex-col justify-center items-center">
             You must be logged in to add item to cart..!!
-            <button onClick={() => router.push("/login")} className="bg-blue-500 w-full py-1 text-white cursor-pointer rounded hover:bg-blue-600 transition-all">Login</button>
+            <button onClick={() => router.push("/login")} className="bg-[#401b1b] w-full py-1 text-white cursor-pointer rounded hover:bg-[#72383d] transition-all">Login</button>
           </div>
           )
         });

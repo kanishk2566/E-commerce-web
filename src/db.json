@@ -1,84 +1,22 @@
 {
   "users": [
     {
-      "id": "1",
       "name": "admin",
+      "email": "adminn@a.a",
+      "password": "12345678",
+      "role": "USER",
+      "createdAt": "Fri Jul 31 2026",
+      "cart": [],
+      "id": "0vXvjML"
+    },
+    {
+      "name": "Admin",
       "email": "admin",
-      "password": "123456",
-      "role": "ADMIN",
-      "createdAt": "2026-07-21T06:07:41.018Z",
-      "cart": [
-        {
-          "productId": 14,
-          "quantity": 2
-        },
-        {
-          "productId": 13,
-          "quantity": 2
-        },
-        {
-          "productId": 11,
-          "quantity": 1
-        },
-        {
-          "productId": 10,
-          "quantity": 1
-        }
-      ]
-    },
-    {
-      "name": "admin2",
-      "email": "admin2@gmail.com",
-      "password": "12345678",
+      "password": "1",
       "role": "USER",
-      "createdAt": "2026-07-22T05:57:46.216Z",
-      "id": "XctW6JXhYUM",
-      "cart": []
-    },
-    {
-      "name": "admin3",
-      "email": "admin3@gmail.com",
-      "password": "12admin",
-      "role": "USER",
-      "createdAt": "2026-07-22T06:00:20.465Z",
-      "id": "_SBQpwRWU2A",
-      "cart": []
-    },
-    {
-      "name": "admin4",
-      "email": "admin4@gmail.com",
-      "password": "qwertyuiop",
-      "role": "USER",
-      "createdAt": "2026-07-22T06:00:20.465Z",
-      "id": "_SBQpwRWU2A",
-      "cart": []
-    },
-    {
-      "name": "admin",
-      "email": "admin5@gmail.com",
-      "password": "12345678",
-      "role": "USER",
-      "createdAt": "2026-07-28T10:45:18.250Z",
-      "id": "LWyvcCr",
-      "cart": []
-    },
-    {
-      "name": "admin6",
-      "email": "admin6@gmail.com",
-      "password": "12345678",
-      "role": "USER",
-      "createdAt": "2026-07-28T10:46:02.194Z",
+      "createdAt": "Fri Jul 31 2026",
       "cart": [],
-      "id": "ejXJieH"
-    },
-    {
-      "name": "admin",
-      "email": "admin@a.a",
-      "password": "12345678",
-      "role": "USER",
-      "createdAt": "2026-07-31T05:01:48.000Z",
-      "cart": [],
-      "id": "JJWghLo"
+      "id": "1"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

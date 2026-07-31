@@ -14,7 +14,7 @@ const ProductCard = ({product}: ProductCardProps) => {
 
   return (
     
-    <div className='flex flex-col justify-between rounded border relative border-gray-600 min-h-100 shadow-md transition hover:shadow-xl p-4'>
+    <div className='flex flex-col justify-between rounded relative bg-[#d2dce6] border border-[#9cabb4] min-h-100 shadow-sm shadow-[#9cabb4] transition hover:shadow-md p-4'>
       <Link href={`/products/${product.id}`}>
       <Image
       width={500}
@@ -26,11 +26,11 @@ const ProductCard = ({product}: ProductCardProps) => {
       </Link>
       <div>
         <Link href={`/products/${product.id}`}>
-        <p className='font-bold text-[20px] line-clamp-2'>
+        <p className='font-bold text-[20px] line-clamp-2 hover:underline transition-all'>
           {product.title}
         </p>
         </Link>
-        <p className='text-lg font-bold text-green-600'>
+        <p className='text-lg font-bold text-[#1c0c0c]'>
           ${(product.price).toFixed(2)}
         </p>
       </div>
@@ -38,7 +38,7 @@ const ProductCard = ({product}: ProductCardProps) => {
       <div className='flex justify-center w-full text-white'>
         <button
         onClick={() => {addToCart(product.id)}}
-        className='flex justify-center items-center gap-2 rounded py-2 px-2 cursor-pointer bg-blue-600 hover:bg-blue-700'>
+        className='flex justify-center items-center gap-2 rounded py-2 px-2 cursor-pointer bg-[#72383d] hover:bg-[#401b1b] transition-all'>
           Add to cart <FaShoppingCart />
         </button>
       </div>
