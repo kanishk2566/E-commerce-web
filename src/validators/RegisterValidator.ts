@@ -1,3 +1,4 @@
+"use client"
 import { RegisterData } from "@/types/user";
 
 export type RegisterFormErrors = Record<keyof RegisterData , string>;
@@ -14,12 +15,11 @@ export const INITIAL_REGISTER_FORM_ERRORS: RegisterFormErrors = {
 }   
 
 export function validateRegisterForm(formData: RegisterData): RegisterValidatorResult {
-
   const EMAIL_REGEX = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
   const trimmedName = formData.name.trim();
   const trimmedEmail = formData.email.trim();
-  const trimmedPassword = formData.password.trim(); 
+  const trimmedPassword = formData.password.trim();
 
   const errors = {...INITIAL_REGISTER_FORM_ERRORS};
   

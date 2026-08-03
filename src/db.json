@@ -56,13 +56,43 @@
       "id": "1"
     },
     {
-      "name": "kanishk patel",
+      "name": "Kanishk Patel",
       "email": "ka@a.a",
       "password": "12345678",
       "role": "USER",
       "createdAt": "Fri Jul 31 2026",
-      "cart": [],
+      "cart": [
+        {
+          "productId": 2,
+          "quantity": 1
+        },
+        {
+          "productId": 3,
+          "quantity": 1
+        },
+        {
+          "productId": 6,
+          "quantity": 1
+        },
+        {
+          "productId": 10,
+          "quantity": 1
+        },
+        {
+          "productId": 14,
+          "quantity": 1
+        }
+      ],
       "id": "hPDJdaD"
+    },
+    {
+      "name": "adminss",
+      "email": "adminss@a.a",
+      "password": "123456789",
+      "role": "USER",
+      "createdAt": "Mon Aug 03 2026",
+      "cart": [],
+      "id": "ksA5aQx"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

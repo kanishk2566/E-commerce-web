@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 "use client"
 
-import { loginUser, registerUser } from "@/services/auth";
-import { AuthUser, LoginData, RegisterData } from "@/types/user"
+import { EditUserProfile, loginUser, registerUser } from "@/services/auth";
+import { AuthUser, EditData, LoginData, RegisterData } from "@/types/user"
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 export interface AuthContextType {
@@ -10,6 +10,7 @@ export interface AuthContextType {
   isAuthenticated: boolean;
   login: (data: LoginData) => Promise<void>;
   register: (data: RegisterData) => Promise<void>;
+  editProfile: (userId: string,userData: EditData) => Promise<void>;
   logout: () => void;
   isLoading: boolean; 
 }
@@ -75,8 +76,20 @@ export function AuthProvider({children}: {children: React.ReactNode;}) {
     }
   }
 
+  async function editProfile(userId: string, data: EditData) {
+    try {
+      setIsLoading(true);
+      const authUser = await EditUserProfile(userId, data);
+      persistAuthenticatedUser(authUser);
+    }
+    finally {
+      setIsLoading(false);
+    }
+    
+  }
+
   return (
-    <AuthContext.Provider value={{user, isAuthenticated, login, register, logout, isLoading}}>
+    <AuthContext.Provider value={{user, isAuthenticated, login, register, editProfile, logout, isLoading}}>
       {children}
     </AuthContext.Provider>
   )

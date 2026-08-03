@@ -1,7 +1,6 @@
 import { PersistedCartItem } from "./cart";
 
 export type User = {
-  json: any;
   id: string;
   name: string;
   email: string;
@@ -16,3 +15,5 @@ export type AuthUser = Omit<User, "password"> | null;
 export type RegisterData = Pick<User, "name" | "password" | "email">;
 
 export type LoginData = Pick<User, "email" | "password">;
+
+export type EditData = Pick<User, "name" | "email">;

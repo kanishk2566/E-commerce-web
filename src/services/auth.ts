@@ -1,11 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { AuthUser, LoginData, RegisterData, User } from "@/types/user";
+import { AuthUser, EditData, LoginData, RegisterData, User } from "@/types/user";
 import { apiFetch } from "./api";
+import { toast } from "react-toastify";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_USERS_API_BASE_URL;
 
-export async function loginUser(data: LoginData): Promise<AuthUser> {
+export async function getUser(userId: string) {
+  const user = await apiFetch<User>(`${API_BASE_URL}`, `/user/${userId}`);
 
+  return user;
+};
+
+export async function loginUser(data: LoginData): Promise<AuthUser> {
 
   const users: User[] = await apiFetch(`${API_BASE_URL}`, `/users?email=${data.email}&password=${data.password}`);
 
@@ -25,11 +31,11 @@ export async function registerUser(data: RegisterData) {
   const response = await fetch(`${API_BASE_URL}/users`);
 
   const users: User[] = await response.json();
-  console.log(users);
 
   const existingEmail = users.find((user) => user.email === data.email);
   
   if(existingEmail) {
+    toast.error("Email already exists");
     throw new Error("Email already exists");
   }
   
@@ -42,11 +48,25 @@ export async function registerUser(data: RegisterData) {
     headers: {
       "Content-Type" : "application/json",
     },
-    body: JSON.stringify(newUser)
+    body: JSON.stringify(newUser),
   })
 
   const {password: _password, ...authUser} = data2;
 
   return authUser;
+
+}
+
+export async function EditUserProfile(userId: string, userData: EditData) {
+
+  const response = await apiFetch<User>(`${API_BASE_URL}`, `/users/${userId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type" : "application/json"
+    },
+    body: JSON.stringify(userData),
+  });
+  
+  return response
 
 }

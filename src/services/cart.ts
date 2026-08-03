@@ -56,7 +56,7 @@ export async function addToCart(userId: string, productId: number): Promise<Pers
   }
 
   await saveCart(userId, updatedCart);
-  return updatedCart;
+    return updatedCart;
 }
 
 export async function removeFromCart(userId: string, productId: number): Promise<PersistedCartItem[]> {

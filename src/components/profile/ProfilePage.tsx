@@ -1,5 +1,5 @@
 "use client"
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import ProfileHeader from './ProfileHeader'
 import Navbar from '../navbar/Navbar'
 import { useAuth } from '@/context/AuthContext'
@@ -10,6 +10,7 @@ import ProfileButtons from './ProfileButtons'
 import { Product } from '@/types/product'
 import { useCart } from '@/context/CartContext'
 import { DisplayCartItem } from '@/types/cart'
+import EditProfile from './EditProfile'
 
 interface ProfilePageProps {
   products: Product[],
@@ -19,6 +20,8 @@ const ProfilePage = ({products}: ProfilePageProps) => {
   const router = useRouter();
   const {user, logout, isLoading } = useAuth();
   const { cart } = useCart();
+  const [edit, setEdit] = useState(false);
+
   const displayCartItem: DisplayCartItem[] = useMemo(() => {
     const productMap = new Map(
       products?.map((product) => [product.id, product])
@@ -67,7 +70,9 @@ const ProfilePage = ({products}: ProfilePageProps) => {
 
         <ProfileCartInfo items={displayCartItem} />
 
-        <ProfileButtons isLoading={isLoading} handleLogout={handleLogout} />
+        <ProfileButtons isLoading={isLoading} handleLogout={handleLogout} toggleEdit={() => setEdit(!edit)} />
+        
+        {edit && <EditProfile toggleEdit={() => setEdit(!edit)} />}
 
         </div>
       </div>
