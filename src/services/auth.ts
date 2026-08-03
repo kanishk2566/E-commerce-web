@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { AuthUser, EditData, LoginData, RegisterData, User } from "@/types/user";
+import { AuthUser, ChangePasswordData, EditData, LoginData, RegisterData, User } from "@/types/user";
 import { apiFetch } from "./api";
 import { toast } from "react-toastify";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_USERS_API_BASE_URL;
 
 export async function getUser(userId: string) {
-  const user = await apiFetch<User>(`${API_BASE_URL}`, `/user/${userId}`);
+  const user = await apiFetch<User>(`${API_BASE_URL}`, `/users/${userId}`);
 
   return user;
 };
@@ -67,6 +67,21 @@ export async function EditUserProfile(userId: string, userData: EditData) {
     body: JSON.stringify(userData),
   });
   
-  return response
+  return response;
+}
 
+export async function ChangeUserPassword(userId: string, userData: ChangePasswordData) {
+  const password = userData.password;
+
+  const response = await apiFetch<User>(`${API_BASE_URL}`, `/users/${userId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type" : "application/json"
+    },
+    body: JSON.stringify({
+      password: password,
+    }),
+  });
+  
+  return response;
 }

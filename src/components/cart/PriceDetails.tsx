@@ -14,7 +14,7 @@ const PriceDetails = ({items}: PriceDetailsProps) => {
   const roundedPrice = totalPrice.toFixed(2);
   
   return (
-    <div className='lg:w-3/10 mx-5 flex flex-col gap-2 h-full lg:min-h-screen'>
+    <div className='lg:w-3/10 mx-5 flex flex-col gap-2 h-full'>
     
     <div className='flex gap-10 flex-col'>
       

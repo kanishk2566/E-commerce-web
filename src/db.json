@@ -1,18 +1,9 @@
 {
   "users": [
     {
-      "name": "admin",
+      "name": "Admin",
       "email": "adminn@a.a",
       "password": "12345678",
-      "role": "USER",
-      "createdAt": "Fri Jul 31 2026",
-      "cart": [],
-      "id": "0vXvjML"
-    },
-    {
-      "name": "Admin",
-      "email": "admin",
-      "password": "1",
       "role": "USER",
       "createdAt": "Fri Jul 31 2026",
       "cart": [
@@ -25,23 +16,19 @@
           "quantity": 1
         },
         {
-          "productId": 10,
+          "productId": 3,
           "quantity": 1
-        },
-        {
-          "productId": 9,
-          "quantity": 2
         },
         {
           "productId": 7,
           "quantity": 1
         },
         {
-          "productId": 14,
+          "productId": 6,
           "quantity": 1
         },
         {
-          "productId": 13,
+          "productId": 10,
           "quantity": 1
         },
         {
@@ -50,6 +37,40 @@
         },
         {
           "productId": 16,
+          "quantity": 1
+        }
+      ],
+      "id": "0vXvjML"
+    },
+    {
+      "name": "Admin",
+      "email": "admin",
+      "password": "1",
+      "role": "USER",
+      "createdAt": "Fri Jul 31 2026",
+      "cart": [
+        {
+          "productId": 3,
+          "quantity": 1
+        },
+        {
+          "productId": 10,
+          "quantity": 1
+        },
+        {
+          "productId": 14,
+          "quantity": 5
+        },
+        {
+          "productId": 1,
+          "quantity": 1
+        },
+        {
+          "productId": 6,
+          "quantity": 1
+        },
+        {
+          "productId": 17,
           "quantity": 1
         }
       ],

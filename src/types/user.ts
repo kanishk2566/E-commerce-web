@@ -17,3 +17,8 @@ export type RegisterData = Pick<User, "name" | "password" | "email">;
 export type LoginData = Pick<User, "email" | "password">;
 
 export type EditData = Pick<User, "name" | "email">;
+
+export type ChangePasswordData = Pick<User, "password"> & {
+  previousPassword: string,
+  confirmPassword: string,
+};

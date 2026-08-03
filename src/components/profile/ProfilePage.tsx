@@ -10,7 +10,8 @@ import ProfileButtons from './ProfileButtons'
 import { Product } from '@/types/product'
 import { useCart } from '@/context/CartContext'
 import { DisplayCartItem } from '@/types/cart'
-import EditProfile from './EditProfile'
+import EditProfile from '../auth/EditProfile'
+import ChangePassword from '../auth/ChangePasswordPage'
 
 interface ProfilePageProps {
   products: Product[],
@@ -21,6 +22,7 @@ const ProfilePage = ({products}: ProfilePageProps) => {
   const {user, logout, isLoading } = useAuth();
   const { cart } = useCart();
   const [edit, setEdit] = useState(false);
+  const [changePassword, setChangePassword] = useState(false);
 
   const displayCartItem: DisplayCartItem[] = useMemo(() => {
     const productMap = new Map(
@@ -70,9 +72,11 @@ const ProfilePage = ({products}: ProfilePageProps) => {
 
         <ProfileCartInfo items={displayCartItem} />
 
-        <ProfileButtons isLoading={isLoading} handleLogout={handleLogout} toggleEdit={() => setEdit(!edit)} />
+        <ProfileButtons isLoading={isLoading} handleLogout={handleLogout} toggleEditPage={() => setEdit(true)} toggleChangePassword={() => setChangePassword(true)} />
         
-        {edit && <EditProfile toggleEdit={() => setEdit(!edit)} />}
+        {edit && <EditProfile toggleEditPage={() => setEdit(false)} />}
+        
+        {changePassword && <ChangePassword toggleChangePassword={() => setChangePassword(false)} />}
 
         </div>
       </div>
@@ -80,7 +84,7 @@ const ProfilePage = ({products}: ProfilePageProps) => {
   }
   {
       return (
-    <div className='flex flex-col justify-between h-screen'>
+    <div className='flex flex-col justify-between h-screen overflow-hidden'>
       <Navbar />
       <div className='flex-1 flex justify-center items-center'>
         You must login to view profile...!

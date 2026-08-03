@@ -23,7 +23,7 @@ const ProfileCartInfo = ({items}: ProfileCartInfoProps) => {
       <div
       className={`relative flex flex-col justify-center items-center bg-[#d2dce6] rounded-lg px-6 transition-all border border-[#9cabb4] ${accordion ? "border-3" : ""} `}>
         <button
-        className={`absolute right-1 transition-all ${accordion ? "rotate-180 hover:-translate-y-0.5 bottom-1" : "rotate-0 hover:translate-y-0.5 bottom-4"}`}
+        className={`absolute right-1 top-4 transition-all ${accordion ? "rotate-180 hover:-translate-y-0.5" : "rotate-0 hover:translate-y-0.5"}`}
         onClick={() => setAccordion(!accordion)}>
           <IoIosArrowDown />
         </button>
@@ -57,7 +57,7 @@ const ProfileCartInfo = ({items}: ProfileCartInfoProps) => {
                     <div className='font-bold'>
                       {index + 1}.
                     </div>
-                      {item.product.title}({item.quantity})
+                      {item.product.title}<div className='font-semibold'>(x{item.quantity})</div>
                   </div>
 
                   <div className='font-bold'>

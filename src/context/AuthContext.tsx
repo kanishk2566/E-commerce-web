@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 "use client"
 
-import { EditUserProfile, loginUser, registerUser } from "@/services/auth";
-import { AuthUser, EditData, LoginData, RegisterData } from "@/types/user"
+import { ChangeUserPassword, EditUserProfile, loginUser, registerUser } from "@/services/auth";
+import { AuthUser, ChangePasswordData, EditData, LoginData, RegisterData } from "@/types/user"
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 export interface AuthContextType {
@@ -10,7 +10,8 @@ export interface AuthContextType {
   isAuthenticated: boolean;
   login: (data: LoginData) => Promise<void>;
   register: (data: RegisterData) => Promise<void>;
-  editProfile: (userId: string,userData: EditData) => Promise<void>;
+  editProfile: (userId: string, data: EditData) => Promise<void>;
+  changePassword: (userId: string, data: ChangePasswordData) => Promise<void>,
   logout: () => void;
   isLoading: boolean; 
 }
@@ -25,6 +26,7 @@ export function AuthProvider({children}: {children: React.ReactNode;}) {
   const [isLoading, setIsLoading] = useState(false);
 
   function persistAuthenticatedUser(authUser: AuthUser) {
+    setIsLoading(true);
     setUser(authUser);
     localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(authUser));
   }
@@ -45,7 +47,6 @@ export function AuthProvider({children}: {children: React.ReactNode;}) {
 
   async function login(data: LoginData) {
     try {
-      setIsLoading(true);
         const authUser = await loginUser(data);
         persistAuthenticatedUser(authUser);
     }
@@ -56,7 +57,6 @@ export function AuthProvider({children}: {children: React.ReactNode;}) {
 
   async function register(data: RegisterData) {
     try {
-      setIsLoading(true);
         const authUser = await registerUser(data);
         persistAuthenticatedUser(authUser);
     }
@@ -67,7 +67,6 @@ export function AuthProvider({children}: {children: React.ReactNode;}) {
 
   function logout() {
     try {
-      setIsLoading(true);
       localStorage.removeItem(AUTH_STORAGE_KEY);
       setUser(null);
     }
@@ -78,18 +77,26 @@ export function AuthProvider({children}: {children: React.ReactNode;}) {
 
   async function editProfile(userId: string, data: EditData) {
     try {
-      setIsLoading(true);
       const authUser = await EditUserProfile(userId, data);
       persistAuthenticatedUser(authUser);
     }
     finally {
       setIsLoading(false);
     }
-    
+  }
+
+  async function changePassword(userId: string, data: ChangePasswordData) {
+    try {
+      const authUser = await ChangeUserPassword(userId, data);
+      persistAuthenticatedUser(authUser);
+    }
+    finally {
+      setIsLoading(false);
+    }
   }
 
   return (
-    <AuthContext.Provider value={{user, isAuthenticated, login, register, editProfile, logout, isLoading}}>
+    <AuthContext.Provider value={{user, isAuthenticated, login, register, editProfile, changePassword, logout, isLoading}}>
       {children}
     </AuthContext.Provider>
   )

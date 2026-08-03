@@ -5,10 +5,8 @@ import { LoginFormErrors, validateLoginForm } from '@/validators/LoginValidator'
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import Navbar from '../navbar/Navbar';
-import Link from 'next/link';
 import { IoArrowBackOutline } from 'react-icons/io5';
-import { BsEye } from 'react-icons/bs';
-import { BsEyeSlash } from 'react-icons/bs';
+import FormInterface from '../FormInterface';
 
 const LoginForm = () => {
   const { login, isLoading} = useAuth();
@@ -31,7 +29,10 @@ const LoginForm = () => {
       [e.target.name] : e.target.value,
     }));
     setApiError("");
-    setErrors((prev) => ({...prev, [e.target.name]: ""}));
+    setErrors((prev) => ({
+      ...prev,
+      [e.target.name]: ""
+    }));
   }
 
   async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
@@ -53,78 +54,22 @@ const LoginForm = () => {
     }
   }
 
-  function togglePasswordVisible() {
-    setPasswordType((prev) => prev === "password" ? "text" : "password")
+    function togglePasswordVisible() {
+      setPasswordType((prev) => prev === "password" ? "text" : "password")
+    }
+
+  const backButton = <IoArrowBackOutline/>
+
+  function closingComponent() {
+    router.push("/");
   }
 
   return (
-    <div className='flex flex-col justify-start items-center w-full h-full min-h-screen'>
+    <div className='w-full h-full min-h-screen flex flex-col justify-start items-center'>
       <Navbar />
       
-      <div className='flex flex-col justify-start items-center w-full h-full min-h-screen'>
-        <form
-        className='flex justify-center items-center flex-col gap-2 mt-20 mb-10 relative py-5 px-5 shadow-lg shadow-gray-500 border border-gray-300 w-full md:w-1/2 lg:w-1/4'
-        onSubmit={handleSubmit}>
-          <div className='text-xl font-semibold flex justify-center items-center gap-2 text-[#72383d] w-full'>
-            Login to <p className='font-bold text-[#401b1b]'>ShopEasy</p>
-          </div>
-
-          <div className='flex flex-col justify-center items-start w-full gap-3'>
-
-            <div className='w-full flex flex-col'>
-
-              <label>Email:</label>
-              <input
-              className={`w-full rounded outline-0 bg-gray-300 py-2 px-2 text-sm focus:ring-2 ${errors.email ? "ring-red-500" : "ring-[#401b1b]"}`}
-              value={formData.email}
-              name='email'
-              onChange={handleChange}
-              disabled={isLoading}
-              placeholder='Enter email...' />
-              <div className='text-sm text-red-500'>{errors.email}</div>
-
-            </div>
-
-            <div className={`flex flex-col justify-center w-full items-start text-lg`}>
-            
-              <label className='text-sm'>Password:</label>
-
-              <div className={`flex w-full rounded ${errors.password ? "ring-red-500" : "ring-[#401b1b]"} ${isPaswordsFocus ? "ring-2" : "ring-0"}`}>
-
-                <input
-                className={`rounded-l outline-0 py-2 px-2 w-full bg-gray-300 placeholder:text-sm text-sm `}
-                name='password'
-                placeholder='Enter password...'
-                onFocus={() => setIsPasswordFocus(true)}
-                onBlur={() => setIsPasswordFocus(false)}
-                type={passwordType}
-                value={formData.password}
-                disabled={isLoading}
-                onChange={handleChange} />
-
-                <button type='button' onClick={togglePasswordVisible} className='cursor-pointer bg-gray-300 px-2 flex justify-center items-center rounded-r'>
-                  {passwordType === "password" ? <BsEye /> : <BsEyeSlash />}
-                </button>
-                
-              </div>
-              <div className='text-red-600 text-sm'>
-                {errors.password}
-              </div>
-            </div>
-            
-            <div className='text-sm text-red-500'>{apiError}</div>
-
-          </div>
-
-          <button
-          type='submit'
-          disabled={isLoading}
-          className={`py-1 px-3 rounded font-semibold text-white mt-2 cursor-pointer bg-[#401b1b]`}>{isLoading ? "Logging in" : "Log in"}</button>
-          <div className='text-sm'>
-            <p className='text-[#72383d]'>Don&apos;t have an account? <Link href={"/register"} className='text-[#401b1b] hover:underline'>Register</Link></p>
-          </div>
-          <Link className='hover:underline hover:text-[#72383d] transition-all absolute top-2 left-2 md:top-3 md:left-3 lg:top-2 lg:left-2' href={"/"}><IoArrowBackOutline /></Link>
-        </form>
+      <div className='h-full w-full flex justify-center items-center mt-20 mb-10'>
+        <FormInterface  handleSubmit={handleSubmit} type='login' formData={formData} isLoading={isLoading} handleChange={handleChange} errors={errors} passFocus={isPaswordsFocus} setPassFocus={setIsPasswordFocus} passwordType={passwordType} apiError={apiError} backButton={backButton} togglePasswordVisible={togglePasswordVisible} closingComponent={closingComponent} />
       </div>
     </div>
   )
