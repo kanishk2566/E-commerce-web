@@ -25,7 +25,7 @@ const CartItem = ({item}: CartItemProps) => {
 
   return (
     <>
-      <div className='flex rounded ml-5'>
+      <div className='flex rounded mx-5'>
         <div className='w-30 border border-gray-300 p-2 rounded-l bg-gray-200'>
           <Image
           width={300}
@@ -36,7 +36,7 @@ const CartItem = ({item}: CartItemProps) => {
           />
         </div>
         <div 
-        className='flex justify-start flex-1 items-center gap-5 mr-2 ml-1 p-3 bg-gray-200 border border-gray-300 rounded-r relative'>
+        className='flex justify-start flex-1 items-center gap-5 ml-1 p-3 bg-gray-200 border border-gray-300 rounded-r relative'>
 
           <div className='flex flex-col gap-2'>
             <div className='text-xl font-semibold'>

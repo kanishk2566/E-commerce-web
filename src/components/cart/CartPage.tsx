@@ -36,7 +36,7 @@ const CartPage = ({products}: CartPageProps) => {
   return (
     <div className='w-full h-full min-h-screen flex flex-col justify-start items-center overflow-x-hidden'>
       <Navbar />
-      <div className='flex w-full pt-5'>
+      <div className='flex w-full pt-5 lg:mt-10 mt-10 mb-10'>
           {!isAuthenticated ? (
           <div className='flex justify-center items-center flex-col w-full h-screen gap-3'>
             <Image

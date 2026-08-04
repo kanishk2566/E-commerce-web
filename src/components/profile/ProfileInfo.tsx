@@ -11,7 +11,7 @@ interface ProfileInfoProps {
 const ProfileInfo = ({since}: ProfileInfoProps) => {
   const {user} = useAuth();
   return (
-    <div className='flex flex-col justify-center items-start'>
+    <div className='flex flex-col justify-center items-start text-lg'>
 
         <div className='flex justify-start items-center gap-2'>
           <b><FaUser /></b> {user?.name}

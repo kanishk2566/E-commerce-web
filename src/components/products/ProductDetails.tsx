@@ -20,7 +20,7 @@ function ProductDetails({product}: ProductProps) {
     <div className='fixed top-0 w-full z-999'>
       <Navbar />
     </div>
-    <main className='mx-auto relative p-10 flex justify-center items-start rounded'>
+    <main className='mx-auto relative p-10 flex justify-center items-start rounded mt-7 lg:mt-20 mb-20'>
       <Link 
       className='absolute top-2 left-2 text-4xl'
       href={"/"}><IoIosArrowRoundBack /></Link>

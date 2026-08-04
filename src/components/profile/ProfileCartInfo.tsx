@@ -19,7 +19,7 @@ const ProfileCartInfo = ({items}: ProfileCartInfoProps) => {
   const roundedPrice = totalPrice.toFixed(2);
 
   return (
-    <div className='w-fit mx-3'>
+    <div className='w-fit'>
       <div
       className={`relative flex flex-col justify-center items-center bg-[#d2dce6] rounded-lg px-6 transition-all border border-[#9cabb4] ${accordion ? "border-3" : ""} `}>
         <button

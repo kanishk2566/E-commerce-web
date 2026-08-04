@@ -17,7 +17,7 @@ const NavAuthLinks = () => {
       <button onClick={() => setModal(prev => !prev)}
     className={`relative flex justify-center items-center px-2 cursor-pointer py-2.75 hover:border-b-2 border-[#401b1b] hover:pb-2.5 hover:bg-[#72383d] hover:rounded-lg transition-all ${pathname === "/profile" || pathname === "/login" || pathname === "/register" ? "border-b-2 pb-2.5 border-[#f2f2eb]" : ""}`}
     >
-      <div className={`text-2xl transition-all text-[#f2f2eb]`}><FaUserCircle /></div>
+      <div className={`lg:text-2xl text-3xl transition-all lg:text-[#f2f2eb] text-[#401b1b]`}><FaUserCircle /></div>
       </button>
       {modal && (
         <div>

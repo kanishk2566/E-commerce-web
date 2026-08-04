@@ -34,7 +34,9 @@ const NavLinks = () => {
             
           </Link>
         </div>
-        <NavAuthLinks />
+        <div className='hidden lg:block'>
+          <NavAuthLinks />
+        </div>
         
       </div>
     </div>

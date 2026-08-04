@@ -58,11 +58,12 @@ const ProfilePage = ({products}: ProfilePageProps) => {
 
     const since = createdAt.split("").toSpliced(0, 3);
     return (
-      <div className='flex justify-evenely flex-col items-center gap-5 min-h-screen'>
+      <div className='flex justify-evenely flex-col items-center min-h-screen w-full'>
 
         <Navbar />
         
-        <div className='text-xl font-bold'>My Profile</div>
+        <div className='mt-20 lg:mt-20 mb-20 flex flex-col justify-center items-start gap-5 w-full px-8'>
+          <div className='text-xl font-bold border-l-5 px-3'>My Profile</div>
 
         <div className='flex flex-col justify-center items-center gap-6 w-full'>
 
@@ -79,18 +80,19 @@ const ProfilePage = ({products}: ProfilePageProps) => {
         {changePassword && <ChangePassword toggleChangePassword={() => setChangePassword(false)} />}
 
         </div>
+        </div>
       </div>
     )
   }
   {
-      return (
-    <div className='flex flex-col justify-between h-screen overflow-hidden'>
-      <Navbar />
-      <div className='flex-1 flex justify-center items-center'>
-        You must login to view profile...!
+    return (
+      <div className='flex flex-col justify-between h-screen overflow-hidden'>
+        <Navbar />
+        <div className='flex-1 flex justify-center items-center mt-20 mb-20'>
+          You must login to view profile...!
+        </div>
       </div>
-    </div>
-  )
+    )
   }
   
 }
