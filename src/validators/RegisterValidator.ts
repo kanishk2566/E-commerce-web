@@ -24,19 +24,19 @@ export function validateRegisterForm(formData: RegisterData): RegisterValidatorR
   const errors = {...INITIAL_REGISTER_FORM_ERRORS};
   
   if(!trimmedName) {
-    errors.name = "Name is required"; 
+    errors.name = "Name cannot be empty"; 
   } else if(trimmedName.length < 3) {
     errors.name = "Name must be at least 3 characters";
   }
 
   if(!trimmedEmail) {
-    errors.email = "Email is required";
+    errors.email = "Email cannot be empty";
   } else if (!EMAIL_REGEX.test(trimmedEmail)){
     errors.email = "Enter valid email";
   }
 
   if(!trimmedPassword) {
-    errors.password = "Password is required";
+    errors.password = "Password cannot be empty";
   } else if(trimmedPassword.length < 8) {
     errors.password = "Password must be at least 8 characters";
   }

@@ -12,11 +12,6 @@ const ProfileButtons = ({isLoading, handleLogout, toggleEditPage, toggleChangePa
   return (
     <div className='flex flex-col gap-3 col-span-2 justify-center items-center'>
       <div className='flex flex-col gap-3'>
-        <button
-        onClick={handleLogout}
-        className={`py-1 px-4 text-white rounded cursor-pointer hover:opacity-90 transition-all ${isLoading ? "bg-[#ab644b]" : "bg-[#401b1b]"}`}>
-          Logout
-        </button>
 
         <button onClick={toggleEditPage} className={`py-1 px-4 text-white rounded cursor-pointer hover:opacity-90 transition-all ${isLoading ? "bg-[#ab644b]" : "bg-[#401b1b]"}`}>
           Edit Profile
@@ -26,6 +21,12 @@ const ProfileButtons = ({isLoading, handleLogout, toggleEditPage, toggleChangePa
         onClick={toggleChangePassword}
         className={`py-1 px-4 text-white rounded cursor-pointer hover:opacity-90 transition-all ${isLoading ? "bg-[#ab644b]" : "bg-[#401b1b]"}`}>
           Change Password
+        </button>
+
+        <button
+        onClick={handleLogout}
+        className={`py-1 px-4 text-white rounded cursor-pointer hover:opacity-90 transition-all ${isLoading ? "bg-[#ab644b]" : "bg-[#401b1b]"}`}>
+          Logout
         </button>
       </div>
     </div>

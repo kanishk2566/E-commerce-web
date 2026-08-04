@@ -5,7 +5,9 @@ import { ChangePasswordFormError, validateChangePasswordForm } from '@/validator
 import React, { useState } from 'react'
 import { CgClose } from 'react-icons/cg';
 import { toast } from 'react-toastify';
-import FormInterface from '../FormInterface';
+import FormTitle from '../formInterface/FormTitle';
+import FormPassword from '../formInterface/FormPassword';
+import SubmitButton from '../formInterface/SubmitButton';
 
 interface ChangePasswordProps {
   toggleChangePassword: () => void,
@@ -24,10 +26,7 @@ const ChangePassword = ({toggleChangePassword}: ChangePasswordProps) => {
     password: "",
     confirmPassword: "",
   });
-  const [passwordType, setPasswordType] = useState('password');
-  const [passFocus, setPassFocus] = useState(false);
-  const [confirmPassFocus, setConfirmPassFocus] = useState(false);
-  const [oldPassFocus, setOldPassFocus] = useState(false);
+
   
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setFormData((prevFormData) => ({
@@ -65,15 +64,31 @@ const ChangePassword = ({toggleChangePassword}: ChangePasswordProps) => {
 
   const backButton = <CgClose />
 
-   function togglePasswordVisible() {
-    setPasswordType((prev) => prev === "password" ? "text" : "password")
-  }
-
   return (
     <div className='w-full h-full min-h-screen flex flex-col justify-start items-center bg-black/60 fixed top-0 left-0'>
       
       <div className='h-full w-full flex justify-center items-center mt-20 mb-10'>
-        <FormInterface handleSubmit={handleSubmit} type='password' formData={formData} isLoading={isLoading} handleChange={handleChange} errors={errors} passFocus={passFocus} setPassFocus={setPassFocus} passwordType={passwordType} apiError={apiError} togglePasswordVisible={togglePasswordVisible} backButton={backButton} closingComponent={toggleChangePassword} setOldPassFocus={setOldPassFocus} oldPassFocus={oldPassFocus} confirmPassFocus={confirmPassFocus} setConfirmPassFocus={setConfirmPassFocus} />
+
+        <form className='relative flex flex-col justify-center items-center gap-2 py-5 px-5 border border-gray-300 rounded w-full mx-2 md:w-1/2 lg:w-1/4 bg-white'
+        onSubmit={handleSubmit}>
+
+          <FormTitle type='password' />
+          
+          <FormPassword password={formData.previousPassword} isLoading={isLoading} handleChange={handleChange} error={errors.previousPassword}type='previousPassword' label='Previous Password' />
+
+          <FormPassword password={formData.password} isLoading={isLoading} handleChange={handleChange} error={errors.password} type='password' label='New Password' />
+
+          <FormPassword password={formData.confirmPassword} isLoading={isLoading} handleChange={handleChange} error={errors.confirmPassword} type='confirmPassword' label='Confirm Password' />
+
+          <SubmitButton apiError={apiError} text={isLoading ? "Updating Profile" : "Save"} isLoading={isLoading} />
+          
+        <div 
+        onClick={toggleChangePassword}
+        className={`hover:underline hover:text-[#72383d] transition-all absolute top-2 md:top-3 lg:top-2 cursor-pointer right-2 md:right-3 lg:right-2`}>
+          {backButton}
+        </div>
+        </form>
+
       </div>
     </div>
   )

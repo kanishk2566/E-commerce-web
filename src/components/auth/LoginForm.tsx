@@ -6,7 +6,11 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import Navbar from '../navbar/Navbar';
 import { IoArrowBackOutline } from 'react-icons/io5';
-import FormInterface from '../FormInterface';
+import FormEmail from '../formInterface/FormEmail';
+import FormPassword from '../formInterface/FormPassword';
+import SubmitButton from '../formInterface/SubmitButton';
+import FormTitle from '../formInterface/FormTitle';
+import Link from 'next/link';
 
 const LoginForm = () => {
   const { login, isLoading} = useAuth();
@@ -15,8 +19,6 @@ const LoginForm = () => {
     password: "",
   });
   const [apiError, setApiError] = useState("");
-  const [passwordType, setPasswordType] = useState("password");
-  const [isPaswordsFocus, setIsPasswordFocus] = useState(false);
   const router = useRouter();
   const [formData, setFormData] = useState<LoginData>({
     email: "",
@@ -54,10 +56,6 @@ const LoginForm = () => {
     }
   }
 
-    function togglePasswordVisible() {
-      setPasswordType((prev) => prev === "password" ? "text" : "password")
-    }
-
   const backButton = <IoArrowBackOutline/>
 
   function closingComponent() {
@@ -69,7 +67,33 @@ const LoginForm = () => {
       <Navbar />
       
       <div className='h-full w-full flex justify-center items-center mt-20 mb-10'>
-        <FormInterface  handleSubmit={handleSubmit} type='login' formData={formData} isLoading={isLoading} handleChange={handleChange} errors={errors} passFocus={isPaswordsFocus} setPassFocus={setIsPasswordFocus} passwordType={passwordType} apiError={apiError} backButton={backButton} togglePasswordVisible={togglePasswordVisible} closingComponent={closingComponent} />
+
+        <form className='relative flex flex-col justify-center items-center gap-2 py-5 px-5 border border-gray-300 rounded w-full mx-2 md:w-1/2 lg:w-1/4 bg-white shadow-lg shadow-gray-500'
+        onSubmit={handleSubmit}
+        >
+
+        <FormTitle type='login' />
+
+        <FormEmail email={formData.email} error={errors.email} isLoading={isLoading} handleChange={handleChange} />
+
+        <FormPassword  password={formData.password} error={errors.password} isLoading={isLoading} handleChange={handleChange} type='password' label='Password' />
+
+        <SubmitButton isLoading={isLoading} text={isLoading ? "Loggin in" : "Login"} apiError={apiError} />
+
+        <div className='text-sm'>
+          <p className='text-[#72383d]'>Already have an account? <Link href={"/register"} className='text-[#401b1b] hover:underline'>
+            {isLoading ? "Creating Account" : "Register"}
+            </Link>
+          </p>
+        </div>
+
+        <div 
+        onClick={closingComponent}
+        className={`hover:underline hover:text-[#72383d] transition-all absolute top-2 md:top-3 lg:top-2 cursor-pointer left-2 md:left-3 lg:left-2`}>
+          {backButton}
+        </div>
+
+        </form>        
       </div>
     </div>
   )

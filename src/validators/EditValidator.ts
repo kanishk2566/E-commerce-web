@@ -25,9 +25,9 @@ export function validateEditForm(formData: EditData): EditValidatorResult {
   }
 
   if(!trimmedName) {
-    errors.name = "Name cannot be empty";
-  } else if(trimmedEmail.length < 3) {
-    errors.name = "Name must be atleast 3 characters";
+    errors.name = "Name cannot be empty"; 
+  } else if(trimmedName.length < 3) {
+    errors.name = "Name must be at least 3 characters";
   }
 
   return {
