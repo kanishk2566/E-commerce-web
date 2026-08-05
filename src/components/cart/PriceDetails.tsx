@@ -48,12 +48,12 @@ const PriceDetails = ({items}: PriceDetailsProps) => {
                 className='flex justify-between lg:gap-7 border-b border-gray-300'
                 key={item.product.id}>
 
-                  <p className='w-[80%]'>
-                    {item.product.title}
+                  <div className='w-[80%] flex items-center'>
+                    <p className='line-clamp-1'>{item.product.title}</p>
                     <span className='text-xs ml-1 text-gray-600'>
                       ({item.quantity})
                     </span>
-                  </p>
+                  </div>
 
                   <div className='font-semibold'>
                     ${((item.product.price) * (item.quantity)).toFixed(2)}

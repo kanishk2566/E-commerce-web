@@ -18,11 +18,11 @@ export function validateLoginForm(formData: LoginData): LoginValidatorResult {
   const errors = {...INITIAL_LOGIN_FORM_ERRORS};
 
   if(!trimmedEmail) {
-    errors.email = "Email is required";
+    errors.email = "Email cannot be empty";
   } 
 
   if(!trimmedPassword) {
-    errors.password = "Password is required";
+    errors.password = "Password cannot be empty";
   }
 
   return {

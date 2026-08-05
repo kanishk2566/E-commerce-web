@@ -12,6 +12,7 @@ interface HomeClientProps {
 const HomeClient = ({products}: HomeClientProps) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchInput, setSearchInput] = useState("");
+  const [isSearchFocus, setIsSearchFocus] = useState(false);
 
   function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     setSearchInput(e.target.value);
@@ -20,6 +21,7 @@ const HomeClient = ({products}: HomeClientProps) => {
   function onSearch(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
     setSearchQuery(searchInput);
+    setIsSearchFocus(false);
   }
 
   const normalizedQuery = searchQuery.trim().toLowerCase();
@@ -44,12 +46,12 @@ const HomeClient = ({products}: HomeClientProps) => {
 
   return (
     <div className="flex flex-col min-h-screen w-full">
-      <Navbar>
+      <Navbar setIsSearchFocus={setIsSearchFocus} isSearchFocus={isSearchFocus}>
         <div>
-          <SearchBar value={searchInput} onSearch={onSearch} handleSearchChange={handleSearchChange} />
+          <SearchBar value={searchInput} onSearch={onSearch} handleSearchChange={handleSearchChange} isSearchFocus={isSearchFocus} setIsSearchFocus={setIsSearchFocus} />
         </div>
       </Navbar>
-      <main className="mx-auto w-full lg:p-8 p-3 mt-7 lg:mt-15 mb-20">
+      <main className="mx-auto w-full lg:p-8 p-3 mt-10 lg:mt-15 mb-20">
         {displayProducts.length > 0 ? (
           <>
             <p className="text-xl mb-5 border-l-5 border-[#401b1b] pl-4 font-bold">

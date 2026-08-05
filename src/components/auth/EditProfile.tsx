@@ -9,6 +9,7 @@ import FormTitle from '../formInterface/FormTitle';
 import FormName from '../formInterface/FormName';
 import FormEmail from '../formInterface/FormEmail';
 import SubmitButton from '../formInterface/SubmitButton';
+import { motion } from 'motion/react';
 
 interface EditProfileProps {
   toggleEditPage: () => void
@@ -69,7 +70,12 @@ const EditProfile = ({toggleEditPage}: EditProfileProps) => {
       
       <div className='h-full w-full flex justify-center items-center mt-20 mb-10'>
 
-        <form className='relative flex flex-col justify-center items-center gap-2 py-5 px-5 border border-gray-300 rounded w-full mx-2 md:w-1/2 lg:w-1/4 bg-white'
+        <motion.form 
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.2 }}
+        viewport={{ once: true }}
+        className='relative flex flex-col justify-center items-center gap-2 py-5 px-5 border border-gray-300 rounded w-full mx-2 md:w-1/2 lg:w-1/4 bg-white'
         onSubmit={handleSubmit}
         >
 
@@ -88,7 +94,7 @@ const EditProfile = ({toggleEditPage}: EditProfileProps) => {
         </div>
 
 
-        </form>
+        </motion.form>
       </div>
     </div>
   )

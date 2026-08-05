@@ -12,6 +12,7 @@ import { useCart } from '@/context/CartContext'
 import { DisplayCartItem } from '@/types/cart'
 import EditProfile from '../auth/EditProfile'
 import ChangePassword from '../auth/ChangePasswordPage'
+import { motion } from 'motion/react'
 
 interface ProfilePageProps {
   products: Product[],
@@ -58,14 +59,19 @@ const ProfilePage = ({products}: ProfilePageProps) => {
 
     const since = createdAt.split("").toSpliced(0, 3);
     return (
-      <div className='flex justify-evenely flex-col items-center min-h-screen w-full'>
+      <div
+      className='flex justify-evenely flex-col items-center min-h-screen w-full'>
 
         <Navbar />
         
         <div className='mt-20 lg:mt-20 mb-20 flex flex-col justify-center items-center gap-5 w-full px-8'>
           
 
-        <div className='flex flex-col justify-center items-center w-full lg:grid grid-cols-2 lg:w-7/12 xl:w-1/2 p-5 border rounded shadow-[0_0_20px_3px_rgba(0,0,0,0.2)]'>
+        <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className='flex flex-col justify-center items-center w-full lg:grid grid-cols-2 lg:w-7/12 xl:w-1/2 p-5 border rounded shadow-[0_0_20px_3px_rgba(0,0,0,0.2)]'>
         <div className='text-xl font-bold border-l-5 px-3 flex justify-start col-span-2 items-start w-full'>My Profile</div>
 
         <ProfileHeader user={user} initials={initials} />
@@ -80,7 +86,7 @@ const ProfilePage = ({products}: ProfilePageProps) => {
         
         {changePassword && <ChangePassword toggleChangePassword={() => setChangePassword(false)} />}
 
-        </div>
+        </motion.div>
         </div>
       </div>
     )

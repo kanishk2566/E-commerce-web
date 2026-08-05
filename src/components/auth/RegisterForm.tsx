@@ -12,6 +12,7 @@ import FormPassword from '../formInterface/FormPassword';
 import SubmitButton from '../formInterface/SubmitButton';
 import FormTitle from '../formInterface/FormTitle';
 import Link from 'next/link';
+import { motion } from 'motion/react';
 
 const RegisterCard = () => {
   const { register, isLoading } = useAuth();
@@ -74,7 +75,11 @@ const RegisterCard = () => {
 
       <div className='h-full w-full flex justify-center items-center mt-7 lg:mt-20 mb-20'>
       
-        <form
+        <motion.form
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
         className={`relative flex flex-col justify-center items-center gap-2 py-5 px-5 border border-gray-300 rounded w-full mx-2 md:w-1/2 lg:w-1/4`}
         onSubmit={handleSubmit}>
 
@@ -89,8 +94,8 @@ const RegisterCard = () => {
           <SubmitButton isLoading={isLoading} text='Register' apiError={apiError} />
 
           <div className='text-sm'>
-            <p className='text-[#72383d]'>Already have an account? <Link href={"/register"} className='text-[#401b1b] hover:underline'>
-              {isLoading ? "Creating Account" : "Register"}
+            <p className='text-[#72383d]'>Already have an account? <Link href={"/login"} className='text-[#401b1b] hover:underline'>
+              Login
             </Link></p>
           </div>
 
@@ -100,7 +105,7 @@ const RegisterCard = () => {
             {backButton}
           </div>
 
-        </form>
+        </motion.form>
       </div>
     </div>
   )

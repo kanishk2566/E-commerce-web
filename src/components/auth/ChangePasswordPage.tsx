@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import FormTitle from '../formInterface/FormTitle';
 import FormPassword from '../formInterface/FormPassword';
 import SubmitButton from '../formInterface/SubmitButton';
+import { motion } from 'motion/react';
 
 interface ChangePasswordProps {
   toggleChangePassword: () => void,
@@ -69,7 +70,13 @@ const ChangePassword = ({toggleChangePassword}: ChangePasswordProps) => {
       
       <div className='h-full w-full flex justify-center items-center mt-20 mb-10'>
 
-        <form className='relative flex flex-col justify-center items-center gap-2 py-5 px-5 border border-gray-300 rounded w-full mx-2 md:w-1/2 lg:w-1/4 bg-white'
+        <motion.form 
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.2 }}
+        viewport={{ once: true }}
+        exit={{opacity: 0}}
+        className='relative flex flex-col justify-center items-center gap-2 py-5 px-5 border border-gray-300 rounded w-full mx-2 md:w-1/2 lg:w-1/4 bg-white'
         onSubmit={handleSubmit}>
 
           <FormTitle type='password' />
@@ -87,7 +94,7 @@ const ChangePassword = ({toggleChangePassword}: ChangePasswordProps) => {
         className={`hover:underline hover:text-[#72383d] transition-all absolute top-2 md:top-3 lg:top-2 cursor-pointer right-2 md:right-3 lg:right-2`}>
           {backButton}
         </div>
-        </form>
+        </motion.form>
 
       </div>
     </div>

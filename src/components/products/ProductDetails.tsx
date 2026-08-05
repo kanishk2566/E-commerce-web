@@ -2,8 +2,8 @@
 import Navbar from '@/components/navbar/Navbar';
 import Link from 'next/link';
 import React from 'react'
-import { IoIosArrowRoundBack } from "react-icons/io";
-import { FaShoppingCart } from "react-icons/fa";
+import { IoIosArrowBack } from "react-icons/io";
+import { FaShoppingCart, FaStar } from "react-icons/fa";
 import Image from 'next/image';
 import { Product } from '@/types/product';
 import { useCart } from '@/context/CartContext';
@@ -17,37 +17,47 @@ function ProductDetails({product}: ProductProps) {
 
   return (
     <div className='flex justify-center items-start'>
-    <div className='fixed top-0 w-full z-999'>
       <Navbar />
-    </div>
-    <main className='mx-auto relative p-10 flex justify-center items-start rounded mt-7 lg:mt-20 mb-20'>
+    <main className='mx-auto relative py-10 px-5 flex justify-center items-start rounded mt-15 lg:mt-20 mb-20'>
       <Link 
-      className='absolute top-2 left-2 text-4xl'
-      href={"/"}><IoIosArrowRoundBack /></Link>
+      className='absolute top-0 left-2 text-xl flex justify-center items-center'
+      href={"/"}><IoIosArrowBack />
+      <p className='text-sm'>Continue Shopping</p>
+      </Link>
       <div className='grid grid-cols-1 gap-10 md:grid-cols-2'>
-        <div>
+        <div className='border border-[#9cabb4] py-10 rounded'>
           <Image
           src={product.image}
           alt={product.title}
           width={0}
           height={0}
           sizes="100vw"
-          className='w-full h-80 object-contain'
+          className='w-full h-96 object-contain hover:h-98 transition-all'
           />
         </div>
         <div>
-          <p className='text-3xl font-bold'>
+          <p className='text-xl font-bold'>
             {product.title}
           </p>
-          <p className='mt-5 text-[#ab644b]'>
+          <div className='mt-2 text-2xl text-[#1c0c0c] font-bold'>
+            ${(product.price).toFixed(2)}
+          </div>
+          <div className='flex flex-col justify-center items-start mt-2'>
+          <div className='text-yellow-500 mr-1 flex justify-center items-center'>
+            <FaStar />
+             <b className='text-[#401b1b]'>{product.rating.rate}</b>
+          </div>
+            ({product.rating.count} Reviews)
+          </div>
+          <div className='flex flex-col mt-4 justify-center items-start gap-1'>
+          <p className='uppercase font-semibold'>{product.category}</p>
+          <p className=''>
             {product.description}
           </p>
-          <div className='mt-5 text-2xl text-[#1c0c0c] font-bold'>
-            ${(product.price).toFixed(2)}
           </div>
           <button
           onClick={() => addToCart(product.id)}
-          className='mt-8 py-2 px-2 flex justify-center items-center gap-2 text-white bg-[#72383d] rounded hover:bg-blue-700 cursor-pointer'>
+          className='mt-8 py-3 w-full flex justify-center items-center gap-2 transition-all text-white bg-[#72383d] rounded hover:bg-[#401b1b] cursor-pointer'>
             Add to cart <FaShoppingCart />
           </button>
         </div>

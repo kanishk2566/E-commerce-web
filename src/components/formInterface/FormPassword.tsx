@@ -32,7 +32,7 @@ const FormPassword = ({password, error, isLoading, handleChange, type, label }: 
           disabled={isLoading}
           onChange={handleChange} />
 
-          <button type='button' onClick={() => setPasswordType((prev) => prev === "password" ? "text" : "password")} className='cursor-pointer bg-gray-300 px-2 flex justify-center items-center rounded-r'>
+          <button type='button' onClick={() => setPasswordType((prev) => prev === "password" ? "text" : "password")} className='cursor-pointer bg-gray-300 px-2 flex justify-center items-center rounded-r hover:text-[#72383d] transition-all'>
             {passwordType === "text" ? <BsEye /> : <BsEyeSlash />}
           </button>
           

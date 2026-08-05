@@ -1,21 +1,24 @@
 "use client"
-import React, { useState } from 'react'
-import { MdOutlineSearch } from 'react-icons/md';
+import React, { SetStateAction } from 'react'
+import { motion } from 'motion/react';
 
 interface SearchBarProps {
   value: string,
   handleSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
   onSearch: (e: React.SyntheticEvent<HTMLFormElement>) => void,
+  isSearchFocus: boolean,
+  setIsSearchFocus: React.Dispatch<SetStateAction<boolean>>,
 }
 
-const SearchBar = ({value, handleSearchChange, onSearch}: SearchBarProps) => {
-
-  const [isSearchFocus, setIsSearchFocus] = useState(false);
+const SearchBar = ({value, handleSearchChange, onSearch, isSearchFocus, setIsSearchFocus}: SearchBarProps) => {
   
   return (
-    <form 
+    <motion.form
+    initial={{ opacity: 0, x: 20 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.4 }}
     onSubmit={onSearch}
-    className={`flex justify-center items-center w-100 h-7 ring-1 ring-[#9cabb4] bg-white rounded ${isSearchFocus ? "ring-2" : "ring-0"}`}>
+    className={`flex justify-center items-center w-80 md:w-150 h-7 ring-1 ring-[#9cabb4] bg-white rounded ${isSearchFocus ? "ring-2" : "ring-0"}`}>
 
       <input
       className={`outline-0 px-2 w-full`}
@@ -23,14 +26,13 @@ const SearchBar = ({value, handleSearchChange, onSearch}: SearchBarProps) => {
       onBlur={() => setIsSearchFocus(false)}
       value={value}
       placeholder='Search Products...'
-      onChange={handleSearchChange}
-      />
+      onChange={handleSearchChange} />
 
-      <button type='submit' className='cursor-pointer text-2xl'>
-        <MdOutlineSearch />
+      <button type='submit' className='cursor-pointer bg-[#ab644b] text-white h-full rounded-r px-1 text-sm'>
+        Search
       </button>
       
-    </form>
+    </motion.form>
   )
 }
 

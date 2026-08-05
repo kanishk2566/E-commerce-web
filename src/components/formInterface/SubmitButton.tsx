@@ -8,8 +8,8 @@ interface SubmitButtonProps {
 
 const SubmitButton = ({isLoading, text, apiError}: SubmitButtonProps) => {
   return (
-    <div>
-      <div className='text-red-600 text-sm'>{apiError}</div>
+    <div className='w-full flex flex-col justify-center items-center'>
+      <div className='text-red-600 text-sm text-start w-full'>{apiError}</div>
       <button
       type='submit'
       disabled={isLoading}

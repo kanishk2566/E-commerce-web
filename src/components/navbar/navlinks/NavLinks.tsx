@@ -13,14 +13,14 @@ const NavLinks = () => {
     <div className='flex justify-center items-center'>
       <div className='flex justify-center items-center h-full'>
         <div className='flex justify-center items-center'>
-          <Link href={"/"} className={`relative flex justify-center items-center px-2 cursor-pointer py-1.75 hover:border-b-2 border-[#f2f2eb] hover:pb-1.5 hover:bg-[#72383d] hover:rounded-md transition-all  ${pathname === "/" ? "border-b-2 pb-1.5" : ""}`}>
+          <Link href={"/"} className={`relative flex justify-center items-center px-2 cursor-pointer py-2.5 hover:border-b-2 border-[#f2f2eb] hover:pb-2 hover:bg-[#72383d] hover:rounded-md transition-all ${pathname === "/" ? "border-b-2 pb-2" : ""}`}>
 
             <div className='py-1 flex justify-center items-center gap-0.5 text-[#f2f2eb]'>
               Home <IoMdHome />
             </div>
 
           </Link>
-          <Link href={"/cart"} className={`relative flex justify-center items-center px-2 cursor-pointer py-1.75 hover:border-b-2 border-[#f2f2eb] hover:pb-1.5 hover:bg-[#72383d] hover:rounded-md transition-all ${pathname === "/cart" ? "border-b-2 pb-1.5" : ""}`}>
+          <Link href={"/cart"} className={`relative flex justify-center items-center px-2 cursor-pointer py-2.5 hover:border-b-2 border-[#f2f2eb] hover:pb-2 hover:bg-[#72383d] hover:rounded-md transition-all ${pathname === "/cart" ? "border-b-2 pb-2" : ""}`}>
 
             <div className='py-1 relative flex justify-center items-center text-[#f2f2eb]'>
               Cart <TiShoppingCart />

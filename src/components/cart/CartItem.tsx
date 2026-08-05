@@ -26,10 +26,10 @@ const CartItem = ({item}: CartItemProps) => {
   return (
     <>
       <div className='flex rounded mx-5'>
-        <div className='w-30 border border-gray-300 p-2 rounded-l bg-gray-200'>
+        <div className='border border-gray-300 p-2 rounded-l bg-gray-200 flex justify-center items-center'>
           <Image
-          width={300}
-          height={300}
+          width={400}
+          height={400}
           src={item.product.image} 
           alt={item.product.title}
           className='h-28 w-28 object-contain'
@@ -39,7 +39,7 @@ const CartItem = ({item}: CartItemProps) => {
         className='flex justify-start flex-1 items-center gap-5 ml-1 p-3 bg-gray-200 border border-gray-300 rounded-r relative'>
 
           <div className='flex flex-col gap-2'>
-            <div className='text-xl font-semibold'>
+            <div className='text-xl font-semibold line-clamp-2'>
               {item.product.title}
             </div>
             <div className='w-fit flex justify-center items-center border border-gray-400 rounded'>
@@ -64,7 +64,7 @@ const CartItem = ({item}: CartItemProps) => {
           <button
           type='button'
           onClick={handleRemoveItem}
-          className='flex justify-center items-center gap-1 absolute right-2 bottom-2 md:right-2 text-red-500 hover:opacity-90 cursor-pointer bg-gray-300 py-1 px-2 rounded transition-all'>
+          className='flex justify-center items-center gap-1 absolute right-2 bottom-2 md:right-2 text-red-600 hover:opacity-90 cursor-pointer hover:bg-red-300 bg-[#b6c9d4] py-1 px-2 rounded transition-all'>
             <MdDelete /> Remove
           </button>
         </div>
