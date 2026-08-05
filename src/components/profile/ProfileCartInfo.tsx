@@ -2,8 +2,7 @@
 import { useCart } from '@/context/CartContext';
 import { DisplayCartItem } from '@/types/cart';
 import Link from 'next/link'
-import React, { useState } from 'react'
-import { IoIosArrowDown } from 'react-icons/io';
+import React from 'react'
 import { TiShoppingCart } from 'react-icons/ti'
 import { MdKeyboardArrowRight } from "react-icons/md";
 
@@ -13,41 +12,46 @@ interface ProfileCartInfoProps {
 
 const ProfileCartInfo = ({items}: ProfileCartInfoProps) => {
   const { totalItem } = useCart();
-  const [accordion, setAccordion] = useState(false);
 
   const totalPrice = items.reduce((total, item) => total + (item.product.price * item.quantity), 0);
   const roundedPrice = totalPrice.toFixed(2);
 
   return (
-    <div className='w-fit'>
+    <div className='w-full flex justify-center items-start h-full lg:order-4'>
       <div
-      className={`relative flex flex-col justify-center items-center bg-[#d2dce6] rounded-lg px-6 transition-all border border-[#9cabb4] ${accordion ? "border-3" : ""} `}>
-        <button
+      className={`relative flex flex-col w-fit lg:w-full justify-center items-center rounded-lg px-6 transition-all `}>
+        {/* <button
         className={`absolute right-1 top-4 transition-all ${accordion ? "rotate-180 hover:-translate-y-0.5" : "rotate-0 hover:translate-y-0.5"}`}
         onClick={() => setAccordion(!accordion)}>
           <IoIosArrowDown />
-        </button>
-        <div className='flex justify-center items-center gap-6'>
+        </button> */}
+
+        <div className='flex flex-col justify-center items-center gap-6'>
           <div>
 
-            <div className='font-bold text-xl flex justify-center items-center'>
+            <div className='font-bold text-xl flex justify-center items-center py-3'>
               Cart Info <TiShoppingCart />
             </div>
 
-            <div className='flex w-full justify-center'>
-              <button className='flex justify-center items-center gap-2'>Cart Total: 
-                <b>${roundedPrice}({totalItem} {totalItem > 1 ? "items" : "item"})</b>
-              </button>
+            <div className='flex flex-col w-full justify-center'>
+              <div className='flex justify-center items-center gap-2'>Total Item: 
+                <b>{totalItem} {totalItem > 1 ? "items" : "item"}</b>
+              </div>
+
+              <div className='flex justify-center items-center gap-2'>Cart Total: 
+                <b>${roundedPrice}</b>
+              </div>
+              
             </div>
           </div>
-          <div>
-            <Link className='bg-[#ab644b] py-2 px-2 rounded-lg flex justify-center items-center w-fit text-[#f2f2eb] font-semibold hover:opacity-80 transition-all' href={"/cart"}>
-              <TiShoppingCart /> <MdKeyboardArrowRight />
+          <div className='w-full flex justify-center'>
+            <Link className='bg-[#ab644b] py-2 px-2 gap-2 rounded-lg flex justify-center items-center w-fit text-[#f2f2eb] font-semibold hover:opacity-80 transition-all' href={"/cart"}>
+             View Cart <TiShoppingCart /> <MdKeyboardArrowRight />
              </Link>
           </div>
         </div>
 
-       <div className={`transition-all ease-in-out duration-700 ${accordion ? "max-h-500" : "max-h-0"}`}>
+       {/* <div className={`transition-all ease-in-out duration-700 ${accordion ? "max-h-500" : "max-h-0"}`}>
           {accordion && (
             <div className='flex flex-col justify-center items-center pt-2 pb-10'>
               {items.map((item, index) => (
@@ -67,7 +71,7 @@ const ProfileCartInfo = ({items}: ProfileCartInfoProps) => {
               ))}
             </div>
         )}
-       </div>
+       </div> */}
       </div>      
     </div>
   )

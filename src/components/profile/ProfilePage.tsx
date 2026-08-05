@@ -62,10 +62,11 @@ const ProfilePage = ({products}: ProfilePageProps) => {
 
         <Navbar />
         
-        <div className='mt-20 lg:mt-20 mb-20 flex flex-col justify-center items-start gap-5 w-full px-8'>
-          <div className='text-xl font-bold border-l-5 px-3'>My Profile</div>
+        <div className='mt-20 lg:mt-20 mb-20 flex flex-col justify-center items-center gap-5 w-full px-8'>
+          
 
-        <div className='flex flex-col justify-center items-center gap-6 w-full'>
+        <div className='flex flex-col justify-center items-center w-full lg:grid grid-cols-2 lg:w-7/12 xl:w-1/2 p-5 border rounded shadow-[0_0_20px_3px_rgba(0,0,0,0.2)]'>
+        <div className='text-xl font-bold border-l-5 px-3 flex justify-start col-span-2 items-start w-full'>My Profile</div>
 
         <ProfileHeader user={user} initials={initials} />
 

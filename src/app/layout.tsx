@@ -29,7 +29,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col justify-center overflow-x-hidden overflow-y-auto bg-[#f2f2eb] text-[#401b1b] overflow-scroll">
+      <body className="min-h-full flex flex-col justify-center overflow-x-hidden overflow-y-auto text-[#401b1b] overflow-scroll">
         <AuthProvider>
         <CartProvider>
           {children}

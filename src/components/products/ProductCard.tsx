@@ -14,7 +14,7 @@ const ProductCard = ({product}: ProductCardProps) => {
 
   return (
     
-    <div className='flex flex-col justify-between rounded relative bg-[#d2dce6] border border-[#9cabb4] min-h-100 shadow-sm shadow-[#9cabb4] transition hover:shadow-md p-4'>
+    <div className='flex flex-col justify-between rounded relative border border-[#9cabb4] min-h-100 shadow-sm shadow-[#9cabb4] transition hover:shadow-md p-4'>
       <Link href={`/products/${product.id}`}>
       <Image
       width={500}
