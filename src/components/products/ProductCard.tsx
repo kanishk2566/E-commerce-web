@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
 import { FaShoppingCart } from "react-icons/fa";
-import { motion } from 'motion/react';
 
 interface ProductCardProps {
   product: Product;
@@ -15,12 +14,8 @@ const ProductCard = ({product}: ProductCardProps) => {
 
   return (
     
-    <motion.div 
-    initial={{ opacity: 0, y: 40 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5 }}
-    viewport={{ once: true }}
-    className='flex flex-col justify-between rounded relative border border-[#9cabb4] min-h-100 shadow-sm shadow-[#9cabb4] transition ring-[#9cabb4] hover:ring-2 hover:shadow-md p-4'>
+    <div
+    className='flex flex-col justify-between relative border border-[#9cabb4] min-h-100 shadow-sm shadow-[#9cabb4] bg-[#D2DCE6] transition ring-[#9cabb4] hover:ring-2 hover:shadow-md p-4'>
       <Link href={`/products/${product.id}`}>
       <Image
       width={500}
@@ -48,7 +43,7 @@ const ProductCard = ({product}: ProductCardProps) => {
           Add to cart <FaShoppingCart />
         </button>
       </div>
-    </motion.div>
+    </div>
   )
 }
 

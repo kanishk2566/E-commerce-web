@@ -4,6 +4,7 @@ import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import { AuthProvider } from "@/context/AuthContext";
 import { ToastContainer } from "react-toastify";
+import { WishlistProvider } from "@/context/WishlistContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,8 +33,10 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col justify-center overflow-x-hidden overflow-y-auto text-[#401b1b] overflow-scroll">
         <AuthProvider>
         <CartProvider>
+          <WishlistProvider>
           {children}
           <ToastContainer hideProgressBar toastClassName="border border-gray-300" />
+          </WishlistProvider>
         </CartProvider>
         </AuthProvider>
       </body>

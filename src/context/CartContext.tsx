@@ -105,7 +105,7 @@ export function CartProvider({children}: CartProviderProps) {
         });
         return;
       }
-    await syncCart(() => addToCartService(user.id, productId))
+    await syncCart(() => addToCartService(user.id, productId));
   }
 
   async function removeFromCart(productId: number) {

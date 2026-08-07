@@ -1,4 +1,5 @@
 import { PersistedCartItem } from "./cart";
+import { Wishlist } from "./wishlist";
 
 export type User = {
   id: string;
@@ -8,6 +9,7 @@ export type User = {
   role: "USER" | "ADMIN";
   createdAt: string;
   cart: PersistedCartItem[];
+  wishlist: Wishlist[];
 }
 
 export type AuthUser = Omit<User, "password"> | null;

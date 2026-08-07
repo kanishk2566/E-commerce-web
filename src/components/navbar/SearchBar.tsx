@@ -18,7 +18,7 @@ const SearchBar = ({value, handleSearchChange, onSearch, isSearchFocus, setIsSea
     animate={{ opacity: 1, x: 0 }}
     transition={{ duration: 0.4 }}
     onSubmit={onSearch}
-    className={`flex justify-center items-center w-80 md:w-150 h-7 ring-1 ring-[#9cabb4] bg-white rounded ${isSearchFocus ? "ring-2" : "ring-0"}`}>
+    className={`flex justify-center items-center w-80 md:w-150 h-7 ring-[#9cabb4] bg-white rounded ${isSearchFocus ? "ring-2" : "ring-0"}`}>
 
       <input
       className={`outline-0 px-2 w-full`}

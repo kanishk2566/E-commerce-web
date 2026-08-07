@@ -17,14 +17,9 @@ const ProfileCartInfo = ({items}: ProfileCartInfoProps) => {
   const roundedPrice = totalPrice.toFixed(2);
 
   return (
-    <div className='w-full flex justify-center items-start h-full lg:order-4'>
+    <div className='w-full flex justify-center items-start h-full lg:order-4 border-2 rounded'>
       <div
       className={`relative flex flex-col w-fit lg:w-full justify-center items-center rounded-lg px-6 transition-all `}>
-        {/* <button
-        className={`absolute right-1 top-4 transition-all ${accordion ? "rotate-180 hover:-translate-y-0.5" : "rotate-0 hover:translate-y-0.5"}`}
-        onClick={() => setAccordion(!accordion)}>
-          <IoIosArrowDown />
-        </button> */}
 
         <div className='flex flex-col justify-center items-center gap-6'>
           <div>

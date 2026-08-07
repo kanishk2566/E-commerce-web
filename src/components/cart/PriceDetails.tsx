@@ -18,7 +18,7 @@ const PriceDetails = ({items}: PriceDetailsProps) => {
     
     <div className='flex gap-10 flex-col'>
       
-      <div className={`bg-gray-200 p-5 rounded-2xl w-full overflow-clip relative`}>
+      <div className={`bg-[#D2DCE6] p-5 rounded-2xl w-full overflow-clip relative`}>
 
         <div className='text-center mb-2 pb-2 text-2xl border-b font-bold border-gray-400'>
 

@@ -88,6 +88,7 @@
           "quantity": 1
         }
       ],
+      "wishlist": [],
       "id": "0vXvjML"
     },
     {
@@ -98,51 +99,31 @@
       "createdAt": "Fri Jul 31 2026",
       "cart": [
         {
-          "productId": 3,
-          "quantity": 2
-        },
-        {
-          "productId": 10,
-          "quantity": 2
-        },
-        {
           "productId": 6,
           "quantity": 2
         },
         {
           "productId": 17,
-          "quantity": 2
+          "quantity": 3
         },
         {
           "productId": 2,
-          "quantity": 4
+          "quantity": 2
         },
         {
           "productId": 1,
-          "quantity": 1
+          "quantity": 3
         },
         {
           "productId": 4,
-          "quantity": 1
+          "quantity": 2
         },
         {
           "productId": 8,
-          "quantity": 1
-        },
-        {
-          "productId": 7,
-          "quantity": 1
+          "quantity": 2
         },
         {
           "productId": 5,
-          "quantity": 1
-        },
-        {
-          "productId": 9,
-          "quantity": 1
-        },
-        {
-          "productId": 11,
           "quantity": 1
         },
         {
@@ -163,21 +144,18 @@
         },
         {
           "productId": 13,
-          "quantity": 1
+          "quantity": 2
         },
         {
           "productId": 18,
-          "quantity": 1
-        },
-        {
-          "productId": 19,
-          "quantity": 1
+          "quantity": 2
         },
         {
           "productId": 20,
           "quantity": 2
         }
       ],
+      "wishlist": [],
       "id": "1"
     },
     {
@@ -208,6 +186,7 @@
           "quantity": 1
         }
       ],
+      "wishlist": [],
       "id": "hPDJdaD"
     },
     {
@@ -217,6 +196,7 @@
       "role": "USER",
       "createdAt": "Mon Aug 03 2026",
       "cart": [],
+      "wishlist": [],
       "id": "ksA5aQx"
     },
     {
@@ -226,6 +206,7 @@
       "role": "USER",
       "createdAt": "Tue Aug 04 2026",
       "cart": [],
+      "wishlist": [],
       "id": "w2_ZIPx"
     }
   ],

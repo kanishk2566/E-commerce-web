@@ -11,7 +11,7 @@ interface ProfileInfoProps {
 const ProfileInfo = ({since}: ProfileInfoProps) => {
   const {user} = useAuth();
   return (
-    <div className='flex flex-col justify-center items-center text-lg py-5'>
+    <div className='flex flex-col justify-center items-center text-lg py-5 border-2 rounded'>
       <div className='w-full flex justify-center items-center gap-2 font-bold text-xl py-3'>
         Account Info <FaUser />
       </div>

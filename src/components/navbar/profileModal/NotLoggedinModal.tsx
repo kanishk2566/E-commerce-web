@@ -8,7 +8,7 @@ const NotLoggedinModal = () => {
   const pathname = usePathname();
   return (
     <div className=''>
-      <div className='top-10 right-0 pt-3 px-2 pb-3 flex flex-col gap-3 w-fit absolute shadowm-lg shadow-gray-500 border border-[#9cabb4] rounded bg-[#f2f2e6]'>
+      <div className='top-10 right-0 pt-3 px-2 pb-3 flex flex-col gap-3 w-fit absolute shadowm-lg shadow-gray-500 border border-[#9cabb4] rounded bg-white'>
         <div className='text-[#401b1b] w-full flex flex-col justify-center items-center text-5xl'>
           <FaUserCircle />
         </div>

@@ -16,7 +16,7 @@ const LoggedinModal = () => {
 
   return (
     <div>
-      <div className='top-10 right-0 py-3 px-2 flex flex-col gap-3 w-fit absolute shadowm-lg shadow-gray-500 border border-gray-400 rounded bg-[#f2f2e6]'>
+      <div className='top-10 right-0 py-3 px-2 flex flex-col gap-3 w-fit absolute shadowm-lg shadow-gray-500 border border-gray-400 rounded bg-white'>
 
         <Link
         href={"/profile"} className={`rounded py-3 flex flex-col px-5 justify-center items-center gap-3 transition-all bg-[#d2dce6] text-gray-600 hover:opacity-80`}>
