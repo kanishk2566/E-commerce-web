@@ -30,7 +30,7 @@ const CartCard = ({items, isLoading}: CartCardProps) => {
       <div>
         {items.length > 0 ? (
       <div className='flex flex-col gap-4 h-fit'>
-        <div className=' ml-5'>
+        <div className='ml-5'>
         <button
         type='button'
         className='hover:text-red-500 border border-red-600 hover:border-red-500 flex justify-center items-center w-fit gap-2 py-1 px-2 text-red-600 transition-all cursor-pointer font-semibold rounded'

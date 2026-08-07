@@ -71,7 +71,7 @@ const ProfilePage = ({products}: ProfilePageProps) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className='flex flex-col justify-center items-center w-full lg:grid grid-cols-2 gap-3 lg:w-7/12 bg-[#D2DCE6] xl:w-1/2 p-5 border rounded shadow-[0_0_20px_3px_rgba(0,0,0,0.2)]'>
+        className='grid grid-cols-2 gap-3 lg:w-7/12 bg-[#D2DCE6] xl:w-1/2 p-5 border rounded shadow-[0_0_20px_3px_rgba(0,0,0,0.2)]'>
         <div className='text-xl font-bold border-l-5 px-3 flex justify-start col-span-2 items-start w-full'>My Profile</div>
 
         <ProfileHeader user={user} initials={initials} />

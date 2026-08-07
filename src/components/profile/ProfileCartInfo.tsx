@@ -17,7 +17,7 @@ const ProfileCartInfo = ({items}: ProfileCartInfoProps) => {
   const roundedPrice = totalPrice.toFixed(2);
 
   return (
-    <div className='w-full flex justify-center items-start h-full lg:order-4 border-2 rounded'>
+    <div className='w-full flex justify-center items-start h-full lg:order-4 col-span-2 lg:col-span-1'>
       <div
       className={`relative flex flex-col w-fit lg:w-full justify-center items-center rounded-lg px-6 transition-all `}>
 
@@ -40,33 +40,11 @@ const ProfileCartInfo = ({items}: ProfileCartInfoProps) => {
             </div>
           </div>
           <div className='w-full flex justify-center'>
-            <Link className='bg-[#ab644b] py-2 px-2 gap-2 rounded-lg flex justify-center items-center w-fit text-[#f2f2eb] font-semibold hover:opacity-80 transition-all' href={"/cart"}>
+            <Link className='bg-[#ab644b] lg:py-2 py-1 px-2 lg:gap-2 rounded-lg flex justify-center items-center w-fit text-[#f2f2eb] font-semibold hover:opacity-80 transition-all' href={"/cart"}>
              View Cart <TiShoppingCart /> <MdKeyboardArrowRight />
              </Link>
           </div>
         </div>
-
-       {/* <div className={`transition-all ease-in-out duration-700 ${accordion ? "max-h-500" : "max-h-0"}`}>
-          {accordion && (
-            <div className='flex flex-col justify-center items-center pt-2 pb-10'>
-              {items.map((item, index) => (
-                <div className='w-full flex justify-between items-center gap-3' key={item.product.id}>
-                  
-                  <div className='flex justify-center items-start gap-2'>
-                    <div className='font-bold'>
-                      {index + 1}.
-                    </div>
-                      {item.product.title}<div className='font-semibold'>(x{item.quantity})</div>
-                  </div>
-
-                  <div className='font-bold'>
-                    ${(item.product.price) * (item.quantity)}
-                  </div>
-                </div>
-              ))}
-            </div>
-        )}
-       </div> */}
       </div>      
     </div>
   )

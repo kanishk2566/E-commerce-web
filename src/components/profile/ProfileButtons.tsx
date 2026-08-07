@@ -10,7 +10,7 @@ interface ProfileButtonsProps {
 
 const ProfileButtons = ({isLoading, handleLogout, toggleEditPage, toggleChangePassword}: ProfileButtonsProps) => {
   return (
-    <div className='flex flex-col gap-3 justify-start h-full items-center p-10'>
+    <div className='flex flex-col gap-3 justify-start h-full items-center p-10 col-span-2 lg:col-span-1'>
       <div className='flex flex-col gap-3'>
 
         <button onClick={toggleEditPage} className={`py-1 px-4 text-white rounded cursor-pointer hover:opacity-90 transition-all ${isLoading ? "bg-[#ab644b]" : "bg-[#401b1b]"}`}>

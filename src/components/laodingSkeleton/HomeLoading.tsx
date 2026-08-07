@@ -1,9 +1,9 @@
-import Navbar from "@/components/navbar/Navbar";
+import React from 'react'
 
-export default function Loading() {
+const HomeLoading = () => {
   return (
     <div>
-      <Navbar />
+      <div>
       <div className="mx-auto w-full lg:p-8 p-3 mt-10 lg:mt-15 mb-20 animate-pulse">
         <div className="text-xl mb-5 bg-gray-200 h-7 w-30 font-bold" />
         
@@ -28,5 +28,8 @@ export default function Loading() {
     </div>
       </div>
     </div>
-  );
+    </div>
+  )
 }
+
+export default HomeLoading

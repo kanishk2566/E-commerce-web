@@ -11,7 +11,6 @@ import FormPassword from '../formInterface/FormPassword';
 import SubmitButton from '../formInterface/SubmitButton';
 import FormTitle from '../formInterface/FormTitle';
 import Link from 'next/link';
-import { motion } from 'motion/react';
 
 const LoginForm = () => {
   const { login, isLoading} = useAuth();
@@ -69,11 +68,7 @@ const LoginForm = () => {
       
       <div className='h-full w-full flex justify-center items-center mt-7 lg:mt-20 mb-20'>
 
-        <motion.form 
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
+        <form 
         className='relative flex flex-col justify-center items-center gap-2 py-5 px-5 border border-gray-300 rounded w-full mx-2 md:w-1/2 lg:w-1/4 bg-white shadow-lg shadow-gray-500'
         onSubmit={handleSubmit}
         >
@@ -99,7 +94,7 @@ const LoginForm = () => {
           {backButton}
         </div>
 
-        </motion.form>        
+        </form>        
       </div>
     </div>
   )
