@@ -1,9 +1,15 @@
+"use client"
+import WishlistPage from '@/components/wishlist/WishlistPage';
+// import { useAuth } from '@/context/AuthContext';
+
 import React from 'react'
 
-const page = () => {
+const Page = () => {
   return (
-    <div>page</div>
+    <div>
+      <WishlistPage />
+    </div>
   )
 }
 
-export default page
+export default Page

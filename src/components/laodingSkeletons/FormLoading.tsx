@@ -27,7 +27,7 @@ const FormLoading = ({register}: FormLoadingProps) => {
 
         <div className='w-20 h-8 bg-gray-300' />
 
-        <div className='text-sm h-4 w-10/12 bg-gray-300'>
+        <div className='h-4 w-10/12 bg-gray-300'>
         </div>
 
         </div>        

@@ -1,4 +1,4 @@
-import CartLoading from "@/components/laodingSkeleton/CartLoading";
+import CartLoading from "@/components/laodingSkeletons/CartLoading";
 
 export default function Loading() {
   return (

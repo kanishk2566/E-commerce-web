@@ -1,5 +1,5 @@
 import HomeClient from "@/components/homeClient/HomeClient";
-import HomeLoading from "@/components/laodingSkeleton/HomeLoading";
+import HomeLoading from "@/components/laodingSkeletons/HomeLoading";
 import { getAllProducts } from "@/services/products";
 import { Suspense } from "react";
 

@@ -21,26 +21,26 @@ const CartLoading = () => {
   
             <div className='flex flex-col gap-2 rounded'>
 
-              <div className='text-xl font-semibold line-clamp-2 h-5 max-w-100 w-full bg-gray-300 rounded'/>
+              <div className='h-5 min-w-100 w-full bg-gray-300 rounded'/>
 
               <div className='w-fit flex justify-center items-center rounded gap-1'>
 
                 <div
-                className='rounded-l w-5 text-xl h-7 text-center bg-gray-300 cursor-pointer'/>
+                className='rounded-l w-5 h-7 bg-gray-300'/>
 
-                <div className='px-2 bg-gray-300 w-5 text-center h-7'/>
+                <div className='px-2 bg-gray-300 w-5 h-7'/>
 
                 <div
-                className='rounded-r w-5 text-xl h-7 text-center bg-gray-300 cursor-pointer'/>   
+                className='rounded-r w-5 h-7 bg-gray-300'/>   
 
               </div>
 
-              <div className='font-bold bg-gray-300 h-7 w-20 rounded'/>
+              <div className='bg-gray-300 h-7 w-20 rounded'/>
 
             </div>
 
             <div
-            className='flex justify-center items-center gap-1 absolute right-2 bottom-2 md:right-2 bg-gray-300 py-1 px-2 rounded transition-all h-5 w-20'/>
+            className='flex justify-center items-center gap-1 absolute right-2 bottom-2 md:right-2 bg-gray-300 py-1 px-2 rounded h-5 w-20'/>
 
           </div>
         </div>
@@ -53,13 +53,13 @@ const CartLoading = () => {
             
             <div className={`bg-gray-200 p-5 rounded-2xl w-full overflow-clip relative`}>
       
-              <div className='text-center mb-2 pb-2 text-2xl font-bold bg-gray-300 h-8'/>
+              <div className='mb-2 pb-2 bg-gray-300 h-8'/>
             
               <div className='flex flex-col gap-3 h-4 bg-gray-300'/>
       
               </div>
       
-              <div className='w-full rounded-full py-2 h-10 text-lg font-semibold bg-gray-300 text-center cursor-pointer text-white transition-all'/>
+              <div className='w-full rounded-full py-2 h-10 bg-gray-300'/>
       
             </div>
       

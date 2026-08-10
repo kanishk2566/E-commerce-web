@@ -2,6 +2,7 @@ import { useCart } from '@/context/CartContext';
 import { DisplayCartItem } from '@/types/cart';
 import React, { useState } from 'react'
 import { IoIosArrowDown } from "react-icons/io";
+import { motion } from 'motion/react';
 
 interface PriceDetailsProps {
   items: DisplayCartItem[];
@@ -14,7 +15,11 @@ const PriceDetails = ({items}: PriceDetailsProps) => {
   const roundedPrice = totalPrice.toFixed(2);
   
   return (
-    <div className='lg:w-3/10 mx-5 flex flex-col gap-2 h-full'>
+    <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.4 }}
+    className='lg:w-3/10 mx-5 flex flex-col gap-2 h-full'>
     
     <div className='flex gap-10 flex-col'>
       
@@ -86,7 +91,7 @@ const PriceDetails = ({items}: PriceDetailsProps) => {
 
       </div>
 
-    </div>
+    </motion.div>
   )
 }
 

@@ -1,4 +1,4 @@
-import ProductLoading from '@/components/laodingSkeleton/ProductLoading'
+import ProductLoading from '@/components/laodingSkeletons/ProductLoading'
 import React from 'react'
 
 const loading = () => {

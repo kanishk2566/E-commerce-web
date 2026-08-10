@@ -2,7 +2,9 @@ import React from 'react'
 import { DisplayCartItem } from '@/types/cart';
 import { MdDelete } from 'react-icons/md';
 import { useCart } from '@/context/CartContext';
+import { motion } from 'motion/react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 type CartItemProps = {
   item: DisplayCartItem;
@@ -25,7 +27,11 @@ const CartItem = ({item}: CartItemProps) => {
 
   return (
     <>
-      <div className='flex rounded mx-5'>
+      <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      className='flex rounded mx-5'>
         <div className='border border-gray-300 p-2 rounded-l bg-[#D2DCE6] flex justify-center items-center'>
           <Image
           width={400}
@@ -39,9 +45,9 @@ const CartItem = ({item}: CartItemProps) => {
         className='flex justify-start flex-1 items-center gap-5 ml-1 p-3 bg-[#D2DCE6] border border-gray-300 rounded-r relative'>
 
           <div className='flex flex-col gap-2'>
-            <div className='text-xl font-semibold line-clamp-2'>
+            <Link href={`/products/${item.product.id}`} className='text-xl font-semibold line-clamp-2 hover:opacity-80 hover:underline'>
               {item.product.title}
-            </div>
+            </Link>
             <div className='w-fit flex justify-center items-center border border-gray-400 rounded'>
               <button
               onClick={handleDecreaseQuantity}
@@ -57,7 +63,7 @@ const CartItem = ({item}: CartItemProps) => {
                 +
               </button>
             </div>
-            <div className='font-bold text-[#1c0c0c]'>
+            <div className='font-bold text-xl text-[#1c0c0c]'>
               ${(item.product.price * item.quantity).toFixed(2)}
             </div>
           </div>
@@ -68,7 +74,7 @@ const CartItem = ({item}: CartItemProps) => {
             <MdDelete /> Remove
           </button>
         </div>
-      </div>
+      </motion.div>
        
     </>
   )

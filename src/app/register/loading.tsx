@@ -1,4 +1,4 @@
-import FormLoading from '@/components/laodingSkeleton/FormLoading'
+import FormLoading from '@/components/laodingSkeletons/FormLoading'
 import React from 'react'
 
 const loading = () => {

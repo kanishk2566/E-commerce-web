@@ -30,7 +30,7 @@ async function saveWishlist(userId: string, updatedWishlist: Wishlist[]) {
 export async function removeFromWishlist(userId: string, productId: number): Promise<Wishlist[]> {
   const wishlist = await getWishlist(userId);
 
-  const updatedWishlist = wishlist.filter((item) => item.product.id === productId);
+  const updatedWishlist = wishlist.filter((item) => item.product.id !== productId);
 
   await saveWishlist(userId, updatedWishlist);
 

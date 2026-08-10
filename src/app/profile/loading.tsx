@@ -1,4 +1,4 @@
-import ProfileLoading from '@/components/laodingSkeleton/ProfileLoading'
+import ProfileLoading from '@/components/laodingSkeletons/ProfileLoading'
 import React from 'react'
 
 const loading = () => {

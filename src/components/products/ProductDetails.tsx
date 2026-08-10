@@ -3,10 +3,11 @@ import Navbar from '@/components/navbar/Navbar';
 import Link from 'next/link';
 import React from 'react'
 import { IoIosArrowBack } from "react-icons/io";
-import { FaShoppingCart, FaStar } from "react-icons/fa";
+import { FaHeart, FaRegHeart, FaShoppingCart, FaStar } from "react-icons/fa";
 import Image from 'next/image';
 import { Product } from '@/types/product';
 import { useCart } from '@/context/CartContext';
+import { useWishlist } from '@/context/WishlistContext';
 
 interface ProductProps {
   product: Product;
@@ -14,6 +15,9 @@ interface ProductProps {
 
 function ProductDetails({product}: ProductProps) {
   const { addToCart } = useCart();
+  const {addToWishlist, wishlist} = useWishlist();
+
+  const isWishlisted = wishlist.some((item) => item.product.id === product.id);
 
   return (
     <div className='flex justify-center items-start'>
@@ -36,9 +40,16 @@ function ProductDetails({product}: ProductProps) {
           />
         </div>
         <div>
+          <div className='relative'>
+            <button 
+          className={`absolute top-0 right-2 cursor-pointer transition-all hover:scale-120 ${isWishlisted ? "text-red-500 hover:text-red-600 animate-[spin_0.2s_1]" : "text-[#72383d] hover:text-[#401b1b]"}`}
+          onClick={() => addToWishlist(product)}>
+            {isWishlisted ? <FaHeart /> : <FaRegHeart />}
+          </button>
           <p className='text-xl font-bold'>
             {product.title}
           </p>
+          </div>
           <div className='mt-2 text-2xl text-[#1c0c0c] font-bold'>
             ${(product.price).toFixed(2)}
           </div>
