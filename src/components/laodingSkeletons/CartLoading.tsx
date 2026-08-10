@@ -14,19 +14,18 @@ const CartLoading = () => {
         <div 
         key={index}
         className='flex rounded mx-5 gap-5'>
-          <div className='border border-gray-200 p-2 rounded-l bg-gray-200 flex justify-center items-center h-30 w-30'/>
+          <div className='border border-gray-200 p-2 rounded-l bg-gray-200 flex justify-center items-center min-h-30 min-w-30'/>
 
           <div 
           className='flex justify-start flex-1 items-center gap-5 ml-1 p-3 bg-gray-200 border border-gray-200 rounded-r relative'>
   
             <div className='flex flex-col gap-2 rounded'>
 
-              <div className='h-5 min-w-100 w-full bg-gray-300 rounded'/>
+              <div className='h-5 w-full bg-gray-300 rounded'/>
 
               <div className='w-fit flex justify-center items-center rounded gap-1'>
 
-                <div
-                className='rounded-l w-5 h-7 bg-gray-300'/>
+                <div className='rounded-l w-5 h-7 bg-gray-300'/>
 
                 <div className='px-2 bg-gray-300 w-5 h-7'/>
 

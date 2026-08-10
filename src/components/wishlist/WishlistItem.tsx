@@ -21,7 +21,7 @@ const WishlistItem = ({product}: WishlistItemProps) => {
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.4 }}
-    className='flex flex-col justify-between relative border border-[#9cabb4] min-h-100 shadow-sm shadow-[#9cabb4] bg-[#D2DCE6] transition ring-[#9cabb4] hover:ring-2 hover:shadow-md p-4'>
+    className='flex flex-col justify-between relative border border-[#9cabb4] min-h-100 min-w-60 shadow-sm shadow-[#9cabb4] bg-[#D2DCE6] transition ring-[#9cabb4] hover:ring-2 hover:shadow-md p-4'>
       <Link href={`/products/${product.product.id}`}>
       <Image
       width={500}

@@ -22,7 +22,7 @@ function ProductDetails({product}: ProductProps) {
   return (
     <div className='flex justify-center items-start'>
       <Navbar />
-    <main className='mx-auto relative py-10 px-5 flex justify-center items-start rounded mt-15 lg:mt-20 mb-20'>
+    <main className='mx-auto relative py-10 px-5 flex justify-center items-start rounded mt-15 lg:mt-20'>
       <Link 
       className='absolute top-0 left-2 text-xl flex justify-center items-center'
       href={"/"}><IoIosArrowBack />

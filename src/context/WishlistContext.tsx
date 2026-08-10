@@ -15,7 +15,6 @@ interface WishlistContextType {
   removeFromWishlist: (Product: Product) => Promise<void>;
   wishlist: Wishlist[];
   isLoading: boolean;
-  isWishlist: boolean;
 }
 
 interface WishlistProviderProps {
@@ -42,7 +41,6 @@ export function WishlistProvider({children}: WishlistProviderProps) {
   const [wishlist, dispatch] = useReducer(wishlistReducer, initialState);
   const [isLoading, setIsLoading] = useState(false);
   const { user }= useAuth();
-  const [isWishlist, setIsWishlist] = useState(false);
   const router = useRouter();
   
   useEffect(() => {
@@ -104,7 +102,6 @@ export function WishlistProvider({children}: WishlistProviderProps) {
     }
     
     await syncWishlist(() => addToWishlistService(user.id, product));
-    setIsWishlist(true);
   }
 
   async function removeFromWishlist(product: Product) {
@@ -113,11 +110,10 @@ export function WishlistProvider({children}: WishlistProviderProps) {
     }
 
     await syncWishlist(() => removeFromWishlistService(user.id, product.id));
-    setIsWishlist(false);
   }
 
   return (
-    <WishlistContext.Provider value={{wishlist, addToWishlist, removeFromWishlist, isLoading, isWishlist}}>
+    <WishlistContext.Provider value={{wishlist, addToWishlist, removeFromWishlist, isLoading}}>
       {children}
     </WishlistContext.Provider>
   )

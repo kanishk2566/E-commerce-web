@@ -1,7 +1,5 @@
 "use client"
 import WishlistPage from '@/components/wishlist/WishlistPage';
-// import { useAuth } from '@/context/AuthContext';
-
 import React from 'react'
 
 const Page = () => {

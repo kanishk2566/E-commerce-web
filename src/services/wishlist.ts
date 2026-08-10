@@ -2,6 +2,7 @@ import { Wishlist } from "@/types/wishlist";
 import { apiFetch } from "./api";
 import { User } from "@/types/user";
 import { Product } from "@/types/product";
+import { toast } from "react-toastify";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_USERS_API_BASE_URL;
 
@@ -33,6 +34,7 @@ export async function removeFromWishlist(userId: string, productId: number): Pro
   const updatedWishlist = wishlist.filter((item) => item.product.id !== productId);
 
   await saveWishlist(userId, updatedWishlist);
+  toast.success("Item removed from wishlist...!!");
 
   return updatedWishlist;
 } 
@@ -52,6 +54,7 @@ export async function addToWishlist(userId: string, product: Product): Promise<W
   updatedWishlist = [ ...wishlist, {product: product}];
 
   await saveWishlist(userId, updatedWishlist);
+  toast.success("Item added to wishlist...!!");
 
   return updatedWishlist;
 

@@ -4,6 +4,8 @@ import Navbar from '../navbar/Navbar'
 import ProductGrid from '../products/ProductGrid'
 import { Product } from '@/types/product'
 import SearchBar from '../navbar/Searchbar'
+import { sortProducts } from '@/services/search'
+import SortByDropdown from '../navbar/SortByDropdown'
 
 interface HomeClientProps {
   products: Product[];
@@ -13,7 +15,8 @@ const HomeClient = ({products}: HomeClientProps) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchInput, setSearchInput] = useState("");
   const [isSearchFocus, setIsSearchFocus] = useState(false);
-
+  const [sortBy, setSortBy] = useState("sort by");
+  const [sortDropdown, setSortDropdown] = useState(false);
   function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     setSearchInput(e.target.value);
   }
@@ -44,11 +47,15 @@ const HomeClient = ({products}: HomeClientProps) => {
     displayProducts = [...titleMatches, ...descriptionMatches];
   };
 
+
+  const finalProductList = sortProducts(displayProducts, sortBy);
+
   return (
     <div className="flex flex-col min-h-screen w-full">
       <Navbar setIsSearchFocus={setIsSearchFocus} isSearchFocus={isSearchFocus}>
-        <div>
+        <div className='flex justify-center items-center flex-1 w-full gap-3'>
           <SearchBar value={searchInput} onSearch={onSearch} handleSearchChange={handleSearchChange} isSearchFocus={isSearchFocus} setIsSearchFocus={setIsSearchFocus} />
+          
         </div>
       </Navbar>
       <main className="mx-auto w-full lg:p-8 p-3 mt-10 lg:mt-15 mb-20">
@@ -58,7 +65,9 @@ const HomeClient = ({products}: HomeClientProps) => {
               All Products
             </p>
 
-            <ProductGrid products={displayProducts} />
+           <SortByDropdown setSortBy={setSortBy} sortBy={sortBy} setSortDropdown={setSortDropdown} sortDropdown={sortDropdown} />
+
+            <ProductGrid products={finalProductList} />
           </>
         ) : (
           <div className="h-full w-full flex justify-center items-center">

@@ -1,6 +1,7 @@
-import { getProduct } from '@/services/products';
+import { getAllProducts, getProduct } from '@/services/products';
 import React from 'react'
-import ProductDetails from '@/components/products/ProductDetails';
+import ProductDetails from '@/components/products/productDetails/ProductDetails';
+import SuggestedProducts from '@/components/products/productDetails/SuggestedProductsGrid';
 
 interface ProductProps {
   params: Promise<{
@@ -10,10 +11,12 @@ interface ProductProps {
 async function ProductPage({params}: ProductProps) {
   const { id } = await params;
   const product = await getProduct(Number(id));
+  const allProducts = await getAllProducts();
 
   return (
-    <div className='flex justify-center items-start'>
+    <div className='flex flex-col justify-center items-start'>
     <ProductDetails product={product} />
+    <SuggestedProducts product={product} allProducts={allProducts} />
     </div>
   )
 }
