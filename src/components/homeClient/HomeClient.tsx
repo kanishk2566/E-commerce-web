@@ -58,15 +58,13 @@ const HomeClient = ({products}: HomeClientProps) => {
           
         </div>
       </Navbar>
-      <main className="mx-auto w-full lg:p-8 p-3 mt-10 lg:mt-15 mb-20">
+      <main className="mx-auto w-full lg:p-8 p-3 mt-10 lg:mt-10 mb-20 relative">
         {displayProducts.length > 0 ? (
           <>
-            <p className="text-xl mb-5 border-l-5 border-[#401b1b] pl-4 font-bold">
-              All Products
-            </p>
+          <SortByDropdown setSortBy={setSortBy} sortBy={sortBy} setSortDropdown={setSortDropdown} sortDropdown={sortDropdown} />
 
-           <SortByDropdown setSortBy={setSortBy} sortBy={sortBy} setSortDropdown={setSortDropdown} sortDropdown={sortDropdown} />
-
+            <div className="text-xl mb-5 border-[#401b1b] pl-4 font-bold w-full h-10" />
+              
             <ProductGrid products={finalProductList} />
           </>
         ) : (

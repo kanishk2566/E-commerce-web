@@ -1,6 +1,7 @@
 import { PersistedCartItem } from "@/types/cart";
 import { apiFetch } from "./api";
 import { User } from "@/types/user";
+import { toast } from "react-toastify";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_USERS_API_BASE_URL;
 
@@ -56,7 +57,8 @@ export async function addToCart(userId: string, productId: number): Promise<Pers
   }
 
   await saveCart(userId, updatedCart);
-    return updatedCart;
+  toast.success("Added to cart...!!");
+  return updatedCart;
 }
 
 export async function removeFromCart(userId: string, productId: number): Promise<PersistedCartItem[]> {
@@ -65,6 +67,7 @@ export async function removeFromCart(userId: string, productId: number): Promise
   const updatedCart = cart.filter((item) => item.productId !== productId);
   
   await saveCart(userId, updatedCart);
+  toast.success("Removed from cart...!");
 
   return updatedCart;
 }

@@ -11,7 +11,7 @@ const ProfileLoading = () => {
         
         <div className='mt-20 lg:mt-20 mb-20 flex flex-col justify-center items-center gap-5 w-full px-8'>
 
-        <div className='flex flex-col justify-center items-center w-full lg:grid grid-cols-2 gap-3 lg:w-7/12 bg-gray-200 xl:w-1/2 p-5 border rounded shadow-[0_0_20px_3px_rgba(0,0,0,0.2)]'>
+        <div className='flex flex-col justify-center items-center w-full lg:grid grid-cols-2 gap-3 lg:w-7/12 bg-gray-200 xl:w-1/2 p-5 rounded shadow-[0_0_20px_3px_rgba(0,0,0,0.2)]'>
 
         <div className='border-l-5 px-3 flex justify-start col-span-2 items-start w-fit h-7 bg-gray-300 text-gray-300'>My Profile</div>
 

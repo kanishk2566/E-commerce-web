@@ -4,7 +4,7 @@ import { Product } from '@/types/product'
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
-import { FaHeart, FaRegHeart, FaShoppingCart } from "react-icons/fa";
+import { FaHeart, FaRegHeart, FaShoppingCart, FaStar } from "react-icons/fa";
 import { motion } from 'motion/react';
 import { useWishlist } from '@/context/WishlistContext';
 
@@ -32,15 +32,22 @@ const ProductCard = ({product}: ProductCardProps) => {
       className='h-48 object-contain mx-auto'
       />
       </Link>
-      <div className='flex flex-col gap-2 mt-2 relative'>
+      <div className='flex flex-col gap-2 mt-2 relative mb-5'>
         <Link href={`/products/${product.id}`}>
         <p className='font-semibold text-[20px] line-clamp-2 hover:underline transition-all min-h-15'>
           {product.title}
         </p>
         </Link>
-        <p className='text-xl font-bold text-[#1c0c0c]'>
-          ${(product.price).toFixed(2)}
-        </p>
+          <div className='text-xl font-bold text-[#1c0c0c]'>
+            ${(product.price).toFixed(2)}
+          </div>
+        <div className='flex justify-start items-center'>
+          <div className='flex justify-center items-center gap-1'>
+            <div className='text-[#edba02]'><FaStar /></div>
+              <b className='text-[#401b1b]'>{product.rating.rate}</b>
+          </div>
+            ({product.rating.count} Reviews)
+        </div>
         <button 
         className={`absolute top-9/12 right-2 cursor-pointer transition-all hover:scale-120 ${isWishlisted ? "text-red-500 hover:text-red-600 animate-[spin_0.2s_1]" : "text-[#72383d] hover:text-[#401b1b]"}`}
         onClick={() => {addToWishlist(product)}}>

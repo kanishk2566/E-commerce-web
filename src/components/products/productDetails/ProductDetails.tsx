@@ -26,7 +26,7 @@ function ProductDetails({product}: ProductProps) {
       <Link 
       className='absolute top-0 left-2 text-xl flex justify-center items-center'
       href={"/"}><IoIosArrowBack />
-      <p className='text-sm'>Continue Shopping</p>
+      <p className='text-base font-semibold'>Continue Shopping</p>
       </Link>
       <div className='grid grid-cols-1 gap-10 md:grid-cols-2'>
         <div className='border border-[#9cabb4] py-10 rounded'>

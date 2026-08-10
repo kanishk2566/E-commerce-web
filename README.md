@@ -2,7 +2,7 @@
 
 A modern E-Commerce web application built with **Next.js**, **React**, **TypeScript**, and **Tailwind CSS**.
 
-The application allows users to browse products, authenticate, manage their shopping cart, and view price details while following clean architecture principles such as separation of concerns, service layer architecture, and Context API state management.
+The application allows users to browse products, authenticate, manage their shopping cart, manage their wishlist and view product details while following clean architecture principles such as separation of concerns, service layer architecture, and Context API state management.
 
 ---
 
@@ -27,8 +27,17 @@ The application allows users to browse products, authenticate, manage their shop
 - Cart Badge
 - Price Details
 
+### Wishlist
+- Add to wishlist
+- Remove from wishlist
+
+### Product Search
+- Search bar on homepage for product search
+- Search from product description also
+- Sort product with different sorting methods
+
 ### User Experience
-- Loading States
+- Loading Skeletons
 - Error Handling
 - Toast Notifications
 - Responsive Design
@@ -69,15 +78,15 @@ The application follows a layered architecture.
 
 ```
 Components
-      ↓
+      |
 Context
-      ↓
+      |
 Services
-      ↓
+      |
 API / JSON Server
-      ↓
+      |
 Context
-      ↓
+      |
 UI
 ```
 
@@ -92,7 +101,7 @@ UI
 
 ---
 
-### Colour pallete
+### Colour theme
 
 1. #401B1B
 2. #72383D
@@ -155,10 +164,7 @@ Through this project I gained practical experience with:
 
 ## Future Improvements
 
-- Product Search
 - Filters
-- Sorting
-- Wishlist
 - Checkout
 - Order History
 - Payment Gateway Integration

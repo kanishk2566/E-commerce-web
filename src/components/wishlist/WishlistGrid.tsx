@@ -22,7 +22,7 @@ const WishlistGrid = ({products}: WishlistGridProps) => {
         <Link className='bg-[#72383d] text-white font-bold py-2 px-4 rounded text-sm' href={"/"}>Add items</Link>
       </div>
       ) : (
-        <div className='grid grid-cols-2 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-2 gap-y-4 lg:gap-6'>
           {products.map((product) => (
             <WishlistItem key={product.product.id} product={product} />
           ))}

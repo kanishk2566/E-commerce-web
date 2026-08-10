@@ -1,6 +1,7 @@
 "use client"
 import React, { SetStateAction } from 'react'
 import { motion } from 'motion/react';
+import { FaSearch } from 'react-icons/fa';
 
 interface SearchBarProps {
   value: string,
@@ -28,8 +29,8 @@ const SearchBar = ({value, handleSearchChange, onSearch, isSearchFocus, setIsSea
       placeholder='Search Products...'
       onChange={handleSearchChange} />
 
-      <button type='submit' className='cursor-pointer bg-[#ab644b] text-white h-full rounded-r px-1 text-sm'>
-        Search
+      <button type='submit' className='cursor-pointer bg-[#ab644b] text-white h-full rounded-r px-4 text-sm'>
+        <FaSearch />
       </button>
       
     </motion.form>
