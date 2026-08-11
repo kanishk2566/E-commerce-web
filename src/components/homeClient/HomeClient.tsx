@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../navbar/Navbar'
 import ProductGrid from '../products/ProductGrid'
 import { Product } from '@/types/product'
@@ -26,6 +26,16 @@ const HomeClient = ({products}: HomeClientProps) => {
   function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     setSearchInput(e.target.value);
   }
+
+  useEffect(() => {
+  if (filterModal) {
+    document.body.style.overflow = "hidden";
+  }
+
+  return () => {
+    document.body.style.overflow = "";
+  };
+}, [filterModal]);
 
   function onSearch(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -69,14 +79,14 @@ const HomeClient = ({products}: HomeClientProps) => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen w-full">
+    <div className={`flex flex-col min-h-screen w-full`}>
       <Navbar setIsSearchFocus={setIsSearchFocus} isSearchFocus={isSearchFocus}>
         <div className='flex justify-center items-center flex-1 w-full gap-3'>
           <SearchBar value={searchInput} onSearch={onSearch} handleSearchChange={handleSearchChange} isSearchFocus={isSearchFocus} setIsSearchFocus={setIsSearchFocus} />
           
         </div>
       </Navbar>
-      <main className="mx-auto w-full lg:p-8 p-3 mt-10 lg:mt-10 mb-20 relative">
+      <main className={`mx-auto w-full lg:p-8 p-3 mt-10 lg:mt-10 mb-20 relative`}>
         {displayProducts.length > 0 ? (
           <>
             <SortByDropdown setSortBy={setSortBy} sortBy={sortBy} setSortDropdown={setSortDropdown} sortDropdown={sortDropdown} toggleFilterModal={toggleFilterModal} />

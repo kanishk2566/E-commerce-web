@@ -81,7 +81,7 @@ const EditProfile = ({toggleEditPage}: EditProfileProps) => {
 
           <FormTitle type='edit' />
 
-          <FormName name={formData.name} isLoading={isLoading} handleChange={handleChange} errors={errors.name} />
+          <FormName name={formData.name} isLoading={isLoading} handleChange={handleChange} errors={errors.name} label="Name:" placeholder='Enter name...' type='name' />
 
           <FormEmail email={formData.email} isLoading={isLoading} handleChange={handleChange} error={errors.email} />
 

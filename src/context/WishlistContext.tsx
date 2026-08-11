@@ -98,7 +98,7 @@ export function WishlistProvider({children}: WishlistProviderProps) {
           </div>
           )
         })
-      return;
+      return; 
     }
     
     await syncWishlist(() => addToWishlistService(user.id, product));

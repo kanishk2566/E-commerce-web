@@ -1,3 +1,4 @@
+import { Address } from "./address";
 import { PersistedCartItem } from "./cart";
 import { Wishlist } from "./wishlist";
 
@@ -10,6 +11,7 @@ export type User = {
   createdAt: string;
   cart: PersistedCartItem[];
   wishlist: Wishlist[];
+  address: Address[];
 }
 
 export type AuthUser = Omit<User, "password"> | null;

@@ -15,10 +15,10 @@ const SortByDropdown = ({sortBy, setSortBy, setSortDropdown, sortDropdown, toggl
     <div className='absolute min-w-50 flex-1 h-fit mb-10 z-99 flex justify-center items-top gap-3'>
       <div className='flex justify-start items-center text-[#401b1b] '>
         <div
-        className={`text-base h-fit w-50 cursor-pointer py-0.5 bg-[#f2f2eb] transition-all border rounded hover:bg-[#401b1b] hover:text-[#f2f2eb]`}
+        className={`text-base h-fit w-50 cursor-pointer py-0.5 bg-[#f2f2eb] transition-all border rounded`}
         onClick={() => setSortDropdown(!sortDropdown)}>
 
-          <div className='flex justify-between gap-2 items-center w-full px-2'>
+          <div className='flex justify-between gap-2 items-center w-full px-2 hover:opacity-80'>
             {sortBy} <LiaSortSolid />
           </div>
       
@@ -72,7 +72,7 @@ const SortByDropdown = ({sortBy, setSortBy, setSortDropdown, sortDropdown, toggl
 
       <div 
       onClick={toggleFilterModal}
-      className='text-base h-fit w-fit cursor-pointer py-1.5 bg-[#f2f2eb] transition-all border rounded px-3 hover:bg-[#401b1b] hover:text-[#f2f2eb]'>
+      className='text-base h-fit w-fit cursor-pointer py-1.5 bg-[#f2f2eb] transition-all border rounded px-3 hover:opacity-80'>
       <FaFilter />
       </div>
     </div>

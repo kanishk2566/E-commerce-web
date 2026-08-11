@@ -6,19 +6,22 @@ interface FormNameProps {
   isLoading: boolean,
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
   errors: string,
+  label: string,
+  placeholder: string,
+  type: string,
 }
 
-const FormName = ({name, isLoading, handleChange, errors}: FormNameProps) => {
+const FormName = ({name, isLoading, handleChange, errors, label, placeholder, type}: FormNameProps) => {
   
 
   return (
       <div className='flex flex-col justify-center items-start text-lg w-full'>
 
-            <label className='text-sm'>Name:</label>
+            <label className='text-sm'>{label}</label>
             <input
             className={`rounded outline-0 py-2 px-2 w-full bg-gray-300 focus:ring-2 placeholder:text-sm text-sm ${errors ? "ring-red-500" : "ring-[#401b1b]"}`}
-            name='name'
-            placeholder='Enter name...'
+            name={type}
+            placeholder={placeholder}
             value={name}
             disabled={isLoading}
             onChange={handleChange} />

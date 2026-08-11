@@ -11,7 +11,7 @@ const CategoriesFilter = ({category, setCategory, products}: CategoriesFilterPro
   const items = products.map(item => item.category);
   const categories = [...new Set(items)];
   return (
-    <div className='flex flex-col gap-2'>
+    <div className='flex flex-col gap-2 col-span-2'>
 
           <div className='font-bold text-xl'>
             Categories
