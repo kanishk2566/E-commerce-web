@@ -4,8 +4,9 @@ import Navbar from '../navbar/Navbar'
 import ProductGrid from '../products/ProductGrid'
 import { Product } from '@/types/product'
 import SearchBar from '../navbar/Searchbar'
-import { sortProducts } from '@/services/search'
-import SortByDropdown from '../navbar/SortByDropdown'
+import { filterProducts, sortProducts } from '@/services/search'
+import SortByDropdown from './SortByDropdown'
+import FilterProducts from './filterProduct/FilterProducts'
 
 interface HomeClientProps {
   products: Product[];
@@ -17,6 +18,11 @@ const HomeClient = ({products}: HomeClientProps) => {
   const [isSearchFocus, setIsSearchFocus] = useState(false);
   const [sortBy, setSortBy] = useState("sort by");
   const [sortDropdown, setSortDropdown] = useState(false);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(1000);
+  const [category, setCategory] = useState("All");
+  const [rating, setRating] = useState(0);
+  const [filterModal, setFilterModal] = useState(false);
   function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     setSearchInput(e.target.value);
   }
@@ -47,8 +53,20 @@ const HomeClient = ({products}: HomeClientProps) => {
     displayProducts = [...titleMatches, ...descriptionMatches];
   };
 
-
   const finalProductList = sortProducts(displayProducts, sortBy);
+
+  const productsss = filterProducts(finalProductList, minPrice, maxPrice, category, rating);
+
+  function toggleFilterModal() {
+    setFilterModal(!filterModal);
+  }
+
+  function resetFilter() {
+    setMaxPrice(1000);
+    setMinPrice(0);
+    setCategory("All");
+    setRating(0);
+  }
 
   return (
     <div className="flex flex-col min-h-screen w-full">
@@ -61,11 +79,14 @@ const HomeClient = ({products}: HomeClientProps) => {
       <main className="mx-auto w-full lg:p-8 p-3 mt-10 lg:mt-10 mb-20 relative">
         {displayProducts.length > 0 ? (
           <>
-          <SortByDropdown setSortBy={setSortBy} sortBy={sortBy} setSortDropdown={setSortDropdown} sortDropdown={sortDropdown} />
+            <SortByDropdown setSortBy={setSortBy} sortBy={sortBy} setSortDropdown={setSortDropdown} sortDropdown={sortDropdown} toggleFilterModal={toggleFilterModal} />
 
-            <div className="text-xl mb-5 border-[#401b1b] pl-4 font-bold w-full h-10" />
-              
-            <ProductGrid products={finalProductList} />
+            <div className="text-xl border-[#401b1b] pl-4 font-bold w-full h-10" />
+
+            <ProductGrid products={productsss} />
+
+            {filterModal && <FilterProducts minPrice={minPrice} maxPrice={maxPrice} setMinPrice={setMinPrice} setMaxPrice={setMaxPrice} products={products} category={category} setCategory={setCategory} rating={rating} setRating={setRating}  toggleFilterModal={toggleFilterModal} resetFilter={resetFilter}/>}
+
           </>
         ) : (
           <div className="h-full w-full flex justify-center items-center">

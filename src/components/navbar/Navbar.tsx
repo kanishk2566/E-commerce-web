@@ -16,7 +16,7 @@ const Navbar = ({children, setIsSearchFocus, isSearchFocus}: navbarProps) => {
   const pathname = usePathname();
 
   return (
-    <nav className='flex items-center fixed bottom-0 lg:top-0 w-full z-10 justify-between bg-[#401b1b] px-2 md:px-8 h-fit shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.5)]'>
+    <nav className='flex items-center fixed bottom-0 lg:top-0 w-full z-100 justify-between bg-[#401b1b] px-2 md:px-8 h-fit shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.5)]'>
 
         <div className='flex justify-between items-center text-xl px-5 font-bold text-[#401b1b] lg:text-[#f2f2eb] fixed top-0 left-0 lg:top-2 w-full lg:w-fit  bg-linear-to-b from-gray-300 to-transparent lg:bg-none'>
           

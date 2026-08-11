@@ -104,7 +104,7 @@
         },
         {
           "productId": 2,
-          "quantity": 4
+          "quantity": 5
         },
         {
           "productId": 7,
@@ -259,28 +259,7 @@
       "password": "12345678",
       "role": "USER",
       "createdAt": "Fri Jul 31 2026",
-      "cart": [
-        {
-          "productId": 2,
-          "quantity": 1
-        },
-        {
-          "productId": 3,
-          "quantity": 1
-        },
-        {
-          "productId": 6,
-          "quantity": 1
-        },
-        {
-          "productId": 10,
-          "quantity": 1
-        },
-        {
-          "productId": 14,
-          "quantity": 1
-        }
-      ],
+      "cart": [],
       "wishlist": [],
       "id": "hPDJdaD"
     },

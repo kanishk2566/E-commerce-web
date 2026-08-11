@@ -31,9 +31,6 @@ const WishlistPage = () => {
         
         {user ? (
           <div>
-            <p className="text-xl mb-5 border-l-5 border-[#401b1b] pl-4 font-bold">
-              Wishlist
-            </p>
             <WishlistGrid products={products} />
           </div>
         ) : (

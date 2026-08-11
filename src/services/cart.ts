@@ -55,7 +55,6 @@ export async function addToCart(userId: string, productId: number): Promise<Pers
       },
     ];
   }
-
   await saveCart(userId, updatedCart);
   toast.success("Added to cart...!!");
   return updatedCart;
