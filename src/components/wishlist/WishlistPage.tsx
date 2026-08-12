@@ -27,7 +27,7 @@ const WishlistPage = () => {
   return (
     <div>
       <Navbar />
-      <div className='mt-10 lg:p-12 p-3 mb-20'>
+      <div className='mt-10 lg:mt-15 lg:px-12 p-3 mb-20'>
         
         {user ? (
           <div>

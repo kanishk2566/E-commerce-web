@@ -1,4 +1,4 @@
-import AddressForm from '@/components/address/AddressForm'
+import AddressForm from '@/components/address/AddressPage'
 import React from 'react'
 
 const page = () => {

@@ -14,7 +14,7 @@ const WishlistGrid = ({products}: WishlistGridProps) => {
   return (
     <div>
       {wishlist.length === 0 ? (
-        <div className='flex flex-col justify-center items-center w-screen h-full pt-20 font-semibold text-2xl'>
+        <div className='flex flex-col justify-center items-center w-screen h-full font-semibold text-2xl'>
         Your Wishlist is Currently Empty!
         <div className='text-sm text-gray-500 font-normal text-center mt-3 mb-3'>
           Looks like you have not added anything to your wishlist.<br /> click on <b>Add items </b> to add items to your wishlist.

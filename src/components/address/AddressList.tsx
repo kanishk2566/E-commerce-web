@@ -20,16 +20,16 @@ const AddressList = ({handleDelete}: AddressList) => {
 
   if(user) {
     return (
-      <div className='flex flex-col justify-center items-center gap-3 border rounded px-5 py-3'>
-        <div className='text-xl font-bold w-full border-l-5 px-2'>
+      <div className='flex flex-col justify-center items-center gap-3 border rounded px-5 py-3 bg-[#401b1b]'>
+        <div className='text-xl font-bold w-full border-l-5 px-2 text-[#f2f2eb]'>
           Saved Addresses
         </div>
-        <div className=''>
+        <div>
           {user.address.length > 0 ? (
             <div className='w-full gap-2 flex flex-col'>
               {user.address.map((item, index) => (
                 <div 
-                className='border border-b-5 border-[#9cabb4] rounded py-2 px-2 min-h-20 flex flex-col gap-2'
+                className='border border-b-5 border-[#9cabb4] rounded py-2 px-2 min-h-20 flex flex-col gap-2 bg-[#f2f2eb]'
                 key={index}>
                   <div className='font-semibold flex items-center gap-2'>
                     <div className='text-[#9cabb4]'>
@@ -44,7 +44,7 @@ const AddressList = ({handleDelete}: AddressList) => {
                   </div>
 
                   <button 
-                  className='text-red-500'
+                  className='text-[#9cabb4] hover:text-red-500 transition-all cursor-pointer w-fit'
                   onClick={() => modalOpen(index)}>
                     <MdDelete />
                   </button>
