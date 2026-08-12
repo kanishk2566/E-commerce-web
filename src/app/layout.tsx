@@ -35,7 +35,7 @@ export default function RootLayout({
         <CartProvider>
           <WishlistProvider>
           {children}
-          <ToastContainer toastClassName="border border-gray-300" />
+          <ToastContainer toastClassName="border border-gray-300" position="bottom-right" />
           </WishlistProvider>
         </CartProvider>
         </AuthProvider>

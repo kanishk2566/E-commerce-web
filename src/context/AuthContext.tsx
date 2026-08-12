@@ -2,7 +2,7 @@
 "use client"
 
 import { ChangeUserPassword, EditUserProfile, loginUser, registerUser } from "@/services/auth";
-import { AuthUser, ChangePasswordData, EditData, LoginData, RegisterData } from "@/types/user"
+import {  AuthUser, ChangePasswordData, EditData, LoginData, RegisterData } from "@/types/user";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 export interface AuthContextType {
@@ -12,6 +12,7 @@ export interface AuthContextType {
   register: (data: RegisterData) => Promise<void>;
   editProfile: (userId: string, data: EditData) => Promise<void>;
   changePassword: (userId: string, data: ChangePasswordData) => Promise<void>,
+  updateUser: (updatedData: Partial<AuthUser>) => void,
   logout: () => void;
   isLoading: boolean; 
 }
@@ -95,8 +96,26 @@ export function AuthProvider({children}: {children: React.ReactNode;}) {
     }
   }
 
+  function updateUser(updatedData: Partial<AuthUser>) {
+    setUser((prev) => {
+      if (!prev) return prev;
+
+      const updatedUser = {
+        ...prev,
+        ...updatedData,
+      };
+
+      localStorage.setItem(
+        AUTH_STORAGE_KEY,
+        JSON.stringify(updatedUser)
+      );
+
+      return updatedUser;
+    });
+  }
+
   return (
-    <AuthContext.Provider value={{user, isAuthenticated, login, register, editProfile, changePassword, logout, isLoading}}>
+    <AuthContext.Provider value={{user, isAuthenticated, login, register, editProfile, updateUser, changePassword, logout, isLoading}}>
       {children}
     </AuthContext.Provider>
   )

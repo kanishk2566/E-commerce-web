@@ -13,7 +13,7 @@ const SubmitButton = ({isLoading, text, apiError}: SubmitButtonProps) => {
       <button
       type='submit'
       disabled={isLoading}
-      className={`py-1 px-3 rounded font-semibold text-white mt-2 cursor-pointer bg-[#401b1b]`}>
+      className={`py-1 px-3 rounded font-semibold text-white mt-2 cursor-pointer bg-[#401b1b] hover:bg-[#ab644b] transition-all`}>
         {text}
       </button>
     </div>

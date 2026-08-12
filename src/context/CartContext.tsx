@@ -50,6 +50,7 @@ export function CartProvider({children}: CartProviderProps) {
 
   useEffect(() => {
     async function loadCart() {
+      if(!user?.id) return;
       try {
         if(!user) {
         dispatch({

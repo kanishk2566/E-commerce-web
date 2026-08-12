@@ -44,32 +44,35 @@ export function WishlistProvider({children}: WishlistProviderProps) {
   const router = useRouter();
   
   useEffect(() => {
-    async function loadWishlist() {
-      try {
-        if(!user) {
-          dispatch({
-            type: SET_WISHLIST,
-            payload: initialState,
-          });
-          return;
-        }
+  const userId = user?.id;
+
+  if (!userId) return;
+
+  async function loadWishlist() {
+    try {
+      if(userId) {
         setIsLoading(true);
-        const updatedWishlist = await getWishlist(user.id);
+
+        const updatedWishlist = await getWishlist(userId);
+
         dispatch({
           type: SET_WISHLIST,
           payload: updatedWishlist,
         });
       }
-      catch(error){
-        toast.error(error instanceof Error ? error.message : "Something went wrong");
-      }
-      finally {
-        setIsLoading(false);
-      }
+    } catch (error) {
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : "Something went wrong"
+      );
+    } finally {
+      setIsLoading(false);
     }
+  }
 
-    loadWishlist();
-  }, [user]);
+  loadWishlist();
+}, [user?.id]);
 
   async function syncWishlist(operation: () => Promise<Wishlist[]>) {
     try {

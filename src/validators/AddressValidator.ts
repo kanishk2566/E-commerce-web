@@ -1,8 +1,8 @@
 "use client"
 
-import { Address } from "@/types/address";
+import { AddressFormData } from "@/types/address";
 
-export type AddressFormErrors = Record<keyof Address, string>;
+export type AddressFormErrors = Record<keyof AddressFormData, string>;
 
 type AddressValidatorResult = {
   isValid: boolean,
@@ -16,22 +16,24 @@ export const INITIAL_ADDRESS_FORM_ERRORS: AddressFormErrors = {
   pincode: "",
   city: "",
   state: "",
+  title: "",
 }
 
-export function validateAddressForm(formData: Address): AddressValidatorResult {
+export function validateAddressForm(formData: AddressFormData): AddressValidatorResult {
 
   const errors = { ...INITIAL_ADDRESS_FORM_ERRORS };
 
-  const labels: Record<keyof Address, string> = {
+  const labels: Record<keyof AddressFormData, string> = {
     name: "Name",
     phone: "Phone number",
     addressLine: "Address",
     city: "City",
     state: "State",
     pincode: "Pincode",
+    title: "",
   };
 
-  (Object.keys(formData) as (keyof Address)[]).forEach(
+  (Object.keys(formData) as (keyof AddressFormData)[]).forEach(
     (field) => {
       if (!formData[field].trim()) {
         errors[field] = `${labels[field]} is required`;
