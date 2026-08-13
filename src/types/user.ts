@@ -12,6 +12,7 @@ export type User = {
   cart: PersistedCartItem[];
   wishlist: Wishlist[];
   address: Address[];
+  usedCoupons: string[],
 }
 
 export type AuthUser = Omit<User, "password"> | null;

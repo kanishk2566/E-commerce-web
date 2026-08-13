@@ -81,7 +81,7 @@ const AddressPage = () => {
   }
 
   return (
-    <div className='w-full mb-20 flex flex-col gap-2'>
+    <div className='w-full flex flex-col gap-2'>
       <p className="text-xl mb-2 border-l-5 border-[#401b1b] px-3 font-bold">
         Delivery Address
       </p>

@@ -6,12 +6,14 @@ import { useCart } from '@/context/CartContext';
 import { DisplayCartItem } from '@/types/cart';
 import { Product } from '@/types/product';
 import Navbar from '../navbar/Navbar';
+import { Coupon } from '@/types/coupon';
 
 interface CheckoutPageProps {
   products: Product[];
+  coupons: Coupon[];
 }
 
-const CheckoutPage = ({products}: CheckoutPageProps) => {
+const CheckoutPage = ({products, coupons}: CheckoutPageProps) => {
   const {cart} = useCart();
   
     const displayCartItem: DisplayCartItem[] = useMemo(() => {
@@ -34,9 +36,9 @@ const CheckoutPage = ({products}: CheckoutPageProps) => {
   return (
     <div>
       <Navbar />
-      <div className='mt-15 lg:px-10 px-2 flex flex-col gap-5'>
-        <OrderSummary products={displayCartItem} />
-      <AddressPage />
+      <div className='mt-15 lg:px-10 px-2 flex flex-col gap-5 mb-20'>
+        <AddressPage />
+        <OrderSummary products={displayCartItem} coupons={coupons} />
       </div>
     </div>
   )

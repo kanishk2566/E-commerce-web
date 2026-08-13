@@ -100,11 +100,11 @@
       "createdAt": "Fri Jul 31 2026",
       "cart": [
         {
-          "productId": 2,
+          "productId": 11,
           "quantity": 1
         },
         {
-          "productId": 3,
+          "productId": 1,
           "quantity": 1
         },
         {
@@ -112,15 +112,19 @@
           "quantity": 1
         },
         {
-          "productId": 1,
-          "quantity": 2
-        },
-        {
-          "productId": 6,
-          "quantity": 2
+          "productId": 7,
+          "quantity": 1
         },
         {
           "productId": 10,
+          "quantity": 1
+        },
+        {
+          "productId": 9,
+          "quantity": 1
+        },
+        {
+          "productId": 14,
           "quantity": 1
         }
       ],
@@ -180,7 +184,11 @@
           "id": "803b2fb3-38fe-4290-b0b5-c4726e9ca7c0"
         }
       ],
-      "id": "1"
+      "id": "1",
+      "usedCoupons": [
+        "SAVE20",
+        "SAVE10"
+      ]
     },
     {
       "name": "Kanishk Patel",
@@ -242,6 +250,36 @@
       "wishlist": [],
       "address": [],
       "id": "w2_ZIPx"
+    }
+  ],
+  "coupons": [
+    {
+      "id": 1,
+      "code": "SAVE20",
+      "type": "percentage",
+      "value": 20,
+      "min": 200
+    },
+    {
+      "id": 2,
+      "code": "SAVE10",
+      "type": "percentage",
+      "value": 10,
+      "min": 150
+    },
+    {
+      "id": 3,
+      "code": "FLAT100",
+      "type": "fixed",
+      "value": 100,
+      "min": 500
+    },
+    {
+      "id": 4,
+      "code": "FLAT200",
+      "type": "fixed",
+      "value": 200,
+      "min": 800
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

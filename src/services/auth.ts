@@ -79,7 +79,7 @@ export async function ChangeUserPassword(userId: string, userData: ChangePasswor
       "Content-Type" : "application/json"
     },
     body: JSON.stringify({
-      password: password,
+      password: password
     }),
   });
   
