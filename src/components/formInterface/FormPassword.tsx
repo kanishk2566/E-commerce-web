@@ -19,10 +19,10 @@ const FormPassword = ({password, error, isLoading, handleChange, type, label }: 
                 
         <label className='text-sm'>{label}:</label>
 
-        <div className={`flex w-full rounded ${error ? "ring-red-500" : "ring-[#401b1b]"} ${passFocus ? "ring-2" : "ring-0"}`}>
+        <div className={`flex w-full rounded ring-1 ${error ? "ring-red-500" : "ring-[#9cabb4]"} ${passFocus ? "ring-2" : "ring-1"}`}>
 
           <input
-          className={`rounded-l outline-0 py-2 px-2 w-full bg-gray-300 placeholder:text-sm text-sm `}
+          className={`rounded-l outline-0 py-2 px-2 w-full bg-[#D2DCE6] placeholder:text-sm text-sm `}
           name={type}
           placeholder='Enter password...'
           onFocus={() => setPassFocus(true)}

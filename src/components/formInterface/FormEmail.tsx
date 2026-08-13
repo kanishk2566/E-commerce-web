@@ -13,7 +13,7 @@ const FormEmail = ({email, error, handleChange, isLoading}: FormEmailProps) => {
 
         <label className='text-sm'>Email:</label>
         <input
-        className={`rounded outline-0 py-2 px-2 w-full bg-gray-300 focus:ring-2 placeholder:text-sm text-sm ${error ? "ring-red-500" : "ring-[#401b1b]"}`}
+        className={`rounded outline-0 py-2 px-2 w-full bg-[#D2DCE6] ring-1 focus:ring-2 placeholder:text-sm text-sm ${error ? "ring-red-500" : "ring-[#9cabb4]"}`}
         name='email'
         placeholder='Enter email...'
         value={email}

@@ -23,7 +23,7 @@ const WishlistGrid = ({products}: WishlistGridProps) => {
       </div>
       ) : (
         <div className='min-h-screen'>
-          <p className="text-xl mb-5 border-l-5 border-[#401b1b] pl-4 font-bold">
+          <p className="text-xl mb-5 border-l-5 border-[#401b1b] px-3 font-bold">
             Wishlist
           </p>
           <div className='grid grid-cols-1 lg:grid-cols-2 gap-2 gap-y-4 lg:gap-6'>

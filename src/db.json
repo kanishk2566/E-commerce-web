@@ -113,11 +113,11 @@
         },
         {
           "productId": 1,
-          "quantity": 1
+          "quantity": 2
         },
         {
           "productId": 6,
-          "quantity": 1
+          "quantity": 2
         },
         {
           "productId": 10,
@@ -171,33 +171,13 @@
       "address": [
         {
           "name": "Admin",
-          "addressLine": "123, The High Empire State, Near Golden Brown Circle, Main Stream Road",
-          "phone": "1212121212",
-          "city": "Mumbai",
-          "state": "Maharashtra",
+          "addressLine": "this is my working address",
+          "phone": "1212212211",
+          "city": "my city",
+          "state": "my state",
           "pincode": "121212",
           "title": "Work",
-          "id": "282c3dfb-839f-4a43-be2b-96751836deee"
-        },
-        {
-          "name": "admin",
-          "addressLine": "123, The High Empire State, Near Golden Brown Circle",
-          "phone": "1212121212",
-          "city": "Mumbai",
-          "state": "Maharashtra",
-          "pincode": "121212",
-          "title": "Home",
-          "id": "cf07c537-f780-4b99-a277-a9eb50a2910e"
-        },
-        {
-          "name": "Admin",
-          "addressLine": "123, The High Empire State, Near Golden Brown Circle, Main Stream Road",
-          "phone": "1212212211",
-          "city": "Mumbai",
-          "state": "Maharastra",
-          "pincode": "121212",
-          "title": "Friend's",
-          "id": "12f5e2e9-d85a-45ce-879c-22f05804a58f"
+          "id": "803b2fb3-38fe-4290-b0b5-c4726e9ca7c0"
         }
       ],
       "id": "1"

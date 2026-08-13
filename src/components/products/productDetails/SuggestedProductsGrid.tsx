@@ -13,7 +13,7 @@ const SuggestedProducts = ({product, allProducts}: SuggestedProductsProps) => {
 
   return (
     <div className='p-8'>
-      <p className="text-xl mb-5 border-l-5 border-[#401b1b] pl-4 font-bold">
+      <p className="text-xl mb-5 border-l-5 border-[#401b1b] px-3 font-bold">
         You may also like
       </p>
       <div className='grid grid-cols-2 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>

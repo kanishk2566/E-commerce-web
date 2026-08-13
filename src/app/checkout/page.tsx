@@ -1,12 +1,11 @@
-import OrderSummary from '@/components/checkout/orderSummary/OrderSummery'
+import CheckoutPage from '@/components/checkout/CheckoutPage'
 import { getAllProducts } from '@/services/products'
 import React from 'react'
 
 const page = async () => {
   const products = await getAllProducts();
-
   return (
-    <OrderSummary products={products} />
+    <CheckoutPage products={products} />
   )
 }
 

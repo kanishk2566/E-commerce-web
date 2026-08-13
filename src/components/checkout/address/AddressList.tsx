@@ -21,7 +21,7 @@ const AddressList = ({handleDelete}: AddressList) => {
   if(user) {
     return (
       <div className='flex flex-col justify-center items-center gap-3 border rounded px-5 py-3 bg-[#401b1b]'>
-        <div className='text-xl font-bold w-full border-l-5 px-2 text-[#f2f2eb]'>
+        <div className='text-xl font-bold w-full border-l-5 px-3 text-[#f2f2eb]'>
           Saved Addresses
         </div>
         <div>
@@ -53,7 +53,7 @@ const AddressList = ({handleDelete}: AddressList) => {
                     <div className='flex border rounded w-fit'>
                       <button
                       className='px-1 border hover:bg-red-200 transition-all cursor-pointer'
-                      onClick={() => handleDelete(item.id)}>
+                      onClick={() => {handleDelete(item.id); setDeleteModal(null)}}>
                         Delete
                       </button>
                       <button
@@ -67,7 +67,7 @@ const AddressList = ({handleDelete}: AddressList) => {
               ))}
             </div>
           ) : (
-            <div className='font-bold'>
+            <div className='font-bold text-[#f2f2eb]'>
               You have not saved any addresses...!!
             </div>
           )}

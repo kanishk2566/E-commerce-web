@@ -1,8 +1,8 @@
 import React, { ChangeEvent, SetStateAction, SyntheticEvent } from 'react'
-import FormName from '../formInterface/FormName'
+import FormName from '../../formInterface/FormName'
 import { AddressFormData } from '@/types/address'
 import { AddressFormErrors } from '@/validators/AddressValidator'
-import SubmitButton from '../formInterface/SubmitButton'
+import SubmitButton from '../../formInterface/SubmitButton'
 
 interface AddressFormProps {
   handleSubmit: (e: SyntheticEvent<HTMLFormElement>) => void,
@@ -20,7 +20,7 @@ const AddressForm = ({handleSubmit, addressData, isLoading, handleChange, errors
     onSubmit={handleSubmit}
     className='lg:grid grid-cols-6 gap-5 border border-[#9cabb4] p-5 rounded h-fit'>
 
-      <div className='text-xl font-bold w-full border-l-5 px-2 col-span-6'>
+      <div className='text-xl font-bold w-full border-l-5 px-3 col-span-6'>
         Enter Your Address
       </div>
 

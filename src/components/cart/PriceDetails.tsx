@@ -87,7 +87,7 @@ const PriceDetails = ({items}: PriceDetailsProps) => {
         </div>
 
         <Link
-        href={"/address"}
+        href={"/checkout"}
         className='w-full rounded-full py-2 text-lg font-semibold bg-[#72383d] text-center cursor-pointer hover:bg-[#401b1b] text-white transition-all'>
           Place Order
         </Link>
