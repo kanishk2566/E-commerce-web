@@ -20,7 +20,7 @@ const AddressList = ({handleDelete}: AddressList) => {
 
   if(user) {
     return (
-      <div className='flex flex-col justify-center items-center gap-3 border rounded px-5 py-3 bg-[#401b1b]'>
+      <div className='flex flex-col justify-center items-center gap-3 border rounded px-5 py-3 bg-[#401b1b] '>
         <div className='text-xl font-bold w-full border-l-5 px-3 text-[#f2f2eb]'>
           Saved Addresses
         </div>
@@ -29,7 +29,7 @@ const AddressList = ({handleDelete}: AddressList) => {
             <div className='w-full gap-2 flex flex-col'>
               {user.address.map((item, index) => (
                 <div 
-                className='border border-b-5 border-[#9cabb4] rounded py-2 px-2 min-h-20 flex flex-col gap-2 bg-[#f2f2eb]'
+                className='border-2 border-b-5 border-[#9cabb4] rounded py-2 px-2 min-h-20 flex flex-col gap-2 bg-[#f2f2eb]'
                 key={index}>
                   <div className='font-semibold flex items-center gap-2'>
                     <div className='text-[#9cabb4]'>

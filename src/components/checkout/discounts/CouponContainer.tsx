@@ -1,12 +1,13 @@
 "use client"
 import { useAuth } from '@/context/AuthContext';
-import { applyCoupon } from '@/services/coupons';
+import { applyCoupon } from '@/services/checkout';
 import { Coupon } from '@/types/coupon'
 import React, { SetStateAction, useState } from 'react'
 import DiscountCoupons from './DiscountCoupons';
 import { FaCircleCheck } from 'react-icons/fa6';
 import { IoMdCloseCircle } from 'react-icons/io';
 import { toast } from 'react-toastify';
+import { RiDiscountPercentFill } from 'react-icons/ri';
 
 interface DiscountCouponsProps {
   coupons: Coupon[];
@@ -25,16 +26,19 @@ const CouponContainer = ({coupons, amount, setDiscount}: DiscountCouponsProps) =
 
   async function handleApply(code: string, amount: number) {
     const result = await applyCoupon(code, amount);
-    setApplied(true);
-    setDiscount(result);
-    setCouponAccordion(false);
-    setCouponCode(code);
+    if(result > 0) {
+      setApplied(true);
+      setDiscount(result);
+      setCouponAccordion(false);
+      setCouponCode(code);
+    }
   }
 
   function handleRemove() {
     toast.success("Coupon removed");
     setApplied(false);
     setCouponCode("");
+    setDiscount(0);
   }
 
   return (
@@ -84,9 +88,9 @@ const CouponContainer = ({coupons, amount, setDiscount}: DiscountCouponsProps) =
               </div>
             
               <button 
-              className='bg-[#401b1b] text-[#f2f2eb] font-bold px-2 py-1 rounded-full hover:bg-[#ab644d] transition-all'
+              className='bg-[#401b1b] text-[#f2f2eb] font-bold px-2 py-1 rounded-full hover:bg-[#ab644d] transition-all flex items-center gap-1'
               onClick={() => setCouponAccordion(!couponAccordion)}>
-                Available Coupons
+                Available Coupons  <RiDiscountPercentFill />
               </button>
 
             </div>

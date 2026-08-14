@@ -4,16 +4,17 @@ import { DisplayCartItem } from '@/types/cart';
 import React from 'react'
 
 
-interface FinalSummeryProps {
+interface FinalSummaryProps {
   products: DisplayCartItem[],
   discount: number,
+  charges: number,
 }
 
-const FinalSummery = ({products, discount}: FinalSummeryProps) => {
+const FinalSummary = ({products, discount, charges}: FinalSummaryProps) => {
   const {totalItem} = useCart();
   const totalPrice = products.reduce((total, item) => total + (item.product.price * item.quantity), 0);
 
-  const finalTotal = totalPrice - discount;
+  const finalTotal = totalPrice + charges - discount;
 
   return (
     <div className='flex flex-col justify-center items-center gap-5'>
@@ -30,21 +31,21 @@ const FinalSummery = ({products, discount}: FinalSummeryProps) => {
             </tr>
 
             <tr>
+              <td className='lg:px-6 py-1 font-medium'>Delivery fees</td>
+              <td className='lg:pl-6 py-1 font-medium'>-</td>
+              <td className={`lg:px-6 py-1 font-bold`}>+${charges}</td>
+            </tr>
+
+            <tr>
               <td className='lg:px-6 py-1 font-medium'>Discount</td>
               <td className='lg:pl-6 py-1 font-medium'>-</td>
               <td className='lg:px-6 py-1 font-bold text-green-600'>-${discount}</td>
             </tr>
 
             <tr>
-              <td className='lg:px-6 py-1 font-medium'>Delivery fees</td>
-              <td className='lg:pl-6 py-1 font-medium'>-</td>
-              <td className={`lg:px-6 py-1 ${totalPrice > 100 ? "text-green-600" : "font-bold"}`}>{totalPrice > 100 ? "Delivery Free" : "$20"}</td>
-            </tr>
-
-            <tr>
               <td className='lg:px-6 py-1 font-medium border-t'>Total Items</td>
               <td className='lg:pl-6 py-1 font-medium border-t'>-</td>
-              <td className='lg:px-6 py-1 font-bold border-t'>${totalItem}</td>
+              <td className='lg:px-6 py-1 font-bold border-t'>{totalItem}</td>
             </tr>            
 
             <tr>
@@ -62,4 +63,4 @@ const FinalSummery = ({products, discount}: FinalSummeryProps) => {
   )
 }
 
-export default FinalSummery
+export default FinalSummary

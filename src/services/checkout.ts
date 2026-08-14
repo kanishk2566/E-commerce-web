@@ -26,7 +26,7 @@ export async function applyCoupon(
   );
 
   if (!coupon) {
-    toast.warn("Invalid coupon code");
+    toast.error("Invalid coupon code");
     return 0;
   }
 
@@ -43,11 +43,6 @@ export async function applyCoupon(
   toast.success("Coupon applied");
 
   return discount;
-}
-
-export async function removeCoupon() {
-  await applyCoupon("", 0);
-  toast.success("Coupon removed");
 }
 
 export async function markCouponUsed(userId: string, code: string) {
@@ -85,6 +80,12 @@ export async function markCouponUsed(userId: string, code: string) {
       }),
     }
   );
+}
 
+export function setDeliveryMethod(method: string): number {
+  if(method === "express") {
+    return 99;
+  }
+  return 0; 
 }
 

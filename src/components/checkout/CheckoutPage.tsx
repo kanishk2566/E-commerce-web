@@ -1,12 +1,12 @@
 "use client"
 import React, { useMemo } from 'react'
 import AddressPage from './address/AddressPage'
-import OrderSummary from './orderSummary/OrderSummery'
 import { useCart } from '@/context/CartContext';
 import { DisplayCartItem } from '@/types/cart';
 import { Product } from '@/types/product';
 import Navbar from '../navbar/Navbar';
 import { Coupon } from '@/types/coupon';
+import ProductSummary from './productSummary/ProductSummary';
 
 interface CheckoutPageProps {
   products: Product[];
@@ -33,12 +33,13 @@ const CheckoutPage = ({products, coupons}: CheckoutPageProps) => {
         }];
       });
     }, [cart, products]);
+    
   return (
     <div>
       <Navbar />
       <div className='mt-15 lg:px-10 px-2 flex flex-col gap-5 mb-20'>
         <AddressPage />
-        <OrderSummary products={displayCartItem} coupons={coupons} />
+        <ProductSummary products={displayCartItem} coupons={coupons} />
       </div>
     </div>
   )

@@ -87,7 +87,7 @@ const AddressPage = () => {
       </p>
 
       <div className='lg:flex-row flex flex-col justify-center gap-5'>
-        <div className='lg:w-1/3'>
+        <div className='lg:w-1/3 max-h-100 overflow-auto scrollbar-thin scrollbar-thumb-[#401b1b] scrollbar-track-[#f2f2eb]'>
           <AddressList handleDelete={handleDelete} />
         </div>
         

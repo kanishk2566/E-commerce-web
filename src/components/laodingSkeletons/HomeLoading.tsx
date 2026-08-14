@@ -5,6 +5,7 @@ const HomeLoading = () => {
     <div>
       <div>
       <div className="mx-auto w-full lg:p-8 p-3 mt-10 lg:mt-15 mb-20 animate-pulse">
+        <div className='h-100 w-full bg-gray-200 mb-10' />
         <div className="mb-5 bg-gray-200 h-7 w-30" />
         
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

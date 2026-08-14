@@ -13,12 +13,16 @@ interface DiscountCouponsProps {
 }
 
 const DiscountCoupons = ({coupons, amount, handleApply, couponAccordion}: DiscountCouponsProps) => {
+  const nonapplicable = coupons.filter((item) => item.min > amount);
+  const applicable = coupons.filter((item) => item.min < amount);
+
+  const allCoupons = [...applicable, ...nonapplicable];
 
   return (
-    <div className={`grid lg:grid-cols-3 gap-3 transition-all ease-in-out duration-600 overflow-auto ${couponAccordion ? "max-h-500 mt-5 max-w-full" : "max-h-0 max-w-0"}`}>
-      {coupons.map((item) => (
+    <div className={`grid lg:grid-cols-3 gap-3 transition-all ease-in-out duration-600 overflow-auto ${couponAccordion ? "max-h-500 mt-5" : "max-h-0"}`}>
+      {allCoupons.map((item) => (
       <div
-      className='bg-white border rounded px-4 py-2 w-fit flex flex-col justify-between gap-2 max-w-60'
+      className={`bg-white border rounded px-4 py-2 w-fit flex flex-col justify-between gap-2 max-w-60 ${item.min > amount && "opacity-70"} `}
       key={item.id}>
 
         <div className='font-mono font-extrabold text-xl flex gap-2'>
@@ -37,11 +41,11 @@ const DiscountCoupons = ({coupons, amount, handleApply, couponAccordion}: Discou
           Get <b>{item.type === "fixed" && "$"}{item.value}{item.type === "percentage" && "%"} OFF</b> on orders more than ${item.min}
         </div>
         <div className='text-xs text-red-600'>
-          {item.min > amount && <p>add items worth {(item.min - amount).toFixed(2)} to apply this coupon</p>}
+          {item.min > amount && <p>Add items worth {(item.min - amount).toFixed(2)} to apply this coupon</p>}
         </div>
         <button
         disabled={item.min > amount}
-        className='bg-[#401b1b] text-[#f2f2eb] text-sm py-0.5 px-2 rounded hover:bg-[#ab644b] transition-all cursor-pointer disabled:cursor-not-allowed disabled:bg-[#401b1b]/60'
+        className='bg-[#401b1b] text-[#f2f2eb] text-sm py-0.5 px-2 rounded hover:bg-[#ab644b] transition-all cursor-pointer disabled:bg-[#401b1b]/60'
         onClick={() => handleApply(item.code, amount)}>
           Apply
         </button>

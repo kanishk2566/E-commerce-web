@@ -7,6 +7,7 @@ import SearchBar from '../navbar/Searchbar'
 import { filterProducts, sortProducts } from '@/services/search'
 import SortByDropdown from './SortByDropdown'
 import FilterProducts from './filterProduct/FilterProducts'
+import Hero from './HeroImage'
 
 interface HomeClientProps {
   products: Product[];
@@ -86,6 +87,9 @@ const HomeClient = ({products}: HomeClientProps) => {
           
         </div>
       </Navbar>
+      <div className=''>
+        <Hero setCategory={setCategory}/>
+      </div>
       <main className={`mx-auto w-full lg:p-8 p-3 mt-10 lg:mt-10 mb-20 relative`}>
         {displayProducts.length > 0 ? (
           <>

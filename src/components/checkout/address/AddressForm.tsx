@@ -21,7 +21,7 @@ const AddressForm = ({handleSubmit, addressData, isLoading, handleChange, errors
     className='lg:grid grid-cols-6 gap-5 border border-[#9cabb4] p-5 rounded h-fit'>
 
       <div className='text-xl font-bold w-full border-l-5 px-3 col-span-6'>
-        Enter Your Address
+        Save New Address
       </div>
 
       <div className='col-span-3'>

@@ -100,31 +100,15 @@
       "createdAt": "Fri Jul 31 2026",
       "cart": [
         {
-          "productId": 11,
-          "quantity": 1
-        },
-        {
-          "productId": 1,
-          "quantity": 1
-        },
-        {
           "productId": 4,
-          "quantity": 1
-        },
-        {
-          "productId": 7,
-          "quantity": 1
-        },
-        {
-          "productId": 10,
-          "quantity": 1
+          "quantity": 2
         },
         {
           "productId": 9,
-          "quantity": 1
+          "quantity": 3
         },
         {
-          "productId": 14,
+          "productId": 6,
           "quantity": 1
         }
       ],
@@ -182,6 +166,56 @@
           "pincode": "121212",
           "title": "Work",
           "id": "803b2fb3-38fe-4290-b0b5-c4726e9ca7c0"
+        },
+        {
+          "name": "Admin",
+          "addressLine": "this is my current and permenent address",
+          "phone": "1212121222",
+          "city": "my city",
+          "state": "my state",
+          "pincode": "121212",
+          "title": "Home",
+          "id": "40391527-7faf-449f-b5c5-712880b41d7d"
+        },
+        {
+          "name": "Admin",
+          "addressLine": "this is my current and permenent address",
+          "phone": "1212121222",
+          "city": "my city",
+          "state": "my state",
+          "pincode": "121212",
+          "title": "Home",
+          "id": "60f512ee-99ce-4d94-851e-bd262e9c3019"
+        },
+        {
+          "name": "Admin",
+          "addressLine": "this is my current and permenent address",
+          "phone": "1212121222",
+          "city": "my city",
+          "state": "my state",
+          "pincode": "121212",
+          "title": "Home",
+          "id": "064f5c53-6585-4bf9-82de-2a78f19658b7"
+        },
+        {
+          "name": "Admin",
+          "addressLine": "this is my current and permenent address",
+          "phone": "1212121222",
+          "city": "my city",
+          "state": "my state",
+          "pincode": "121212",
+          "title": "Home",
+          "id": "257fc98c-a5ed-4b86-af84-5ab5b6e0f60d"
+        },
+        {
+          "name": "Admin",
+          "addressLine": "this is my current and permenent address",
+          "phone": "1212121222",
+          "city": "my city",
+          "state": "my state",
+          "pincode": "121212",
+          "title": "Home",
+          "id": "2d096351-f211-4084-9674-7463ae5e0172"
         }
       ],
       "id": "1",
