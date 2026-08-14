@@ -9,4 +9,4 @@ export interface Address {
   title: string,
 }
 
-export type AddressFormData = Omit<Address, "id">;;
+export type AddressFormData = Omit<Address, "id">;

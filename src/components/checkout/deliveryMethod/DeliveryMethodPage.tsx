@@ -17,7 +17,7 @@ const DeliveryMethodPage = ({handleChange, selectedMethod}: DeliveryMethodPagePr
 
       <div className={`${selectedMethod === "express" ? "ring-2 ring-[#401b1b]" : "ring ring-[#9cabb4]"} rounded p-2 flex justify-between items-center`}>
         <div>
-          <div className='flex gap-3 text-xl font-semibold'>
+          <div className='flex gap-3 text-xl font-semibold accent-[#401b1b]'>
             <input
             type='radio'
             onChange={handleChange}
@@ -39,7 +39,7 @@ const DeliveryMethodPage = ({handleChange, selectedMethod}: DeliveryMethodPagePr
 
       <div className={`${selectedMethod === "normal" ? "ring-2 ring-[#401b1b]" : "ring ring-[#9cabb4]"} rounded p-2 flex justify-between items-center`}>
         <div>
-          <div className='flex gap-3 text-xl font-semibold'>
+          <div className='flex gap-3 text-xl font-semibold accent-[#401b1b]'>
             <input
             type='radio'
             onChange={handleChange}

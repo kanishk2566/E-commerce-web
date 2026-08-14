@@ -55,8 +55,8 @@ const CouponContainer = ({coupons, amount, setDiscount}: DiscountCouponsProps) =
                 Coupon Applied 
                 <span className='text-green-600 text-lg'><FaCircleCheck /></span>
               </div>
-              <div className='font-mono font-extrabold text-xl bg-[#d2dce6] px-2'>
-                {couponCode}
+              <div className='font-mono font-extrabold text-xl bg-[#d2dce6] px-2 flex justify-center items-center gap-2'>
+                {couponCode} <RiDiscountPercentFill />
               </div>
             </div>
           <button 
@@ -81,14 +81,14 @@ const CouponContainer = ({coupons, amount, setDiscount}: DiscountCouponsProps) =
                 />
 
                 <button 
-                className='bg-[#401b1b] py-1 text-[#f2f2eb] px-2 rounded-r hover:bg-[#ab644d] transition-all'
+                className='bg-[#72383D] py-1 text-[#f2f2eb] px-2 rounded-r hover:bg-[#401b1b] transition-all'
                 onClick={() => handleApply(couponCode, amount)}> 
                   Apply
                 </button>
               </div>
             
               <button 
-              className='bg-[#401b1b] text-[#f2f2eb] font-bold px-2 py-1 rounded-full hover:bg-[#ab644d] transition-all flex items-center gap-1'
+              className='bg-[#72383D] text-[#f2f2eb] font-bold px-2 py-1 rounded-full hover:bg-[#401b1b] transition-all flex items-center gap-1'
               onClick={() => setCouponAccordion(!couponAccordion)}>
                 Available Coupons  <RiDiscountPercentFill />
               </button>
@@ -97,7 +97,6 @@ const CouponContainer = ({coupons, amount, setDiscount}: DiscountCouponsProps) =
             <DiscountCoupons couponAccordion={couponAccordion} coupons={coupons} handleApply={handleApply} amount={amount} setDiscount={setDiscount} />
           </div>
         )}
-
         
       </div>
     

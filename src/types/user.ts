@@ -1,4 +1,4 @@
-import { Address } from "./address";
+import { Address } from "./order";
 import { PersistedCartItem } from "./cart";
 import { Wishlist } from "./wishlist";
 

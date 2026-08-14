@@ -45,7 +45,7 @@ const DiscountCoupons = ({coupons, amount, handleApply, couponAccordion}: Discou
         </div>
         <button
         disabled={item.min > amount}
-        className='bg-[#401b1b] text-[#f2f2eb] text-sm py-0.5 px-2 rounded hover:bg-[#ab644b] transition-all cursor-pointer disabled:bg-[#401b1b]/60'
+        className='bg-[#401b1b] text-[#f2f2eb] text-sm py-1 px-2 rounded hover:bg-[#ab644b] transition-all cursor-pointer disabled:bg-[#401b1b]/60'
         onClick={() => handleApply(item.code, amount)}>
           Apply
         </button>

@@ -90,9 +90,12 @@ const HomeClient = ({products}: HomeClientProps) => {
       <div className=''>
         <Hero setCategory={setCategory}/>
       </div>
-      <main className={`mx-auto w-full lg:p-8 p-3 mt-10 lg:mt-10 mb-20 relative`}>
+      <main className={`mx-auto w-full lg:p-8 p-3 mb-20 relative`}>
         {displayProducts.length > 0 ? (
           <>
+          <p className="text-xl mb-2 border-l-5 border-[#401b1b] px-3 font-bold">
+            All Products
+          </p>
             <SortByDropdown setSortBy={setSortBy} sortBy={sortBy} setSortDropdown={setSortDropdown} sortDropdown={sortDropdown} toggleFilterModal={toggleFilterModal} />
 
             <div className="text-xl border-[#401b1b] pl-4 font-bold w-full h-10" />

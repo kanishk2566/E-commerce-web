@@ -7,6 +7,7 @@ import { Product } from '@/types/product';
 import Navbar from '../navbar/Navbar';
 import { Coupon } from '@/types/coupon';
 import ProductSummary from './productSummary/ProductSummary';
+import PaymentMethodCard from './paymentMethod/PaymentMethodCard';
 
 interface CheckoutPageProps {
   products: Product[];
@@ -40,6 +41,7 @@ const CheckoutPage = ({products, coupons}: CheckoutPageProps) => {
       <div className='mt-15 lg:px-10 px-2 flex flex-col gap-5 mb-20'>
         <AddressPage />
         <ProductSummary products={displayCartItem} coupons={coupons} />
+        <PaymentMethodCard />
       </div>
     </div>
   )

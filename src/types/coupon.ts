@@ -1,3 +1,4 @@
+
 export type Coupon = {
   id: number,
   code: string,

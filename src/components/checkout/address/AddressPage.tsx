@@ -2,10 +2,11 @@
 import { useAuth } from '@/context/AuthContext'
 import React, { useState } from 'react'
 import { AddressFormErrors, validateAddressForm } from '@/validators/AddressValidator';
-import { AddressFormData } from '@/types/address';
+
 import { deleteAddress, saveAddress } from '@/services/address';
 import AddressList from './AddressList';
 import AddressForm from './AddressForm';
+import { AddressFormData } from '@/types/address';
 
 const AddressPage = () => {
   const { user, isLoading, updateUser } = useAuth();
@@ -28,7 +29,7 @@ const AddressPage = () => {
     title: "",
   });
   const [apiError, setApiError] = useState("");
-
+  const [newAddress, setNewAddress] = useState(false);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setAddressData((prev) => ({
@@ -86,12 +87,15 @@ const AddressPage = () => {
         Delivery Address
       </p>
 
-      <div className='lg:flex-row flex flex-col justify-center gap-5'>
-        <div className='lg:w-1/3 max-h-100 overflow-auto scrollbar-thin scrollbar-thumb-[#401b1b] scrollbar-track-[#f2f2eb]'>
-          <AddressList handleDelete={handleDelete} />
+      <div className={`xl:flex justify-center gap-5 h-fit`}>
+        <div className={`max-h-100 h-fit overflow-auto scrollbar-thin scrollbar-thumb-[#9cabb4] rounded scrollbar-track-[#f2f2eb] transition-all duration-300 ${newAddress ? "lg:w-1/3" : "w-full"}`}>
+          <AddressList handleDelete={handleDelete} setNewAddress={setNewAddress} newAddress={newAddress} />
         </div>
         
-        <AddressForm handleChange={handleChange} handleSubmit={handleSubmit} errors={errors} addressData={addressData} isLoading={isLoading} setAddressData={setAddressData} apiError={apiError} />
+          <div className={`${newAddress ? "max-w-600" : "max-w-0 max-h-0"} overflow-auto transition-all ease-in-out duration-300`}>
+            <AddressForm handleChange={handleChange} handleSubmit={handleSubmit} errors={errors} addressData={addressData} isLoading={isLoading} setAddressData={setAddressData} apiError={apiError} />
+          </div>
+          
       </div>
     </div>
   )
