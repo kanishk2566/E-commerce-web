@@ -19,37 +19,39 @@ const CardPaymentMethod = () => {
     });
     
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-        setCardDetails((prev) => ({
-          ...prev,
-          [e.target.name]: e.target.value,
-        }));
+      setCardDetails((prev) => ({
+        ...prev,
+        [e.target.name]: e.target.value,
+      }));
+  
+      setErrors((prev) => ({
+        ...prev,
+        [e.target.name]: "",
+      }));
+    }
 
-        let value = e.target.value.replace(/\D/g, "");
-        
-        if (value.length > 2) {
-          value = `${value.slice(0, 2)}/${value.slice(2, 4)}`;
-        }
-        
-        setCardDetails((prev) => ({
-          ...prev,
-          expiry: value,
-        }));
-    
-        setErrors((prev) => ({
-          ...prev,
-          [e.target.name]: "",
-        }));
+    function handleExpiry(e: React.ChangeEvent<HTMLInputElement>) {
+      let value = e.target.value.replace(/\D/g, "");
+      
+      if (value.length > 2) {
+        value = `${value.slice(0, 2)}/${value.slice(2, 4)}`;
       }
+      
+      setCardDetails((prev) => ({
+        ...prev,
+        expiry: value,
+      }));
+    }
     
-      function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
-        e.preventDefault();
-    
-        const result = validateCardDetails(cardDetails);
-        setErrors(result.errors);
-    
-        if(!result.isValid) return;
-        toast.success("Card details verified");
-      }
+    function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
+      e.preventDefault();
+  
+      const result = validateCardDetails(cardDetails);
+      setErrors(result.errors);
+  
+      if(!result.isValid) return;
+      toast.success("Card details verified");
+    }
 
   return (
     <div className='flex flex-col gap-1 py-1'>
@@ -79,7 +81,7 @@ const CardPaymentMethod = () => {
           <label>Expiry Date</label>
           <input
           name='expiry'
-          onChange={handleChange}
+          onChange={handleExpiry}
           value={cardDetails.expiry}
           placeholder='MM/YY'
           className='border rounded border-[#9cabb4] w-1/3 px-2'

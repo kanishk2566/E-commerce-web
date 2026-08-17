@@ -7,7 +7,6 @@ export interface Order {
   items: DisplayCartItem[],
   address: Address,
   deliveryMethod: "express" | "normal",
-  paymentMethod: "upi" | "card" | "cod",
   paymentStatus: "pending" | "paid" | "failed",
   subtotal: number,
   deliveryFees: number,

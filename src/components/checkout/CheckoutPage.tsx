@@ -48,16 +48,24 @@ const CheckoutPage = ({products, coupons}: CheckoutPageProps) => {
   const subtotal = displayCartItem.reduce((total, item) => total + (item.product.price * item.quantity), 0);
   const total = subtotal + charges - discount;
 
-  
-    
+  const address = user?.address.filter((item) => item.id === addressId);
+  if(address === undefined) return;
+
   return (
     <div>
       <Navbar />
       <div className='mt-15 lg:px-10 px-2 flex flex-col gap-5 mb-20'>
+
         <AddressPage setAddress={setAddressId} address={addressId} />
+
         <ProductSummary products={displayCartItem} coupons={coupons} discount={discount} setDiscount={setDiscount} charges={charges} setCharges={setCharges} totalPrice={subtotal} finalPrice={total} selectedMethod={deliveryMethod} setSelectedMethod={setDeliveryMethod}/>
+
         <PaymentMethodCard paymentMethod={paymentMethod} setPaymentMethod={setPaymentmethod} />
-        <OrderSummeryPage products={displayCartItem} discount={discount} charges={charges} />
+
+        <div>
+          <OrderSummeryPage products={displayCartItem} discount={discount} charges={charges} address={address[0]} deliveryMethod={deliveryMethod} />
+        </div>
+
       </div>
     </div>
   )

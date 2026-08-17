@@ -43,7 +43,7 @@ export function validateAddressForm(formData: AddressFormData): AddressValidator
 
   if (formData.phone && !/^\d+$/.test(formData.phone)) {
   errors.phone = "Phone number must contain numbers only";
-  } else if(formData.phone.length < 10) {
+  } else if(formData.phone.length !== 10) {
     errors.phone = "Phone number must be 10 digits";
   }
 
