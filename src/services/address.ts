@@ -1,7 +1,7 @@
 import { User } from "@/types/user";
 import { apiFetch } from "./api";
 import { toast } from "react-toastify";
-import { Address, AddressFormData } from "@/types/order";
+import { Address, AddressFormData } from "@/types/address";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_USERS_API_BASE_URL;
 

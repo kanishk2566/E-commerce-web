@@ -1,14 +1,19 @@
+"use client"
 import Image from 'next/image';
-import React, { useState } from 'react'
+import React, { SetStateAction } from 'react'
 import { CiCreditCard1 } from 'react-icons/ci';
 import { TbCash } from 'react-icons/tb';
 import UPIPaymentMethod from './UpiPaymentMethod';
 import CardPaymentMethod from './CardPaymentMethod';
 import CODPaymentMethod from './CODPaymentMethod';
+import { paymentMethod } from '@/types/payment';
 
+interface PaymentMethodCardProps {
+  paymentMethod: paymentMethod,
+  setPaymentMethod: React.Dispatch<SetStateAction<paymentMethod>>,
+}
 
-const PaymentMethodCard = () => {
-  const [paymentMethod, setPaymentmethod] = useState<"card" | "upi" | "cod" | null>(null);
+const PaymentMethodCard = ({paymentMethod, setPaymentMethod}: PaymentMethodCardProps) => {
 
   return (
     <div className='py-2'>
@@ -18,15 +23,17 @@ const PaymentMethodCard = () => {
 
       <div className='border py-4 px-5 rounded border-[#9cabb4] flex flex-col xl:flex-row justify-between items-center gap-2 h-full'>
 
-        <div className={`flex flex-col gap-3 text-xl font-semibold h-full ${paymentMethod !== null ? "w-1/2" : "w-full"}`}>
+        <div className={`flex flex-col gap-3 text-xl font-semibold h-full ${paymentMethod !== null ? "xl:w-1/2 w-full" : "w-full"}`}>
 
-          <div className='flex justify-start items-center gap-3 border py-1 px-3 rounded border-[#9cabb4] shadow-sm hover:shadow-xl shadow-gray-300 w-full'>
+          <div 
+          onClick={() => setPaymentMethod("upi")}
+          className='flex justify-start items-center gap-3 border py-1 px-3 rounded border-[#9cabb4] shadow-sm hover:shadow-lg shadow-gray-300 w-full'>
             <input
             type='radio'
             name='payment'
             value='upi'
             checked={paymentMethod === "upi"}
-            onChange={() => setPaymentmethod("upi")}
+            onChange={() => setPaymentMethod("upi")}
             />
             <label className='flex justify-center items-center gap-2'>
               UPI
@@ -40,13 +47,15 @@ const PaymentMethodCard = () => {
             </label>
           </div>
 
-          <div className='flex justify-start items-center gap-3 border py-1 px-3 rounded border-[#9cabb4] shadow-sm hover:shadow-xl shadow-gray-300 w-full'>
+          <div 
+          onClick={() => setPaymentMethod("card")}
+          className='flex justify-start items-center gap-3 border py-1 px-3 rounded border-[#9cabb4] shadow-sm hover:shadow-lg shadow-gray-300 w-full'>
             <input
             type='radio'
             name='payment'
             value='card'
             checked={paymentMethod === "card"}
-            onChange={() => setPaymentmethod("card")}
+            onChange={() => setPaymentMethod("card")}
             />
             <label className='flex justify-center items-center gap-2'>
               Card 
@@ -56,13 +65,15 @@ const PaymentMethodCard = () => {
             </label>
           </div>
 
-          <div className='flex justify-start items-center gap-3 border py-1 px-3 rounded border-[#9cabb4] shadow-sm shadow-gray-300 w-full'>
+          <div 
+          onClick={() => setPaymentMethod("cod")}
+          className='flex justify-start items-center gap-3 border py-1 px-3 rounded border-[#9cabb4] shadow-sm hover:shadow-lg shadow-gray-300 w-full'>
             <input
             type='radio'
             name='payment'
             value='cod'
             checked={paymentMethod === "cod"}
-            onChange={() => setPaymentmethod("cod")}
+            onChange={() => setPaymentMethod("cod")}
             />
             <label className='flex justify-center items-center gap-2'>
               Cash on Delivery 
@@ -74,7 +85,7 @@ const PaymentMethodCard = () => {
 
         </div>
 
-        <div className={`${paymentMethod !== null ? "w-1/2 h-full border py-1 px-3 rounded border-[#9cabb4] shadow-sm hover:shadow-xl shadow-gray-300" : "w-0"} `}>
+        <div className={`${paymentMethod !== null ? "xl:w-1/2 h-full border py-1 px-3 w-full rounded border-[#9cabb4] shadow-sm" : "w-0"} transition-all `}>
           {paymentMethod === "upi" && <UPIPaymentMethod />}
           {paymentMethod === "card" && <CardPaymentMethod />}
           {paymentMethod === "cod" && <CODPaymentMethod />}

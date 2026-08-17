@@ -2,26 +2,30 @@
 import { DisplayCartItem } from '@/types/cart';
 import FinalSummary from './FinalSummary';
 import { Coupon } from '@/types/coupon';
-import { useState } from 'react';
+import React, { SetStateAction } from 'react';
 import CouponContainer from '../discounts/CouponContainer';
 import { setDeliveryMethod as DeliveryMethodService} from '@/services/checkout';
 import DeliveryMethodPage from '../deliveryMethod/DeliveryMethodPage';
+import { DeliveryMethod } from '@/types/order';
 
 interface OrderSummaryProps {
   products: DisplayCartItem[],
   coupons: Coupon[],
+  discount: number,
+  setDiscount: React.Dispatch<SetStateAction<number>>,
+  charges: number,
+  setCharges: React.Dispatch<SetStateAction<number>>,
+  totalPrice: number,
+  finalPrice: number,
+  selectedMethod: DeliveryMethod,
+  setSelectedMethod: React.Dispatch<SetStateAction<DeliveryMethod>>,
 }
 
-const ProductSummary = ({products, coupons}: OrderSummaryProps) => {
-  const [discount, setDiscount] = useState(0);
-  const totalPrice = products.reduce((total, item) => total + (item.product.price * item.quantity), 0);
-  const [charges, setCharges] = useState(0);
-  const [selectedMethod, setSelectedMethod] = useState("");
+const ProductSummary = ({products, coupons, discount, setDiscount, charges, setCharges, totalPrice, finalPrice , selectedMethod, setSelectedMethod}: OrderSummaryProps) => {
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const method = e.target.value;
-    setSelectedMethod(method);
-    const result = DeliveryMethodService(method);
+  function handleClickableElement(value: DeliveryMethod) {
+    setSelectedMethod(value);
+    const result = DeliveryMethodService(value);
     setCharges(result);
   }
 
@@ -30,7 +34,7 @@ const ProductSummary = ({products, coupons}: OrderSummaryProps) => {
 
         <div className='w-full h-full flex flex-col gap-5'>
         <CouponContainer coupons={coupons} amount={totalPrice} setDiscount={setDiscount} />
-        <DeliveryMethodPage handleChange={handleChange} selectedMethod={selectedMethod} />
+        <DeliveryMethodPage handleChange={handleClickableElement} selectedMethod={selectedMethod} />
       </div>
 
         <div className='flex flex-col gap-5 justify-start h-full'>
@@ -77,7 +81,7 @@ const ProductSummary = ({products, coupons}: OrderSummaryProps) => {
 
         </table>
         </div>
-        <FinalSummary products={products} discount={discount} charges={charges} />
+        <FinalSummary discount={discount} charges={charges} totalPrice={totalPrice} finalPrice={finalPrice} />
       
         </div>
 

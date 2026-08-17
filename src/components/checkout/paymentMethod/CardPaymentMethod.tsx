@@ -1,47 +1,131 @@
-import React from 'react'
+import { CardPayment } from '@/types/payment'
+import { CardDetailsErrors, validateCardDetails } from '@/validators/PaymentValidator'
+import React, { useState } from 'react'
+import { toast } from 'react-toastify';
+
 
 const CardPaymentMethod = () => {
+  const [cardDetails, setCardDetails] = useState<CardPayment> ({
+      cardNumber: "",
+      expiry: "",
+      CVV: "",
+      name: "",
+    });
+    const [errors, setErrors] = useState<CardDetailsErrors> ({
+      cardNumber: "",
+      expiry: "",
+      CVV: "",
+      name: ""
+    });
+    
+    function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+        setCardDetails((prev) => ({
+          ...prev,
+          [e.target.name]: e.target.value,
+        }));
+
+        let value = e.target.value.replace(/\D/g, "");
+        
+        if (value.length > 2) {
+          value = `${value.slice(0, 2)}/${value.slice(2, 4)}`;
+        }
+        
+        setCardDetails((prev) => ({
+          ...prev,
+          expiry: value,
+        }));
+    
+        setErrors((prev) => ({
+          ...prev,
+          [e.target.name]: "",
+        }));
+      }
+    
+      function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
+        e.preventDefault();
+    
+        const result = validateCardDetails(cardDetails);
+        setErrors(result.errors);
+    
+        if(!result.isValid) return;
+        toast.success("Card details verified");
+      }
+
   return (
     <div className='flex flex-col gap-1 py-1'>
-      <div className='text-xl font-bold w-full border-l-5 px-3 col-span-6 mb-5'>
+      <div className='text-xl font-bold w-full border-l-5 px-3 col-span-6'>
         Card Details
       </div>
 
-      <div className='my-2 flex flex-col gap-2'>
+      <form 
+      onSubmit={handleSubmit}
+      className='my-2 flex flex-col gap-2'>
         <div className='flex justify-center items-center gap-3'>
           <label>Card Number</label>
-          <input 
-          placeholder='1234 5678 9012 3456'
+          <input
+          name='cardNumber'
+          onChange={handleChange}
+          value={cardDetails.cardNumber}
+          placeholder='**** **** **** ****'
           className='border rounded border-[#9cabb4] px-2'
           type='text' />
+          <div className='text-sm text-red-500'>
+            {errors.cardNumber}
+          </div>
         </div>
 
-        <div className='flex justify-center items-center gap-2'>
+        <div className='flex justify-center items-center gap-3 w-fit'>
           <div className='flex justify-center items-center gap-3'>
           <label>Expiry Date</label>
-          <input 
+          <input
+          name='expiry'
+          onChange={handleChange}
+          value={cardDetails.expiry}
           placeholder='MM/YY'
           className='border rounded border-[#9cabb4] w-1/3 px-2'
           type='text' />
+          <div className='text-sm text-red-500'>
+            {errors.expiry}
+          </div>
         </div>
 
-        <div className='flex justify-center items-center gap-3'>
+        <div className='flex justify-center items-center gap-3 w-fit'>
           <label>CVV</label>
           <input
+          name='CVV'
+          onChange={handleChange}
+          value={cardDetails.CVV}
           placeholder='***'
-          className='border rounded border-[#9cabb4] w-1/3 px-2'
+          className='border rounded border-[#9cabb4] w-1/4 px-2'
           type='text' />
+          <div className='text-sm text-red-500'>
+            {errors.CVV}
+          </div>
         </div>
         </div>
 
         <div className='flex justify-center items-center gap-3'>
-          <label>Name(As per the card)</label>
-          <input 
+          <label>Name (As per the card)</label>
+          <input
+          name='name'
+          onChange={handleChange}
+          value={cardDetails.name}
           placeholder='Name...'
-          className='border rounded border-[#9cabb4] w-8/12'
+          className='border rounded border-[#9cabb4] w-8/12 px-2'
           type='text' />
+          <div className='text-sm text-red-500'>
+            {errors.name}
+          </div>
         </div>
-      </div>
+
+        <div className='flex justify-center'>
+          <button 
+          className='bg-[#72383d] w-fit py-1 px-3 text-[#f2f2eb] rounded'
+          type='submit'>
+            Verify
+          </button>
+        </div>
+      </form>
 
     </div>
   )

@@ -1,21 +1,28 @@
-"use client";
-import { useCart } from '@/context/CartContext';
+import { useCart } from '@/context/CartContext'
+import { DisplayCartItem } from '@/types/cart';
 import React from 'react'
 
-interface FinalSummaryProps {
+interface OrderSummaryProps {
+  products: DisplayCartItem[],
   discount: number,
   charges: number,
-  totalPrice: number,
-  finalPrice: number,
 }
 
-const FinalSummary = ({discount, charges, totalPrice, finalPrice}: FinalSummaryProps) => {
+const OrderSummeryPage = ({products, discount, charges}: OrderSummaryProps) => {
   const {totalItem} = useCart();
 
-  return (
-    <div className='flex flex-col justify-center items-center gap-5'>
+  const totalPrice = products.reduce((total, item) => total + (item.quantity * item.product.price), 0);
 
-      <div className='overflow-x-auto rounded border border-[#9cabb4] px-4 bg-[#f2f2eb] w-full '>
+  const finalTotal = totalPrice + discount + charges;
+
+  return (
+    <div>
+
+      <div className='text-xl font-bold text-start w-full border-l-5 px-3 mb-5'>
+        Order Summary
+      </div>
+
+      <div className='bg-[#d2dce6] rounded'>
         <table className='min-w-full text-center lg:text-left divide-y divide-[#9cabb4]'>
 
           <tbody className='font-semibold'>
@@ -35,7 +42,7 @@ const FinalSummary = ({discount, charges, totalPrice, finalPrice}: FinalSummaryP
             <tr>
               <td className='lg:px-6 py-1 font-medium'>Discount</td>
               <td className='lg:pl-6 py-1 font-medium'>-</td>
-              <td className='lg:px-6 py-1 font-bold text-green-600'>-${discount.toFixed(2)}</td>
+              <td className='lg:px-6 py-1 font-bold text-green-600'>-${discount}</td>
             </tr>
 
             <tr>
@@ -47,15 +54,19 @@ const FinalSummary = ({discount, charges, totalPrice, finalPrice}: FinalSummaryP
             <tr>
               <td className='lg:px-6 py-1 font-medium'>Total</td>
               <td className='lg:pl-6 py-1 font-medium'>-</td>
-              <td className='lg:px-6 py-1 font-extrabold'>${finalPrice.toFixed(2)}</td>
+              <td className='lg:px-6 py-1 font-extrabold'>${finalTotal.toFixed(2)}</td>
             </tr>
 
           </tbody>
 
         </table>
+
+        <div>
+         
+        </div>
       </div>
     </div>
   )
 }
 
-export default FinalSummary
+export default OrderSummeryPage

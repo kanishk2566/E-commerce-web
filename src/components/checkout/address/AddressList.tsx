@@ -10,13 +10,13 @@ interface AddressListPros {
   handleDelete: (addressId: string) => Promise<void>,
   setNewAddress: React.Dispatch<SetStateAction<boolean>>,
   newAddress: boolean,
-
+  setAddress: React.Dispatch<SetStateAction<string>>,
+  address: string,
 }
 
-const AddressList = ({handleDelete, newAddress, setNewAddress}: AddressListPros) => {
+const AddressList = ({handleDelete, newAddress, setNewAddress, setAddress, address}: AddressListPros) => {
   const { user } = useAuth();
   const [deleteModal, setDeleteModal] = useState<number | null>(null);
-  // const [addressId, setAddressId] = useState("");
 
   function modalOpen(index: number) {
     setDeleteModal(prev => prev === index ? null : index);
@@ -41,8 +41,8 @@ const AddressList = ({handleDelete, newAddress, setNewAddress}: AddressListPros)
               
               {user.address.map((item, index) => (
                 <div
-                // onClick={() => {setAddressId(item.id); console.log(item.id)}} 
-                className='border-2 border-b-5 border-[#9cabb4] rounded py-2 px-2 min-h-20 flex flex-col gap-2 bg-[#f2f2eb]'
+                onClick={() => setAddress(item.id)}
+                className={` border-b-5 rounded py-2 px-2 min-h-20 flex flex-col gap-2 bg-[#f2f2eb] transition-all cursor-pointer ${address === item.id ? "ring-3 ring-[#401b1b] border-[#401b1b]" : "ring-2 ring-[#9cabb4] border-[#9cabb4]"}`}
                 key={index}>
                   <div className='font-semibold flex items-center gap-2'>
                     <div className='text-[#9cabb4]'>

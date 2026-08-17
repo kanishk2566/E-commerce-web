@@ -59,11 +59,11 @@ const CouponContainer = ({coupons, amount, setDiscount}: DiscountCouponsProps) =
                 {couponCode} <RiDiscountPercentFill />
               </div>
             </div>
-          <button 
-          onClick={() => handleRemove()}
-          className='text-red-600 hover:bg-red-200 transition-all flex justify-center items-center gap-1 px-2 py-1 rounded w-full'>
-            Remove Coupon<IoMdCloseCircle />
-          </button>
+            <button 
+            onClick={() => handleRemove()}
+            className='text-red-600 hover:bg-red-200 transition-all flex justify-center items-center gap-1 px-2 py-1 rounded w-full'>
+              Remove Coupon<IoMdCloseCircle />
+            </button>
           </div>
         ) : (
           <div className='bg-[#f2f2eb] border border-[#9cabb4] rounded px-5 py-3 w-fit'>

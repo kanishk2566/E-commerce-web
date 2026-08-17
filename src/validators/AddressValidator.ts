@@ -1,6 +1,6 @@
 "use client"
 
-import { AddressFormData } from "@/types/order";
+import { AddressFormData } from "@/types/address";
 
 export type AddressFormErrors = Record<keyof AddressFormData, string>;
 

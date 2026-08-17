@@ -8,6 +8,7 @@ export interface Order {
   address: Address,
   deliveryMethod: "express" | "normal",
   paymentMethod: "upi" | "card" | "cod",
+  paymentStatus: "pending" | "paid" | "failed",
   subtotal: number,
   deliveryFees: number,
   discount: number,
@@ -15,4 +16,7 @@ export interface Order {
   status: "placed" | "processing" | "shipped" | "delivered" | "cancelled",
   createdAt: string,
 }
+
+export type DeliveryMethod = "express" | "normal";
+
 

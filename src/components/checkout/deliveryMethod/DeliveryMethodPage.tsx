@@ -1,8 +1,9 @@
+import { DeliveryMethod } from '@/types/order';
 import React from 'react'
 import { FaShippingFast } from 'react-icons/fa'
 
 interface DeliveryMethodPageProps {
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  handleChange: (value: DeliveryMethod) => void,
   selectedMethod: string,
 }
 
@@ -15,12 +16,15 @@ const DeliveryMethodPage = ({handleChange, selectedMethod}: DeliveryMethodPagePr
         Delivery Methods
       </div>
 
-      <div className={`${selectedMethod === "express" ? "ring-2 ring-[#401b1b]" : "ring ring-[#9cabb4]"} rounded p-2 flex justify-between items-center`}>
+      <div
+      onClick={() => handleChange("express")}
+      className={`${selectedMethod === "express" ? "ring-2 ring-[#401b1b]" : "ring ring-[#9cabb4]"} rounded p-2 flex justify-between items-center`}>
         <div>
           <div className='flex gap-3 text-xl font-semibold accent-[#401b1b]'>
             <input
             type='radio'
-            onChange={handleChange}
+            checked={selectedMethod === "express"}
+            onChange={(e) => handleChange(e.target.value as DeliveryMethod)}
             value="express"
             name="delivery"
             />
@@ -37,12 +41,15 @@ const DeliveryMethodPage = ({handleChange, selectedMethod}: DeliveryMethodPagePr
           </div>
       </div>
 
-      <div className={`${selectedMethod === "normal" ? "ring-2 ring-[#401b1b]" : "ring ring-[#9cabb4]"} rounded p-2 flex justify-between items-center`}>
+      <div
+      onClick={() => handleChange("normal")}
+      className={`${selectedMethod === "normal" ? "ring-2 ring-[#401b1b]" : "ring ring-[#9cabb4]"} rounded p-2 flex justify-between items-center`}>
         <div>
           <div className='flex gap-3 text-xl font-semibold accent-[#401b1b]'>
             <input
             type='radio'
-            onChange={handleChange}
+            checked={selectedMethod === "normal"}
+            onChange={(e) => handleChange(e.target.value as DeliveryMethod)}
             value="normal"
             name="delivery"
             />

@@ -1,6 +1,6 @@
 "use client"
 import { useAuth } from '@/context/AuthContext'
-import React, { useState } from 'react'
+import React, { SetStateAction, useState } from 'react'
 import { AddressFormErrors, validateAddressForm } from '@/validators/AddressValidator';
 
 import { deleteAddress, saveAddress } from '@/services/address';
@@ -8,7 +8,12 @@ import AddressList from './AddressList';
 import AddressForm from './AddressForm';
 import { AddressFormData } from '@/types/address';
 
-const AddressPage = () => {
+interface AddressPageProps {
+  address: string,
+  setAddress: React.Dispatch<SetStateAction<string>>,
+}
+
+const AddressPage = ({setAddress, address}: AddressPageProps) => {
   const { user, isLoading, updateUser } = useAuth();
   const [addressData, setAddressData] = useState<AddressFormData>({
     name: user?.name || "",
@@ -89,7 +94,7 @@ const AddressPage = () => {
 
       <div className={`xl:flex justify-center gap-5 h-fit`}>
         <div className={`max-h-100 h-fit overflow-auto scrollbar-thin scrollbar-thumb-[#9cabb4] rounded scrollbar-track-[#f2f2eb] transition-all duration-300 ${newAddress ? "lg:w-1/3" : "w-full"}`}>
-          <AddressList handleDelete={handleDelete} setNewAddress={setNewAddress} newAddress={newAddress} />
+          <AddressList handleDelete={handleDelete} setNewAddress={setNewAddress} newAddress={newAddress} setAddress={setAddress} address={address} />
         </div>
         
           <div className={`${newAddress ? "max-w-600" : "max-w-0 max-h-0"} overflow-auto transition-all ease-in-out duration-300`}>
