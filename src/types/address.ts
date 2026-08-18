@@ -1,4 +1,4 @@
-export interface Address {
+export interface AddressType {
   id: string,
   name: string,
   phone: string,
@@ -9,4 +9,4 @@ export interface Address {
   title: string,
 }
 
-export type AddressFormData = Omit<Address, "id">;
+export type AddressFormData = Omit<AddressType, "id">;

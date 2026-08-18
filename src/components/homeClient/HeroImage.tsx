@@ -15,7 +15,7 @@ interface HeroProps {
   setCategory: React.Dispatch<SetStateAction<string>>,
 }
 
-const Hero = ({ setCategory}: HeroProps) => {
+const Hero = ({setCategory}: HeroProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const Hero = ({ setCategory}: HeroProps) => {
   }
 
   return (
-    <div className="relative w-full h-30 md:h-60 lg:h-100 xl:h-105 overflow-hidden mt-13 shadow-xl shadow-gray-700/30">
+    <div className="relative w-full h-40 md:h-70 lg:h-100 xl:h-105 overflow-hidden mt-12 shadow-xl shadow-gray-700/30">
       <button
         className="absolute top-1/2 bottom-1/2 left-5 z-50 text-xl lg:text-5xl text-[#9cabb4] hover:text-[#f2f2eb] transition-all"
         disabled={currentIndex === 0}

@@ -8,10 +8,14 @@ import Navbar from '../navbar/Navbar';
 import { Coupon } from '@/types/coupon';
 import ProductSummary from './productSummary/ProductSummary';
 import PaymentMethodCard from './paymentMethod/PaymentMethodCard';
-import OrderSummeryPage from './OrderSummery/OrderSummeryPage';
-import { paymentMethod } from '@/types/payment';
 import { useAuth } from '@/context/AuthContext';
 import { DeliveryMethod } from '@/types/order';
+import { paymentMethod } from '@/types/payment';
+import { AddressType } from '@/types/address';
+import OrderSummeryPage from './OrderSummery/OrderSummeryPage';
+import { confirmOrder } from '@/services/order';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 interface CheckoutPageProps {
   products: Product[];
@@ -24,8 +28,10 @@ const CheckoutPage = ({products, coupons}: CheckoutPageProps) => {
   const [addressId, setAddressId] = useState("");
   const [paymentMethod, setPaymentmethod] = useState<paymentMethod>(null);
   const [deliveryMethod, setDeliveryMethod] = useState<DeliveryMethod>("normal");
+  const [paymentVerified ,setPaymentVerified] = useState(false);
   const { user } = useAuth();
-  const { cart } = useCart();
+  const { cart, clearCart } = useCart();
+  const router = useRouter();
   
   const displayCartItem: DisplayCartItem[] = useMemo(() => {
     const productMap = new Map(
@@ -48,27 +54,75 @@ const CheckoutPage = ({products, coupons}: CheckoutPageProps) => {
   const subtotal = displayCartItem.reduce((total, item) => total + (item.product.price * item.quantity), 0);
   const total = subtotal + charges - discount;
 
-  const address = user?.address.filter((item) => item.id === addressId);
-  if(address === undefined) return;
+  const addresses: AddressType[] | undefined = user?.address.filter((item) => item.id === addressId);
+
+  if(addresses === undefined) return;
+  const address = addresses[0];
+  const deliveryFees = charges;
+
+  async function handleConfirmOrder() {
+  if (!user) {
+    toast.error("Please login first");
+    return;
+  }
+
+  if (!addressId) {
+    toast.error("Please select a delivery address");
+    return;
+  }
+
+  if (!paymentMethod) {
+    toast.error("Please select a payment method");
+    return;
+  }
+
+  try {
+    const paymentStatus =
+      paymentMethod === "cod"
+        ? "pending"
+        : "paid";
+
+    const order = await confirmOrder({
+      userId: user.id,
+      items: displayCartItem,
+      address: address,
+      deliveryMethod,
+      paymentMethod,
+      paymentStatus,
+      discount,
+      deliveryFees,
+      subtotal,
+      total,
+    });
+
+    clearCart();
+
+    toast.success("Order placed successfully!");
+
+    router.push(`/order-confirmation/${order.id}`);
+  } catch (error) {
+    toast.error(
+      error instanceof Error
+        ? error.message
+        : "Failed to place order"
+    );
+  }
+}
 
   return (
     <div>
       <Navbar />
       <div className='mt-15 lg:px-10 px-2 flex flex-col gap-5 mb-20'>
-
-        <AddressPage setAddress={setAddressId} address={addressId} />
-
-        <ProductSummary products={displayCartItem} coupons={coupons} discount={discount} setDiscount={setDiscount} charges={charges} setCharges={setCharges} totalPrice={subtotal} finalPrice={total} selectedMethod={deliveryMethod} setSelectedMethod={setDeliveryMethod}/>
-
-        <PaymentMethodCard paymentMethod={paymentMethod} setPaymentMethod={setPaymentmethod} />
-
-        <div>
-          <OrderSummeryPage products={displayCartItem} discount={discount} charges={charges} address={address[0]} deliveryMethod={deliveryMethod} />
-        </div>
-
+       <AddressPage setAddress={setAddressId} address={addressId} />
+        
+        <ProductSummary products={displayCartItem} coupons={coupons} discount={discount} setDiscount={setDiscount} charges={charges} setCharges={setCharges} selectedMethod={deliveryMethod} setSelectedMethod={setDeliveryMethod} totalPrice={subtotal} finalPrice={total} />
+        
+        <PaymentMethodCard setPaymentMethod={setPaymentmethod} paymentMethod={paymentMethod} setPaymentVerified={setPaymentVerified} paymentVerified={paymentVerified} />
+        <OrderSummeryPage products={displayCartItem} discount={discount} charges={charges} address={address} deliveryMethod={deliveryMethod} paymentMethod={paymentMethod} paymentVerified={paymentVerified} handleConfirmOrder={handleConfirmOrder} />
       </div>
     </div>
   )
 }
 
 export default CheckoutPage
+

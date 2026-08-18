@@ -1,10 +1,13 @@
 import { CardPayment } from '@/types/payment'
 import { CardDetailsErrors, validateCardDetails } from '@/validators/PaymentValidator'
-import React, { useState } from 'react'
+import React, { SetStateAction, useState } from 'react'
 import { toast } from 'react-toastify';
 
+interface CardPaymentMethodProps {
+  setPaymentVerified: React.Dispatch<SetStateAction<boolean>>,
+}
 
-const CardPaymentMethod = () => {
+const CardPaymentMethod = ({setPaymentVerified}: CardPaymentMethodProps) => {
   const [cardDetails, setCardDetails] = useState<CardPayment> ({
       cardNumber: "",
       expiry: "",
@@ -51,6 +54,8 @@ const CardPaymentMethod = () => {
   
       if(!result.isValid) return;
       toast.success("Card details verified");
+      setPaymentVerified(true);
+
     }
 
   return (

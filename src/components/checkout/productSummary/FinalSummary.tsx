@@ -47,7 +47,7 @@ const FinalSummary = ({discount, charges, totalPrice, finalPrice}: FinalSummaryP
             <tr>
               <td className='lg:px-6 py-1 font-medium'>Total</td>
               <td className='lg:pl-6 py-1 font-medium'>-</td>
-              <td className='lg:px-6 py-1 font-extrabold'>${finalPrice.toFixed(2)}</td>
+              <td className='lg:px-6 py-1 font-bold text-lg'>${finalPrice.toFixed(2)}</td>
             </tr>
 
           </tbody>

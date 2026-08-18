@@ -99,6 +99,16 @@ const HomeClient = ({products}: HomeClientProps) => {
             <SortByDropdown setSortBy={setSortBy} sortBy={sortBy} setSortDropdown={setSortDropdown} sortDropdown={sortDropdown} toggleFilterModal={toggleFilterModal} />
 
             <div className="text-xl border-[#401b1b] pl-4 font-bold w-full h-10" />
+            <div className='flex gap-2'>
+              <input
+              id='All'
+              checked={category === "All"}
+              value="All"
+              onChange={() => setCategory("All")}
+              type='radio'
+              />
+              <label> See all products</label>
+            </div>
 
             <ProductGrid products={productsss} />
 

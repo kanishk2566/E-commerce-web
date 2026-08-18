@@ -1,7 +1,7 @@
 "use client"
 import { useAuth } from '@/context/AuthContext'
 import React, { SetStateAction, useState } from 'react'
-import { FaLocationDot } from 'react-icons/fa6';
+import { FaCircleCheck, FaLocationDot } from 'react-icons/fa6';
 import { IoMdHome } from 'react-icons/io';
 import { MdDelete } from 'react-icons/md';
 import { RiBuilding4Fill } from 'react-icons/ri';
@@ -42,8 +42,9 @@ const AddressList = ({handleDelete, newAddress, setNewAddress, setAddress, addre
               {user.address.map((item, index) => (
                 <div
                 onClick={() => setAddress(item.id)}
-                className={` border-b-5 rounded py-2 px-2 min-h-20 flex flex-col gap-2 bg-[#f2f2eb] transition-all cursor-pointer ${address === item.id ? "ring-3 ring-[#401b1b] border-[#401b1b]" : "ring-2 ring-[#9cabb4] border-[#9cabb4]"}`}
+                className={` border-b-5 rounded py-2 px-2 min-h-20 flex flex-col gap-2 bg-[#f2f2eb] transition-all cursor-pointer hover:border-[#401b1b] hover:ring-[#401b1b] ${address === item.id ? "ring-3 ring-[#401b1b] border-[#401b1b]" : "ring-2 ring-[#9cabb4] border-[#9cabb4]"} ${address !== "" && address !== item.id ? "opacity-70" : "opacity-100"}`}
                 key={index}>
+                  
                   <div className='font-semibold flex items-center gap-2'>
                     <div className='text-[#9cabb4]'>
                       {item.title === "Work" && <RiBuilding4Fill />}
@@ -51,6 +52,9 @@ const AddressList = ({handleDelete, newAddress, setNewAddress, setAddress, addre
                       {(item.title !== "Work" && item.title !== "Home") && <FaLocationDot />}
                     </div>
                      {item.title}
+                     {address === item.id && 
+                        <span className=' flex justify-center items-center gap-2'><FaCircleCheck /></span>
+                      }
                   </div>
                   <div>
                     {`${[item.addressLine, item.city, item.state, item.pincode].join(", ")}.`}

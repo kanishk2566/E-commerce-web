@@ -1,9 +1,13 @@
 import { UPIPayment } from '@/types/payment'
 import { UPIDetalsErrors, validateUPIDetails } from '@/validators/PaymentValidator'
-import React, { useState } from 'react'
-import { toast } from 'react-toastify';
+import React, { SetStateAction, useState } from 'react'
+import { toast } from 'react-toastify'
 
-const UPIPaymentMethod = () => {
+interface UPIPaymentMethodProps {
+  setPaymentVerified: React.Dispatch<SetStateAction<boolean>>,
+}
+
+const UPIPaymentMethod = ({setPaymentVerified}: UPIPaymentMethodProps) => {
   const [UPIDetails, setUPIDetails] = useState<UPIPayment>({
     UPIID: "",
   });
@@ -31,6 +35,7 @@ const UPIPaymentMethod = () => {
     if(!result.isValid) return;
 
     toast.success("UPI Id Verified");
+    setPaymentVerified(true);
   }
 
   return (

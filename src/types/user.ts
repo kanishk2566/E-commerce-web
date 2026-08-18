@@ -1,4 +1,4 @@
-import { Address } from "./order";
+import { AddressType } from "./order";
 import { PersistedCartItem } from "./cart";
 import { Wishlist } from "./wishlist";
 
@@ -11,7 +11,7 @@ export type User = {
   createdAt: string;
   cart: PersistedCartItem[];
   wishlist: Wishlist[];
-  address: Address[];
+  address: AddressType[];
   usedCoupons: string[],
 }
 

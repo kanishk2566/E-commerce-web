@@ -45,13 +45,12 @@ const PriceDetails = ({items}: PriceDetailsProps) => {
 
           </div>
 
-          <div className={`transition-all duration-300 ease-in-out ${accordion ? "max-h-500" : "max-h-0"}`}>
+          <div className={`transition-all duration-300 overflow-hidden ease-in-out ${accordion ? "max-h-500" : "max-h-0"}`}>
 
-            {accordion && (
-            <div>
+            <div className={`flex flex-col gap-2`}>
               {items.map((item) => (
                 <div
-                className='flex justify-between lg:gap-7 border-b border-gray-300'
+                className='flex justify-between lg:gap-7'
                 key={item.product.id}>
 
                   <div className='w-[80%] flex items-center'>
@@ -73,7 +72,7 @@ const PriceDetails = ({items}: PriceDetailsProps) => {
                 $ {roundedPrice}
               </div>
             </div>
-          )}
+
           </div>
 
         </div>

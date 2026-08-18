@@ -11,9 +11,11 @@ import { paymentMethod } from '@/types/payment';
 interface PaymentMethodCardProps {
   paymentMethod: paymentMethod,
   setPaymentMethod: React.Dispatch<SetStateAction<paymentMethod>>,
+  paymentVerified: boolean,
+  setPaymentVerified: React.Dispatch<SetStateAction<boolean>>,
 }
 
-const PaymentMethodCard = ({paymentMethod, setPaymentMethod}: PaymentMethodCardProps) => {
+const PaymentMethodCard = ({paymentMethod, setPaymentMethod, setPaymentVerified, paymentVerified}: PaymentMethodCardProps) => {
 
   return (
     <div className='py-2'>
@@ -26,14 +28,14 @@ const PaymentMethodCard = ({paymentMethod, setPaymentMethod}: PaymentMethodCardP
         <div className={`flex flex-col gap-3 text-xl font-semibold h-full ${paymentMethod !== null ? "xl:w-1/2 w-full" : "w-full"}`}>
 
           <div 
-          onClick={() => setPaymentMethod("upi")}
+          onClick={() => {setPaymentMethod("upi"); setPaymentVerified(false); console.log(paymentVerified)}}
           className='flex justify-start items-center gap-3 border py-1 px-3 rounded border-[#9cabb4] shadow-sm hover:shadow-lg shadow-gray-300 w-full'>
             <input
             type='radio'
             name='payment'
             value='upi'
             checked={paymentMethod === "upi"}
-            onChange={() => setPaymentMethod("upi")}
+            onChange={() => {setPaymentMethod("upi"); setPaymentVerified(false); console.log(paymentVerified)}}
             />
             <label className='flex justify-center items-center gap-2'>
               UPI
@@ -48,14 +50,14 @@ const PaymentMethodCard = ({paymentMethod, setPaymentMethod}: PaymentMethodCardP
           </div>
 
           <div 
-          onClick={() => setPaymentMethod("card")}
+          onClick={() => {setPaymentMethod("card"); setPaymentVerified(false); console.log(paymentVerified)}}
           className='flex justify-start items-center gap-3 border py-1 px-3 rounded border-[#9cabb4] shadow-sm hover:shadow-lg shadow-gray-300 w-full'>
             <input
             type='radio'
             name='payment'
             value='card'
             checked={paymentMethod === "card"}
-            onChange={() => setPaymentMethod("card")}
+            onChange={() => {setPaymentMethod("card"); setPaymentVerified(false); console.log(paymentVerified)}}
             />
             <label className='flex justify-center items-center gap-2'>
               Card 
@@ -66,14 +68,14 @@ const PaymentMethodCard = ({paymentMethod, setPaymentMethod}: PaymentMethodCardP
           </div>
 
           <div 
-          onClick={() => setPaymentMethod("cod")}
+          onClick={() => {setPaymentMethod("cod"); setPaymentVerified(true)}}
           className='flex justify-start items-center gap-3 border py-1 px-3 rounded border-[#9cabb4] shadow-sm hover:shadow-lg shadow-gray-300 w-full'>
             <input
             type='radio'
             name='payment'
             value='cod'
             checked={paymentMethod === "cod"}
-            onChange={() => setPaymentMethod("cod")}
+            onChange={() => {setPaymentMethod("cod"); setPaymentVerified(true); console.log(paymentVerified)}}
             />
             <label className='flex justify-center items-center gap-2'>
               Cash on Delivery 
@@ -86,8 +88,8 @@ const PaymentMethodCard = ({paymentMethod, setPaymentMethod}: PaymentMethodCardP
         </div>
 
         <div className={`${paymentMethod !== null ? "xl:w-1/2 h-full border py-1 px-3 w-full rounded border-[#9cabb4] shadow-sm" : "w-0"} transition-all `}>
-          {paymentMethod === "upi" && <UPIPaymentMethod />}
-          {paymentMethod === "card" && <CardPaymentMethod />}
+          {paymentMethod === "upi" && <UPIPaymentMethod setPaymentVerified={setPaymentVerified} />}
+          {paymentMethod === "card" && <CardPaymentMethod setPaymentVerified={setPaymentVerified} />}
           {paymentMethod === "cod" && <CODPaymentMethod />}
         </div>
 

@@ -26,7 +26,7 @@ export function validateAddressForm(formData: AddressFormData): AddressValidator
   const labels: Record<keyof AddressFormData, string> = {
     name: "Name",
     phone: "Phone number",
-    addressLine: "Address",
+    addressLine: "AddressType",
     city: "City",
     state: "State",
     pincode: "Pincode",

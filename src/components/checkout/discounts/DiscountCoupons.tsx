@@ -19,7 +19,7 @@ const DiscountCoupons = ({coupons, amount, handleApply, couponAccordion}: Discou
   const allCoupons = [...applicable, ...nonapplicable];
 
   return (
-    <div className={`grid lg:grid-cols-3 gap-3 transition-all ease-in-out duration-600 overflow-auto ${couponAccordion ? "max-h-500 mt-5" : "max-h-0"}`}>
+    <div className={`grid lg:grid-cols-3 gap-3 transition-all ease-in-out duration-300 overflow-auto ${couponAccordion ? "max-h-500 mt-5" : "max-h-0"}`}>
       {allCoupons.map((item) => (
       <div
       className={`bg-white border rounded px-4 py-2 w-fit flex flex-col justify-between gap-2 max-w-60 ${item.min > amount && "opacity-70"} `}

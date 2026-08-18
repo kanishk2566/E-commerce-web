@@ -63,7 +63,7 @@ const AddressForm = ({handleSubmit, addressData, isLoading, handleChange, errors
       </div>
 
       <div className='col-span-4'>
-        <FormName name={addressData.addressLine} isLoading={isLoading} handleChange={handleChange} errors={errors.addressLine} label='Address:' placeholder='Enter address' type='addressLine' />
+        <FormName name={addressData.addressLine} isLoading={isLoading} handleChange={handleChange} errors={errors.addressLine} label='AddressType:' placeholder='Enter address' type='addressLine' />
       </div>
 
       <div className='col-span-2'>

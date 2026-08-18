@@ -1,13 +1,16 @@
-import { Address } from "cluster";
+
+import { AddressType } from "./address";
 import { DisplayCartItem } from "./cart";
+import { paymentMethod } from "./payment";
 
 export interface Order {
   id: Date,
   userId: string,
   items: DisplayCartItem[],
-  address: Address,
+  address: AddressType,
   deliveryMethod: "express" | "normal",
   paymentStatus: "pending" | "paid" | "failed",
+  paymentMethod: paymentMethod
   subtotal: number,
   deliveryFees: number,
   discount: number,
@@ -15,6 +18,8 @@ export interface Order {
   status: "placed" | "processing" | "shipped" | "delivered" | "cancelled",
   createdAt: string,
 }
+
+export type CreateOrderData = Omit<Order, "id" | "createdAt" | "status">;
 
 export type DeliveryMethod = "express" | "normal";
 
